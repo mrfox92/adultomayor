@@ -20,6 +20,7 @@ class CreateDiscapacidadTable extends Migration
             $table->unsignedInteger('tipo_discapacidad_id');
             $table->foreign('tipo_discapacidad_id')->references('id')->on('tipo_discapacidad');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

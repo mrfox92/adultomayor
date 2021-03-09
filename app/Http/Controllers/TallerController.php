@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\TallerRequest;
 use App\Taller;
+use Carbon\Carbon;
 
 class TallerController extends Controller
 {
@@ -27,7 +28,9 @@ class TallerController extends Controller
      */
     public function create()
     {
-        //
+        $taller = new Taller();
+        $btnText = __("Guardar");
+        return view('admin.talleres.form', compact('taller', 'btnText'));
     }
 
     /**
@@ -36,9 +39,15 @@ class TallerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TallerRequest $taller_request)
     {
-        //
+        // dd( $request );
+        Taller::create( $taller_request->input() );
+
+        return back()->with('message', [
+            'class'     =>  'success',
+            'message'   =>  __("El taller ha sido creado exitosamente")
+        ]);
     }
 
     /**
@@ -60,7 +69,21 @@ class TallerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $taller = Taller::with(['tipotaller'])->find($id);
+        $btnText = __("Actualizar");
+
+        // Parseamos las fechas para poder trabajarlas bien en el formulario
+        if ( $taller->fecha_inicio ) {
+
+            $taller->fecha_inicio = Carbon::parse($taller->fecha_inicio)->format('Y-m-d');
+        }
+
+        if ( $taller->fecha_fin ) {
+
+            $taller->fecha_fin = Carbon::parse($taller->fecha_fin)->format('Y-m-d');
+        }
+
+        return view('admin.talleres.form', compact('taller', 'btnText'));
     }
 
     /**
@@ -70,9 +93,16 @@ class TallerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TallerRequest $taller_request, $id)
     {
-        //
+        $taller = Taller::find($id);
+
+        $taller->fill( $taller_request->input() )->save();
+
+        return redirect()->route('talleres.edit', ['id' => $taller->id])->with('message', [
+            'class'     =>  'success',
+            'message'   =>  __("El Taller ha sido actualizado exitosamente")
+        ]);
     }
 
     /**
@@ -83,6 +113,24 @@ class TallerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $taller = Taller::find($id);
+        
+        try {
+
+            $taller->delete();
+
+            return back()->with('message', [
+                'class'     =>  'success',
+                'message'   =>  __("El Taller ha sido eliminado con éxito")
+            ]);
+            
+
+        } catch (\Exception $exception) {
+            
+            return back()->with('message', [
+                'class'     =>  'danger',
+                'message'   =>  __("Error al eliminar el Taller")
+            ]);
+        }
     }
 }

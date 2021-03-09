@@ -3,29 +3,36 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AdultoMayor extends Model
 {
-
+    use SoftDeletes;
     protected $table = 'adultos_mayores';
+    protected $fillable = ['rut', 'nombres', 'apellidos', 'fecha_nacimiento', 'edad', 'direccion',
+    'telefono','nacionalidad_id','alfabetizacion_id','porcentaje_rsh','estado_club_am','tipo_vivienda_id',
+    'nucleo_familiar_id','recibe_medicamentos','obs_medicamentos','emprendimiento','obs_emprendimiento',
+    'atencion_panales','obs_atencion_panales','postrado','obs_postrado','habitabilidad_casa','obs_hab_casa',
+    'postulacion_fosis','obs_fosis','fecha_postulacion_fosis','user_id'];
+    
     // un am tiene una nacionalidad
     public function nacionalidad () {
-        return $this->belongsTo(Nacionalidad::class);
+        return $this->belongsTo(Nacionalidad::class, 'nacionalidad_id');
     }
 
     // un adulto mayor tiene un tipo de vivienda
 
     public function tipoVivienda () {
-        return $this->belongsTo(TipoVivienda::class);
+        return $this->belongsTo(TipoVivienda::class, 'tipo_vivienda_id');
     }
     //  un adulto de mayor tiene un tipo nucleo familiar
 
     public function nucleoFamiliar () {
-        return $this->belongsTo(NucleoFamiliar::class);
+        return $this->belongsTo(NucleoFamiliar::class, 'nucleo_familiar_id');
     }
 
     public function alfabetizacion () {
-        return $this->belongsTo(Alfabetizacion::class);
+        return $this->belongsTo(Alfabetizacion::class, 'alfabetizacion_id');
     }
 
     public function institutoSalud () {
@@ -34,7 +41,7 @@ class AdultoMayor extends Model
 
     //  un adulto mayor es ingresado por un usuario
     public function users () {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     // tabla relacion adulto mayor - ayuda tecnica

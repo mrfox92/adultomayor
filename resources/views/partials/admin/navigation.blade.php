@@ -194,7 +194,7 @@
             <li class="nav-item dropdown profile-nav-item">
                 <a href="#" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="menu-profile">
-                        <span class="name">Hi! Andro</span>
+                        <span class="name">Hola Angela</span>
                         <img src="{{ asset('img/user1.jpg') }}" class="rounded-circle" alt="image">
                     </div>
                 </a>
@@ -206,8 +206,8 @@
                         </div>
 
                         <div class="info text-center">
-                            <span class="name">Andro Smith</span>
-                            <p class="mb-3 email">hello@androsmith.com</p>
+                            <span class="name">Angela Hernandez</span>
+                            <p class="mb-3 email">angelahernandez@gmail.com</p>
                         </div>
                     </div>
 
@@ -215,25 +215,24 @@
                         <ul class="profile-nav p-0 pt-3">
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class='bx bx-user'></i> <span>Profile</span>
+                                    <i class='bx bx-user'></i> <span>Perfil</span>
                                 </a>
                             </li>
 
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class='bx bx-envelope'></i> <span>My Inbox</span>
+                                    <i class='bx bx-edit-alt'></i> <span>Editar Perfil</span>
                                 </a>
                             </li>
 
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class='bx bx-edit-alt'></i> <span>Edit Profile</span>
+                                    <i class='bx bx-cog'></i> <span>Configuración</span>
                                 </a>
                             </li>
-
                             <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    <i class='bx bx-cog'></i> <span>Settings</span>
+                                    <i class='bx bx-exit'></i> <span>Cerrar Sesión</span>
                                 </a>
                             </li>
                         </ul>

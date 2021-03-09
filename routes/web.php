@@ -21,20 +21,32 @@ Route::get('/', function () {
 Route::get('/', 'HomeController@index')->name('home');
 //  adulto mayor
 
-Route::group(['prefix' => 'adultomayor'], function() {
-    Route::get('/', 'AdultoMayorController@index')->name('adultomayor.index');
-});
+// Route::group(['prefix' => 'adultomayor'], function() {
+//     Route::get('/', 'AdultoMayorController@index')->name('adultomayor.index');
+// });
 
 //  tipo vivienda
-Route::group(['prefix' => 'vivienda'], function() {
+// Route::group(['prefix' => 'vivienda'], function() {
 
-    Route::get('/', 'TipoViviendaController@index')->name('tipovivienda.index');
-});
+//     Route::get('/', 'TipoViviendaController@index')->name('tipovivienda.index');
+// });
 
 //  nacionalidad
-Route::group(['prefix' => 'nacionalidad'], function() {
+// Route::group(['prefix' => 'nacionalidad'], function() {
 
-    Route::get('/', 'NacionalidadController@index')->name('nacionalidad.index');
+//     Route::get('/', 'NacionalidadController@index')->name('nacionalidad.index');
+// });
+
+//  Adulto Mayor
+Route::group(['prefix' => 'adultomayor'], function() {
+
+    Route::get('/', 'AdultoMayorController@index')->name('adultosmayores.index');
+    Route::get('/create', 'AdultoMayorController@create')->name('adultosmayores.create');
+    Route::post('/store', 'AdultoMayorController@store')->name('adultosmayores.store');
+    Route::put('/{id}/update', 'AdultoMayorController@update')->name('adultosmayores.update');
+    Route::get('/{id}/edit', 'AdultoMayorController@edit')->name('adultosmayores.edit');
+    Route::delete('/{id}/destroy', 'AdultoMayorController@destroy')->name('adultosmayores.destroy');
+
 });
 
 //  alfabetizacion
@@ -120,6 +132,96 @@ Route::group(['prefix' => 'talleres'], function() {
     Route::put('/{id}/update', 'TallerController@update')->name('talleres.update');
     Route::get('/{id}/edit', 'TallerController@edit')->name('talleres.edit');
     ROute::delete('/{id}/destroy', 'TallerController@destroy')->name('talleres.destroy');
+});
+
+Route::group(['prefix' => 'patologias'], function() {
+    Route::get('/', 'PatologiaController@index')->name('patologias.index');
+    Route::get('/create', 'PatologiaController@create')->name('patologias.create');
+    Route::post('/store', 'PatologiaController@store')->name('patologias.store');
+    Route::put('/{id}/update', 'PatologiaController@update')->name('patologias.update');
+    Route::get('/{id}/edit', 'PatologiaController@edit')->name('patologias.edit');
+    ROute::delete('/{id}/destroy', 'PatologiaController@destroy')->name('patologias.destroy');
+});
+
+Route::group(['prefix' => 'patologias'], function() {
+    Route::get('/', 'PatologiaController@index')->name('patologias.index');
+    Route::get('/create', 'PatologiaController@create')->name('patologias.create');
+    Route::post('/store', 'PatologiaController@store')->name('patologias.store');
+    Route::put('/{id}/update', 'PatologiaController@update')->name('patologias.update');
+    Route::get('/{id}/edit', 'PatologiaController@edit')->name('patologias.edit');
+    ROute::delete('/{id}/destroy', 'PatologiaController@destroy')->name('patologias.destroy');
+});
+
+Route::group(['prefix' => 'institucionsalud'], function() {
+    Route::get('/', 'InstitucionSaludController@index')->name('institucionsalud.index');
+    Route::get('/create', 'InstitucionSaludController@create')->name('institucionsalud.create');
+    Route::post('/store', 'InstitucionSaludController@store')->name('institucionsalud.store');
+    Route::put('/{id}/update', 'InstitucionSaludController@update')->name('institucionsalud.update');
+    Route::get('/{id}/edit', 'InstitucionSaludController@edit')->name('institucionsalud.edit');
+    ROute::delete('/{id}/destroy', 'InstitucionSaludController@destroy')->name('institucionsalud.destroy');
+});
+
+Route::group(['prefix' => 'tipodiscapacidades'], function() {
+    Route::get('/', 'TipoDiscapacidadController@index')->name('tipodiscapacidades.index');
+    Route::get('/create', 'TipoDiscapacidadController@create')->name('tipodiscapacidades.create');
+    Route::post('/store', 'TipoDiscapacidadController@store')->name('tipodiscapacidades.store');
+    Route::put('/{id}/update', 'TipoDiscapacidadController@update')->name('tipodiscapacidades.update');
+    Route::get('/{id}/edit', 'TipoDiscapacidadController@edit')->name('tipodiscapacidades.edit');
+    ROute::delete('/{id}/destroy', 'TipoDiscapacidadController@destroy')->name('tipodiscapacidades.destroy');
+});
+
+Route::group(['prefix' => 'discapacidades'], function() {
+    Route::get('/', 'DiscapacidadController@index')->name('discapacidades.index');
+    Route::get('/create', 'DiscapacidadController@create')->name('discapacidades.create');
+    Route::post('/store', 'DiscapacidadController@store')->name('discapacidades.store');
+    Route::put('/{id}/update', 'DiscapacidadController@update')->name('discapacidades.update');
+    Route::get('/{id}/edit', 'DiscapacidadController@edit')->name('discapacidades.edit');
+    ROute::delete('/{id}/destroy', 'DiscapacidadController@destroy')->name('discapacidades.destroy');
+});
+
+Route::group(['prefix' => 'actividades'], function() {
+    Route::get('/', 'ActividadController@index')->name('actividades.index');
+    Route::get('/create', 'ActividadController@create')->name('actividades.create');
+    Route::post('/store', 'ActividadController@store')->name('actividades.store');
+    Route::put('/{id}/update', 'ActividadController@update')->name('actividades.update');
+    Route::get('/{id}/edit', 'ActividadController@edit')->name('actividades.edit');
+    ROute::delete('/{id}/destroy', 'ActividadController@destroy')->name('actividades.destroy');
+});
+
+Route::group(['prefix' => 'ayudastecnicas'], function() {
+    Route::get('/', 'AyudaTecnicaController@index')->name('ayudastecnicas.index');
+    Route::get('/create', 'AyudaTecnicaController@create')->name('ayudastecnicas.create');
+    Route::post('/store', 'AyudaTecnicaController@store')->name('ayudastecnicas.store');
+    Route::put('/{id}/update', 'AyudaTecnicaController@update')->name('ayudastecnicas.update');
+    Route::get('/{id}/edit', 'AyudaTecnicaController@edit')->name('ayudastecnicas.edit');
+    ROute::delete('/{id}/destroy', 'AyudaTecnicaController@destroy')->name('ayudastecnicas.destroy');
+});
+
+Route::group(['prefix' => 'atenciones'], function() {
+    Route::get('/', 'AtencionController@index')->name('atenciones.index');
+    Route::get('/create', 'AtencionController@create')->name('atenciones.create');
+    Route::post('/store', 'AtencionController@store')->name('atenciones.store');
+    Route::put('/{id}/update', 'AtencionController@update')->name('atenciones.update');
+    Route::get('/{id}/edit', 'AtencionController@edit')->name('atenciones.edit');
+    ROute::delete('/{id}/destroy', 'AtencionController@destroy')->name('atenciones.destroy');
+});
+
+Route::group(['prefix' => 'serviciosbasicos'], function() {
+    Route::get('/', 'ServicioBasicoController@index')->name('serviciosbasicos.index');
+    Route::get('/create', 'ServicioBasicoController@create')->name('serviciosbasicos.create');
+    Route::post('/store', 'ServicioBasicoController@store')->name('serviciosbasicos.store');
+    Route::put('/{id}/update', 'ServicioBasicoController@update')->name('serviciosbasicos.update');
+    Route::get('/{id}/edit', 'ServicioBasicoController@edit')->name('serviciosbasicos.edit');
+    ROute::delete('/{id}/destroy', 'ServicioBasicoController@destroy')->name('serviciosbasicos.destroy');
+});
+
+Route::group(['prefix' => 'trabajosbano'], function() {
+    Route::get('/', 'TrabajoBanoController@index')->name('trabajosbano.index');
+    Route::get('/create', 'TrabajoBanoController@create')->name('trabajosbano.create');
+    Route::post('/store', 'TrabajoBanoController@store')->name('trabajosbano.store');
+    Route::put('/{id}/update', 'TrabajoBanoController@update')->name('trabajosbano.update');
+    Route::get('/{id}/edit', 'TrabajoBanoController@edit')->name('trabajosbano.edit');
+    ROute::delete('/{id}/destroy', 'TrabajoBanoController@destroy')->name('trabajosbano.destroy');
 });
 
 Auth::routes();

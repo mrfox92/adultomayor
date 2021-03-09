@@ -18,7 +18,7 @@ class CreateAdultosMayoresTable extends Migration
             $table->string('rut');
             $table->string('nombres');
             $table->string('apellidos');
-            $table->timestamp('fecha_nacimiento')->nullable();
+            $table->dateTime('fecha_nacimiento')->nullable();
             $table->integer('edad');
             $table->string('direccion')->nullable();
             $table->string('telefono')->nullable();
@@ -48,6 +48,7 @@ class CreateAdultosMayoresTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

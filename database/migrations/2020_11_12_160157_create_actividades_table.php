@@ -20,6 +20,7 @@ class CreateActividadesTable extends Migration
             $table->timestamp('fecha_inicio')->nullable();
             $table->timestamp('fecha_fin')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

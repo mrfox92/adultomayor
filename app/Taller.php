@@ -15,7 +15,7 @@ class Taller extends Model
     
     //  es necesario especificar como segundo argumento la foreign key para poder utilizar el metodo
     public function tipotaller () {
-        return $this->belongsTo(TipoTaller::class, 'tipo_taller_id')->select('id', 'nombre');;
+        return $this->belongsTo(TipoTaller::class, 'tipo_taller_id')->select('id', 'nombre');
     }
 
     public function adultosMayoresTalleres () {

@@ -19,6 +19,7 @@ class CreateInstitucionSaludTable extends Migration
             $table->string('direccion')->nullable();
             $table->string('localidad')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

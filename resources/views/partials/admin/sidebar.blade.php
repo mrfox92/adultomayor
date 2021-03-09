@@ -23,18 +23,21 @@
     <div class="sidemenu-body">
         <ul class="sidemenu-nav metisMenu h-100" id="sidemenu-nav" data-simplebar>
             <li class="nav-item-title">
-                Main
+                PRINCIPAL
             </li>
 
-            <li class="nav-item mm-active">
+            {{-- <li class="nav-item mm-active"> --}}
+            <li class="nav-item">
                 <a href="#" class="nav-link" aria-expanded="false">
-                    <span class="icon"><i class='bx bx-home-circle'></i></span>
-                    <span class="menu-title">Servicios</span>
+                    <span class="icon"><i class='bx bx-archive-in'></i></span>
+                    <span class="menu-title">Reportes</span>
                 </a>
             </li>
 
+            {{-- <li class="nav-item mm-active"> --}}
+
             <li class="nav-item-title">
-                PRINCIPAL
+                INTERNO
             </li>
 
             {{-- Adulto mayor --}}
@@ -43,32 +46,40 @@
                 <a href="#" class="collapsed-nav-link nav-link" aria-expanded="false">
                     <span class="icon"><i class='bx bxs-data'></i></span>
                     <span class="menu-title">Adultos Mayores</span>
-                    <span class="badge">4</span>
+                    <span class="badge">5</span>
                 </a>
 
                 <ul class="sidemenu-nav-second-level">
+
                     <li class="nav-item">
+                        <a href="{{ route('adultosmayores.index') }}" class="nav-link" aria-expanded="false">
+                            <span class="icon"><i class='bx bx-box'></i></span>
+                            <span class="menu-title">Ingresar Adulto Mayor</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item{{ ( request()->is('nucleofamiliar') ) ? ' mm-active' : '' }}">
                         <a href="{{ route('nucleofamiliar.index') }}" class="nav-link">
                             <span class="icon"><i class='bx bxs-user-detail'></i></span>
                             <span class="menu-title">Nucleos familiares</span>
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item{{ ( request()->is('ingresos') ) ? ' mm-active' : '' }}">
                         <a href="{{ route('ingresos.index') }}" class="nav-link">
                             <span class="icon"><i class='bx bx-dollar-circle'></i></span>
                             <span class="menu-title">Ingresos</span>
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item{{ ( request()->is('redes') ) ? ' mm-active' : '' }}">
                         <a href="{{ route('redes.index') }}" class="nav-link">
                             <span class="icon"><i class='bx bx-sitemap'></i></span>
                             <span class="menu-title">Redes</span>
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item{{ ( request()->is('tipoviviendas') ) ? ' mm-active' : '' }}">
                         <a href="{{ route('tipoviviendas.index') }}" class="nav-link">
                             <span class="icon"><i class='bx bx-home-heart'></i></span>
                             <span class="menu-title">Tipo vivienda</span>
@@ -87,14 +98,14 @@
                 </a>
 
                 <ul class="sidemenu-nav-second-level">
-                    <li class="nav-item">
+                    <li class="nav-item{{ ( request()->is('nacionalidad') ) ? ' mm-active' : '' }}">
                         <a href="{{ route('nacionalidad.index') }}" class="nav-link">
                             <span class="icon"><i class='bx bx-globe'></i></span>
-                            <span class="menu-title">Nacionalidad</span>
+                            <span class="menu-title">Nacionalidades</span>
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item{{ ( request()->is('etnia') ) ? ' mm-active' : '' }}">
                         <a href="{{ route('etnia.index') }}" class="nav-link">
                             <span class="icon"><i class='bx bxs-badge-check'></i></span>
                             <span class="menu-title">Etnias</span>
@@ -108,22 +119,22 @@
 
             <li class="nav-item">
                 <a href="#" class="collapsed-nav-link nav-link" aria-expanded="false">
-                    <span class="icon"><i class='bx bx-envelope'></i></span>
+                    <span class="icon"><i class='bx bx-carousel'></i></span>
                     <span class="menu-title">Talleres</span>
                     <span class="badge">2</span>
                 </a>
 
                 <ul class="sidemenu-nav-second-level">
-                    <li class="nav-item">
+                    <li class="nav-item{{ ( request()->is('tipotalleres') ) ? ' mm-active' : '' }}">
                         <a href="{{ route('tipotalleres.index') }}" class="nav-link">
-                            <span class="icon"><i class='bx bxs-inbox'></i></span>
+                            <span class="icon"><i class='bx bx-task'></i></span>
                             <span class="menu-title">Tipo Taller</span>
                         </a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item{{ ( request()->is('talleres') ) ? ' mm-active' : '' }}">
                         <a href="{{ route('talleres.index') }}" class="nav-link">
-                            <span class="icon"><i class='bx bxs-badge-check'></i></span>
+                            <span class="icon"><i class='bx bx-select-multiple'></i></span>
                             <span class="menu-title">Talleres</span>
                         </a>
                     </li>
@@ -134,22 +145,22 @@
 
             <li class="nav-item">
                 <a href="#" class="collapsed-nav-link nav-link" aria-expanded="false">
-                    <span class="icon"><i class='bx bx-envelope'></i></span>
+                    <span class="icon"><i class='bx bx-clinic'></i></span>
                     <span class="menu-title">Salud</span>
                     <span class="badge">2</span>
                 </a>
 
                 <ul class="sidemenu-nav-second-level">
-                    <li class="nav-item">
-                        <a href="app-email.html" class="nav-link">
-                            <span class="icon"><i class='bx bxs-inbox'></i></span>
+                    <li class="nav-item{{ ( request()->is('patologias') ) ? ' mm-active' : '' }}">
+                        <a href="{{ route('patologias.index') }}" class="nav-link">
+                            <span class="icon"><i class='bx bxs-thermometer'></i></span>
                             <span class="menu-title">Patologías</span>
                         </a>
                     </li>
 
-                    <li class="nav-item">
-                        <a href="email-read.html" class="nav-link">
-                            <span class="icon"><i class='bx bxs-badge-check'></i></span>
+                    <li class="nav-item{{ ( request()->is('institucionsalud') ) ? ' mm-active' : '' }}">
+                        <a href="{{ route('institucionsalud.index') }}" class="nav-link">
+                            <span class="icon"><i class='bx bx-home-heart'></i></span>
                             <span class="menu-title">Institución salud</span>
                         </a>
                     </li>
@@ -166,7 +177,7 @@
                 </a>
 
                 <ul class="sidemenu-nav-second-level">
-                    <li class="nav-item">
+                    <li class="nav-item{{ ( request()->is('alfabetizacion') ) ? ' mm-active' : '' }}">
                         <a href="{{ route('alfabetizacion.index') }}" class="nav-link">
                             <span class="icon"><i class='bx bxs-book-bookmark'></i></span>
                             <span class="menu-title">Alfabetización</span>
@@ -185,16 +196,16 @@
                 </a>
 
                 <ul class="sidemenu-nav-second-level">
-                    <li class="nav-item">
-                        <a href="app-email.html" class="nav-link">
+                    <li class="nav-item{{ ( request()->is('tipodiscapacidades') ) ? ' mm-active' : '' }}">
+                        <a href="{{ route('tipodiscapacidades.index') }}" class="nav-link">
                             <span class="icon"><i class='bx bx-tag'></i></span>
                             <span class="menu-title">Tipo Discapacidad</span>
                         </a>
                     </li>
                 </ul>
                 <ul class="sidemenu-nav-second-level">
-                    <li class="nav-item">
-                        <a href="app-email.html" class="nav-link">
+                    <li class="nav-item{{ ( request()->is('discapacidades') ) ? ' mm-active' : '' }}">
+                        <a href="{{ route('discapacidades.index') }}" class="nav-link">
                             <span class="icon"><i class='bx bx-list-check'></i></span>
                             <span class="menu-title">Discapacidad</span>
                         </a>
@@ -206,15 +217,15 @@
 
             <li class="nav-item">
                 <a href="#" class="collapsed-nav-link nav-link" aria-expanded="false">
-                    <span class="icon"><i class='bx bx-envelope'></i></span>
+                    <span class="icon"><i class='bx bxs-flag-checkered'></i></span>
                     <span class="menu-title">Actividades</span>
                     <span class="badge">1</span>
                 </a>
 
                 <ul class="sidemenu-nav-second-level">
-                    <li class="nav-item">
-                        <a href="app-email.html" class="nav-link">
-                            <span class="icon"><i class='bx bxs-inbox'></i></span>
+                    <li class="nav-item{{ ( request()->is('actividades') ) ? ' mm-active' : '' }}">
+                        <a href="{{ route('actividades.index') }}" class="nav-link">
+                            <span class="icon"><i class='bx bx-collection'></i></span>
                             <span class="menu-title">Actividades</span>
                         </a>
                     </li>
@@ -225,39 +236,39 @@
 
             <li class="nav-item">
                 <a href="#" class="collapsed-nav-link nav-link" aria-expanded="false">
-                    <span class="icon"><i class='bx bx-envelope'></i></span>
+                    <span class="icon"><i class='bx bx-cabinet'></i></span>
                     <span class="menu-title">Servicios</span>
                     <span class="badge">4</span>
                 </a>
 
                 <ul class="sidemenu-nav-second-level">
-                    <li class="nav-item">
-                        <a href="app-email.html" class="nav-link">
-                            <span class="icon"><i class='bx bxs-inbox'></i></span>
+                    <li class="nav-item{{ ( request()->is('ayudastecnicas') ) ? ' mm-active' : '' }}">
+                        <a href="{{ route('ayudastecnicas.index') }}" class="nav-link">
+                            <span class="icon"><i class='bx bxs-folder-plus'></i></span>
                             <span class="menu-title">Ayudas Técnicas</span>
                         </a>
                     </li>
                 </ul>
                 <ul class="sidemenu-nav-second-level">
-                    <li class="nav-item">
-                        <a href="app-email.html" class="nav-link">
-                            <span class="icon"><i class='bx bxs-inbox'></i></span>
+                    <li class="nav-item{{ ( request()->is('atenciones') ) ? ' mm-active' : '' }}">
+                        <a href="{{ route('atenciones.index') }}" class="nav-link">
+                            <span class="icon"><i class='bx bxs-contact'></i></span>
                             <span class="menu-title">Atenciones</span>
                         </a>
                     </li>
                 </ul>
                 <ul class="sidemenu-nav-second-level">
-                    <li class="nav-item">
-                        <a href="app-email.html" class="nav-link">
-                            <span class="icon"><i class='bx bxs-inbox'></i></span>
+                    <li class="nav-item{{ ( request()->is('serviciosbasicos') ) ? ' mm-active' : '' }}">
+                        <a href="{{ route('serviciosbasicos.index') }}" class="nav-link">
+                            <span class="icon"><i class='bx bxs-archive'></i></span>
                             <span class="menu-title">Servicios Básicos</span>
                         </a>
                     </li>
                 </ul>
                 <ul class="sidemenu-nav-second-level">
-                    <li class="nav-item">
-                        <a href="app-email.html" class="nav-link">
-                            <span class="icon"><i class='bx bxs-inbox'></i></span>
+                    <li class="nav-item{{ ( request()->is('trabajosbano') ) ? ' mm-active' : '' }}">
+                        <a href="{{ route('trabajosbano.index') }}" class="nav-link">
+                            <span class="icon"><i class='bx bx-wrench'></i></span>
                             <span class="menu-title">Trabajos Baño</span>
                         </a>
                     </li>
