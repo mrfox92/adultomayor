@@ -41,12 +41,84 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'adultomayor'], function() {
 
     Route::get('/', 'AdultoMayorController@index')->name('adultosmayores.index');
+    Route::get('/show/{id}', 'AdultoMayorController@show')->name('adultosmayores.show');
     Route::get('/create', 'AdultoMayorController@create')->name('adultosmayores.create');
     Route::post('/store', 'AdultoMayorController@store')->name('adultosmayores.store');
     Route::put('/{id}/update', 'AdultoMayorController@update')->name('adultosmayores.update');
     Route::get('/{id}/edit', 'AdultoMayorController@edit')->name('adultosmayores.edit');
     Route::delete('/{id}/destroy', 'AdultoMayorController@destroy')->name('adultosmayores.destroy');
 
+});
+
+
+//  Autonomia Adulto Mayor
+Route::group(['prefix' => 'autonomia'], function() {
+
+    Route::get('/', 'AutonomiaController@index')->name('autonomia.index');
+    Route::get('/create/{id}', 'AutonomiaController@create')->name('autonomia.create');
+    Route::post('/store', 'AutonomiaController@store')->name('autonomia.store');
+    Route::put('/{id}/update', 'AutonomiaController@update')->name('autonomia.update');
+    Route::get('/edit/{id}', 'AutonomiaController@edit')->name('autonomia.edit');
+    Route::delete('/{id}/destroy', 'AutonomiaController@destroy')->name('autonomia.destroy');
+});
+
+//  Autonomia Adulto Mayor
+Route::group(['prefix' => 'salud'], function() {
+
+    Route::get('/', 'SaludController@index')->name('salud.index');
+    Route::get('/create/{id}', 'SaludController@create')->name('salud.create');
+    Route::post('/store', 'SaludController@store')->name('salud.store');
+    Route::put('/{id}/update', 'SaludController@update')->name('salud.update');
+    Route::get('/edit/{id}', 'SaludController@edit')->name('salud.edit');
+    Route::delete('/{id}/destroy', 'SaludController@destroy')->name('salud.destroy');
+});
+
+//  Vivienda Adulto Mayor
+Route::group(['prefix' => 'vivienda'], function() {
+
+    Route::get('/', 'ViviendaAmController@index')->name('vivienda.index');
+    Route::get('/create/{id}', 'ViviendaAmController@create')->name('vivienda.create');
+    Route::post('/store', 'ViviendaAmController@store')->name('vivienda.store');
+    Route::put('/{id}/update', 'ViviendaAmController@update')->name('vivienda.update');
+    Route::get('/edit/{id}', 'ViviendaAmController@edit')->name('vivienda.edit');
+    Route::delete('/{id}/destroy', 'ViviendaAmController@destroy')->name('vivienda.destroy');
+});
+
+//  Habitabilidad Vivienda Adulto Mayor
+Route::group(['prefix' => 'habitabilidad'], function() {
+
+    Route::get('/', 'HabitabilidadViviendaController@index')->name('habitabilidad.index');
+    Route::get('/create/{id}', 'HabitabilidadViviendaController@create')->name('habitabilidad.create');
+    Route::post('/store', 'HabitabilidadViviendaController@store')->name('habitabilidad.store');
+    Route::put('/{id}/update', 'HabitabilidadViviendaController@update')->name('habitabilidad.update');
+    Route::get('/edit/{id}', 'HabitabilidadViviendaController@edit')->name('habitabilidad.edit');
+    Route::delete('/{id}/destroy', 'HabitabilidadViviendaController@destroy')->name('habitabilidad.destroy');
+});
+
+
+//  Acompañante Adulto Mayor
+Route::group(['prefix' => 'acompanante'], function() {
+
+    Route::get('/', 'AcompananteController@index')->name('acompanante.index');
+    Route::get('/create/{id}', 'AcompananteController@create')->name('acompanante.create');
+    Route::post('/store', 'AcompananteController@store')->name('acompanante.store');
+    Route::put('/{id}/update', 'AcompananteController@update')->name('acompanante.update');
+    Route::get('/edit/{id}', 'AcompananteController@edit')->name('acompanante.edit');
+    Route::delete('/{id}/destroy', 'AcompananteController@destroy')->name('acompanante.destroy');
+});
+
+//  identificacion Adulto Mayor
+Route::group(['prefix' => 'identificacion'], function() {
+
+    Route::get('/', 'IdentificacionController@index')->name('identificacion.index');
+    Route::get('/show/{id}', 'IdentificacionController@show')->name('identificacion.show');
+    Route::get('/add/{id}', 'IdentificacionController@add')->name('identificacion.add');
+    Route::get('/create/{id}', 'IdentificacionController@create')->name('identificacion.create');
+    Route::post('/store', 'IdentificacionController@store')->name('identificacion.store');
+    Route::post('/agregaretnia', 'IdentificacionController@agregarEtnia')->name('identificacion.agregaretnia');
+    Route::put('/{id}/update', 'IdentificacionController@update')->name('identificacion.update');
+    Route::get('/{id}/edit', 'IdentificacionController@edit')->name('identificacion.edit');
+    Route::delete('/{id}/destroy', 'IdentificacionController@destroy')->name('identificacion.destroy');
 });
 
 //  alfabetizacion
@@ -171,12 +243,13 @@ Route::group(['prefix' => 'tipodiscapacidades'], function() {
 });
 
 Route::group(['prefix' => 'discapacidades'], function() {
-    Route::get('/', 'DiscapacidadController@index')->name('discapacidades.index');
-    Route::get('/create', 'DiscapacidadController@create')->name('discapacidades.create');
-    Route::post('/store', 'DiscapacidadController@store')->name('discapacidades.store');
-    Route::put('/{id}/update', 'DiscapacidadController@update')->name('discapacidades.update');
-    Route::get('/{id}/edit', 'DiscapacidadController@edit')->name('discapacidades.edit');
-    ROute::delete('/{id}/destroy', 'DiscapacidadController@destroy')->name('discapacidades.destroy');
+    Route::get('/', 'DiscapacidadAmController@index')->name('discapacidades.index');
+    Route::get('/show/{id}', 'DiscapacidadAmController@show')->name('discapacidades.show');
+    Route::get('/create/{id}', 'DiscapacidadAmController@create')->name('discapacidades.create');
+    Route::post('/store', 'DiscapacidadAmController@store')->name('discapacidades.store');
+    Route::put('/{id}/update', 'DiscapacidadAmController@update')->name('discapacidades.update');
+    Route::get('/{id}/edit', 'DiscapacidadAmController@edit')->name('discapacidades.edit');
+    ROute::delete('/{id}/destroy', 'DiscapacidadAmController@destroy')->name('discapacidades.destroy');
 });
 
 Route::group(['prefix' => 'actividades'], function() {

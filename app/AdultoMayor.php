@@ -13,7 +13,7 @@ class AdultoMayor extends Model
     'telefono','nacionalidad_id','alfabetizacion_id','porcentaje_rsh','estado_club_am','tipo_vivienda_id',
     'nucleo_familiar_id','recibe_medicamentos','obs_medicamentos','emprendimiento','obs_emprendimiento',
     'atencion_panales','obs_atencion_panales','postrado','obs_postrado','habitabilidad_casa','obs_hab_casa',
-    'postulacion_fosis','obs_fosis','fecha_postulacion_fosis','user_id'];
+    'postulacion_fosis','obs_fosis','fecha_postulacion_fosis', 'cuidado_ninos', 'cuidado_psd', 'inscripcion_conadi', 'user_id'];
     
     // un am tiene una nacionalidad
     public function nacionalidad () {
@@ -88,14 +88,33 @@ class AdultoMayor extends Model
         return $this->hasMany(AmTrabajoBano::class);
     }
 
-    //  tabla relacion adulto mayor - discapacidad
-    public function adultosMayoresDiscapacidades () {
-        return $this->hasMany(AmDiscapacidad::class);
-    }
-
+    
     //  tabla relacion adulto mayor - servicio basico
     public function adultosMayoresServiciosBasicos () {
         return $this->hasMany(AmServicioBasico::class);
+    }
+    
+    //  fichas de autonomia adulto mayor
+    
+    public function autonomias () {
+        return $this->hasMany(Autonomia::class);
+    }
+    
+    public function acompanantes () {
+        return $this->hasMany(Acompanante::class);
+    }
+    
+    public function habitabilidadVivienda ()  {
+        return $this->hasMany(HabitabilidadVivienda::class);
+    }
+    
+    public function salud ()  {
+        return $this->hasMany(Salud::class);
+    }
+
+    //  tabla relacion adulto mayor - discapacidad
+    public function adultosMayoresDiscapacidades () {
+        return $this->hasMany(DiscapacidadAm::class);
     }
 
     

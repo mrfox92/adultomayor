@@ -28,6 +28,7 @@ class CreateAdultosMayoresTable extends Migration
             $table->foreign('alfabetizacion_id')->references('id')->on('alfabetizacion');
             $table->integer('porcentaje_rsh')->nullable();
             $table->enum('estado_club_am', ['No participa', 'Quiere participar']);
+            //  Vivienda
             $table->unsignedBigInteger('tipo_vivienda_id'); //revisar bigIncrements y poner increments
             $table->foreign('tipo_vivienda_id')->references('id')->on('tipo_vivienda');
             $table->unsignedInteger('nucleo_familiar_id');
@@ -40,10 +41,14 @@ class CreateAdultosMayoresTable extends Migration
             $table->text('obs_atencion_panales')->nullable();
             $table->enum('postrado', ['SI', 'NO']);
             $table->text('obs_postrado')->nullable();
+            //  Habitabilidad Vivienda
             $table->enum('habitabilidad_casa', ['SI', 'NO']);
             $table->text('obs_hab_casa')->nullable();
             $table->enum('postulacion_fosis', ['SI', 'NO']);
             $table->text('obs_fosis')->nullable();
+            $table->enum('cuidado_ninos', ['SI', 'A VECES', 'RARA VEZ', 'NO']);
+            $table->enum('cuidado_psd', ['SI', 'NO']);
+            $table->enum('inscripcion_conadi', ['SI', 'NO', 'NO SABE', 'NO APLICA']);
             $table->timestamp('fecha_postulacion_fosis')->nullable();// agregar mas adelante estado postulacion fosis
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

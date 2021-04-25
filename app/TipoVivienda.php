@@ -14,4 +14,9 @@ class TipoVivienda extends Model
     public function adultosMayores () {
         return $this->hasMany(AdultoMayor::class);
     }
+
+    //  uno o muchas viviendas am tiene uno y solo un tipo de vivienda
+    public function viviendasAdultosMayores() {
+        return $this->hasMany(ViviendaAm::class);
+    }
 }

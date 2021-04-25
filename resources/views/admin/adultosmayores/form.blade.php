@@ -666,6 +666,105 @@
                                 </div>
                             </div>
 
+                            <hr>
+
+                            <div class="form-group row">
+                                <label for="cuidado_ninos" class="col-md-4 col-form-label">
+                                    {{ __("¿Se encuentra a cargo del cuidado de niños/as y/o una persona enferma o que requiere cuidados permanentes?") }}
+                                </label>
+
+                                <div class="col-md-8{{ $errors->has('cuidado_ninos') ? ' is-invalid' : '' }}">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="cuidado_ninos" id="cuidado_ninos" value="SI" {{ (old('cuidado_ninos') == 'SI' | $adultomayor->cuidado_ninos == 'SI') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="cuidado_ninos">Si, tiempo completo</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="cuidado_ninos" id="cuidado_ninos" value="A VECES" {{ (old('cuidado_ninos') == 'A VECES' | $adultomayor->cuidado_ninos == 'A VECES') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="cuidado_ninos">SI, algunas veces a la semana</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="cuidado_ninos" id="cuidado_ninos" value="RARA VEZ" {{ (old('cuidado_ninos') == 'RARA VEZ' | $adultomayor->cuidado_ninos == 'RARA VEZ') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="cuidado_ninos">Rara vez</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="cuidado_ninos" id="cuidado_ninos" value="NO" {{ (old('cuidado_ninos') == 'NO' | $adultomayor->cuidado_ninos == 'NO') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="cuidado_ninos">Nunca</label>
+                                    </div>
+                                </div>
+
+                                @if ( $errors->has('cuidado_ninos') )
+                                    <span class="invalid-feedback text-center">
+                                        <strong>{{ $errors->first('cuidado_ninos') }}</strong>
+                                    </span>
+                                @endif
+
+                            </div>
+                            <hr>
+
+                            <div class="form-group row">
+                                <label for="cuidado_psd" class="col-md-4 col-form-label">
+                                    {{ __("¿Se encuentra a cargo del cuidado de alguna persona en situación de discapacidad?") }}
+                                </label>
+
+                                <div class="col-md-8{{ $errors->has('cuidado_psd') ? ' is-invalid' : '' }}">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="cuidado_psd" id="cuidado_psd" value="NO" {{ (old('cuidado_psd') == 'NO' | $adultomayor->cuidado_psd == 'NO') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="cuidado_psd">NO</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="cuidado_psd" id="cuidado_psd" value="SI" {{ (old('cuidado_psd') == 'SI' | $adultomayor->cuidado_psd == 'SI') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="cuidado_psd">SI</label>
+                                    </div>
+                                </div>
+
+                                @if ( $errors->has('cuidado_psd') )
+                                    <span class="invalid-feedback text-center">
+                                        <strong>{{ $errors->first('cuidado_psd') }}</strong>
+                                    </span>
+                                @endif
+
+                            </div>
+
+                            <hr>
+
+                            <div class="form-group row">
+                                <label for="inscripcion_conadi" class="col-md-4 col-form-label">
+                                    {{ __("¿Se encuentra inscrito/a en CONADI?") }}
+                                </label>
+
+                                <div class="col-md-8{{ $errors->has('inscripcion_conadi') ? ' is-invalid' : '' }}">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inscripcion_conadi" id="inscripcion_conadi" value="SI" {{ (old('inscripcion_conadi') == 'SI' | $adultomayor->inscripcion_conadi == 'SI') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="inscripcion_conadi">Si</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inscripcion_conadi" id="inscripcion_conadi" value="NO" {{ (old('inscripcion_conadi') == 'NO' | $adultomayor->inscripcion_conadi == 'NO') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="inscripcion_conadi">No</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inscripcion_conadi" id="inscripcion_conadi" value="NO SABE" {{ (old('inscripcion_conadi') == 'NO SABE' | $adultomayor->inscripcion_conadi == 'NO SABE') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="inscripcion_conadi">No sabe</label>
+                                    </div>
+                                    <br>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="inscripcion_conadi" id="inscripcion_conadi" value="NO APLICA" {{ (old('inscripcion_conadi') == 'NO APLICA' | $adultomayor->inscripcion_conadi == 'NO APLICA') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="inscripcion_conadi">No aplica</label>
+                                    </div>
+                                </div>
+
+                                @if ( $errors->has('inscripcion_conadi') )
+                                    <span class="invalid-feedback text-center">
+                                        <strong>{{ $errors->first('inscripcion_conadi') }}</strong>
+                                    </span>
+                                @endif
+
+                            </div>
+
                             <div class="form-group row">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-primary btn-block text-uppercase">

@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="jumbotron">
-                <a href="{{ route('discapacidades.create') }}" class="btn btn-primary"><i class="bx bx-save"></i> Agregar Discapacidad</a>
+                <a href="{{ route('autonomia.create') }}" class="btn btn-primary"><i class="bx bx-save"></i> Registrar Ficha Actividades de la vida diaria A.M</a>
             </div>
         </div>
     </div>
@@ -16,20 +16,19 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Discapacidad</th>
-                        <th>Descripción</th>
+                        <th>Rut</th>
+                        <th>Nombre</th>
                         <th>
                             Acciones
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($discapacidades as $discapacidad)
+                    @forelse ($autonomias as $autonomia)
                         <tr>
-                            <td>{{ $discapacidad->id }}</td>
-                            <td>{{ $discapacidad->nombre }}</td>
-                            <td>{{ $discapacidad->descripcion }}</td>
-                            <td>{{ $discapacidad->tipoDiscapacidad->nombre }}</td>
+                            <td>{{ $autonomia->id }}</td>
+                            <td>{{ $autonomia->adultomayor->rut }}</td>
+                            <td>{{ $autonomia->adultomayor->nombres }} {{ $autonomia->adultomayor->apellidos }}</td>
                             <td colspan="3">
 
                                 <div class="btn-group" role="group">
@@ -38,8 +37,8 @@
                                     </button>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="#">Ver <i class="bx bx-show-alt"></i></a>
-                                        <a class="dropdown-item" href="{{ route('discapacidades.edit', $discapacidad->id) }}">Editar <i class="bx bx-edit"></i></a>
-                                        <form class="my-2" method="POST" action="{{ route('discapacidades.destroy', $discapacidad->id) }}">
+                                        <a class="dropdown-item" href="{{ route('autonomia.edit', $autonomia->id) }}">Editar <i class="bx bx-edit"></i></a>
+                                        <form class="my-2" method="POST" action="{{ route('autonomia.destroy', $autonomia->id) }}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="dropdown-item">
@@ -58,7 +57,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    {{ $discapacidades->links() }}
+                    {{ $autonomias->links() }}
                 </div>
             </div>
 

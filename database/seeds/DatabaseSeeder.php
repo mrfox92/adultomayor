@@ -31,14 +31,48 @@ class DatabaseSeeder extends Seeder
         factory(App\AyudaTecnica::class, 10)->create();
 
         //  tipo discapacidad
-        factory(App\TipoDiscapacidad::class, 5)->create()
-            ->each( function ($tipoDiscapacidad) {
-                //  2 discapacidades por tipo discapacidad
-                $tipoDiscapacidad->discapacidades()->saveMany( factory(App\Discapacidad::class, 2)->create() );
-            });
+        factory(App\TipoDiscapacidad::class, 1)->create(['nombre' => 'Ceguera o dificultad para ver']);
+
+        factory(App\TipoDiscapacidad::class, 1)->create(['nombre' => 'Sordera o dificultad para oir']);
+
+        factory(App\TipoDiscapacidad::class, 1)
+        ->create(['nombre' => 'Discapacidad en la comunicación']);
+        
+        factory(App\TipoDiscapacidad::class, 1)
+        ->create(['nombre' => 'Discapacidad de Origen Físico']);
+
+        factory(App\TipoDiscapacidad::class, 1)
+        ->create(['nombre' => 'Discapacidad psíquica']);
 
         //  etnias
-        factory(App\Etnia::class, 5)->create();
+        // factory(App\Etnia::class, 5)->create();
+        factory(App\Etnia::class, 1)->create([
+            'nombre'  =>  'Aymara',
+        ]);
+        factory(App\Etnia::class, 1)->create([
+            'nombre'  =>  'Rapa Nui',
+        ]);
+        factory(App\Etnia::class, 1)->create([
+            'nombre'  =>  'Quechua',
+        ]);
+        factory(App\Etnia::class, 1)->create([
+            'nombre'  =>  'Mapuche',
+        ]);
+        factory(App\Etnia::class, 1)->create([
+            'nombre'  =>  'Atacameño',
+        ]);
+        factory(App\Etnia::class, 1)->create([
+            'nombre'  =>  'Colla',
+        ]);
+        factory(App\Etnia::class, 1)->create([
+            'nombre'  =>  'Alacalufe o Kawashkar',
+        ]);
+        factory(App\Etnia::class, 1)->create([
+            'nombre'  =>  'Yagán',
+        ]);
+        factory(App\Etnia::class, 1)->create([
+            'nombre'  =>  'Diaguita',
+        ]);
         //  ingresos
         factory(App\Ingreso::class, 6)->create();
         //  instituto salud
@@ -61,12 +95,49 @@ class DatabaseSeeder extends Seeder
         });
 
         //  tipos viviendas
-        factory(App\TipoVivienda::class, 5)->create();
+        factory(App\TipoVivienda::class, 1)->create([
+            'nombre'  =>  'Casa',
+        ]);
+        factory(App\TipoVivienda::class, 1)->create([
+            'nombre'  =>  'Departamento',
+        ]);
+        factory(App\TipoVivienda::class, 1)->create([
+            'nombre'  =>  'Pieza dentro de la vivienda',
+        ]);
+        factory(App\TipoVivienda::class, 1)->create([
+            'nombre'  =>  'Mejora, mediagua',
+        ]);
+        factory(App\TipoVivienda::class, 1)->create([
+            'nombre'  =>  'Rancho, ruca o choza',
+        ]);
+        factory(App\TipoVivienda::class, 1)->create([
+            'nombre'  =>  'Vivienda de desechos',
+        ]);
+        factory(App\TipoVivienda::class, 1)->create([
+            'nombre'  =>  'Otro tipo de vivienda',
+        ]);
         //  trabajo baño
         factory(App\TrabajoBano::class, 2)->create();
 
         //  adultos mayores
         factory(App\AdultoMayor::class, 30)->create();
+
+        //  Autonomia adulto mayor
+
+        factory(App\Autonomia::class, 10)->create();
+
+        factory(App\Acompanante::class, 10)->create();
+
+        //  Habitabilidad adulto mayor
+        factory(App\HabitabilidadVivienda::class, 10)->create();
+
+        // vivienda adulto mayor
+        factory(App\ViviendaAm::class, 10)->create();
+        //  salud adulto mayor
+        factory(App\Salud::class, 10)->create();
+
+        // discapacidad am
+        factory(App\DiscapacidadAm::class, 10)->create();
         
     }
 }

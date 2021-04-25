@@ -6,7 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AdultoMayorRequest;
 
 use App\AdultoMayor;
+use App\Autonomia;
+use App\Acompanante;
+use App\HabitabilidadVivienda;
+use App\Salud;
 use App\User;
+use App\AmEtnia;
+use App\ViviendaAm;
 use Carbon\Carbon;
 
 class AdultoMayorController extends Controller
@@ -71,7 +77,22 @@ class AdultoMayorController extends Controller
      */
     public function show($id)
     {
-        //
+        $adultomayor = AdultoMayor::find($id);
+        //  comprobar ficha autonomia adulto mayor
+        $autonomia = Autonomia::where('am_id', $id)->first();
+        //  comprobar ficha acompañante adulto mayor
+        $acompanante = Acompanante::where('am_id', $id)->first();
+        //  comprobar ficha habitabilidad adulto mayor
+        $habitabilidad = HabitabilidadVivienda::where('am_id', $id)->first();
+        //  vivienda adulto mayor
+        $vivienda = ViviendaAm::where('am_id', $id)->first();
+        //  comprobar ficha identificacion adulto mayor
+        $am_etnia = AmEtnia::where('adulto_mayor_id', $id)->first();
+        //  comprobar ficha salud adulto mayor
+        $salud = Salud::where('am_id', $id)->first();
+        //  si autonomia es null entonces no tiene su ficha creada
+        //  en caso de tener la ficha creada permitir editarla
+        return view('admin.adultosmayores.show', compact('adultomayor', 'autonomia', 'acompanante', 'am_etnia', 'habitabilidad', 'vivienda', 'salud'));
     }
 
     /**

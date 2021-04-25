@@ -36,7 +36,7 @@
                                         Seleccione acción
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Ver <i class="bx bx-show-alt"></i></a>
+                                        <a class="dropdown-item" href="{{ route('adultosmayores.show', $adultomayor->id) }}">Ver <i class="bx bx-show-alt"></i></a>
                                         <a class="dropdown-item" href="{{ route('adultosmayores.edit', $adultomayor->id) }}">Editar <i class="bx bx-edit"></i></a>
                                         <form class="my-2" method="POST" action="{{ route('adultosmayores.destroy', $adultomayor->id) }}">
                                             @csrf

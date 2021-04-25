@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\DiscapacidadRequest;
+use App\Http\Requests\DiscapacidadAmRequest;
+use App\DiscapacidadAm;
+use App\AdultoMayor;
+use App\User;
 
-use App\Discapacidad;
-
-class DiscapacidadController extends Controller
+class DiscapacidadAmController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +17,7 @@ class DiscapacidadController extends Controller
      */
     public function index()
     {
-        $discapacidades = Discapacidad::with(['tipoDiscapacidad'])->paginate(4);
-        // dd( $discapacidades );
-
-        return view('admin.discapacidades.index', compact('discapacidades'));
+        //
     }
 
     /**
@@ -27,12 +25,13 @@ class DiscapacidadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        $discapacidad = new Discapacidad();
+        $adultomayor = AdultoMayor::find($id)->first();
+        $discapacidad = new DiscapacidadAm();
         $btnText = __("Guardar");
 
-        return view('admin.discapacidades.form', compact('discapacidad', 'btnText'));
+        return view('admin.discapacidades.form', compact('adultomayor', 'discapacidad', 'btnText'));
     }
 
     /**
@@ -41,14 +40,18 @@ class DiscapacidadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DiscapacidadRequest $discapacidad_request)
+    public function store(DiscapacidadAmRequest $discapacidad_am_request)
     {
-        Discapacidad::create( $discapacidad_request->input() );
+        $user = User::get()->first();
+        $discapacidad_am_request->merge(['user_id' => $user->id]);
 
-        return back()->with('message', [
-            'class' =>  'success',
-            'message'   =>  __("La discapacidad ha sido ingresada correctamente")
+        $discapacidad = DiscapacidadAm::create( $discapacidad_am_request->input() );
+
+        return redirect()->route('discapacidades.show', ['id' => $discapacidad->am_id] )->with('message', [
+            'class'     =>  'success',
+            'message'   =>  __("La discapacidad Adulto mayor ha sido registrada exitosamente en el sistema")
         ]);
+        
     }
 
     /**
@@ -59,7 +62,11 @@ class DiscapacidadController extends Controller
      */
     public function show($id)
     {
-        //
+        //  buscar a partir de id adulto mayor
+        $discapacidades = DiscapacidadAm::with(['tipoDiscapacidad'])->where('am_id', $id)->paginate(10);
+        $adultomayor = AdultoMayor::find($id);
+
+        return view('admin.discapacidades.show', compact('discapacidades', 'adultomayor'));
     }
 
     /**
@@ -70,10 +77,12 @@ class DiscapacidadController extends Controller
      */
     public function edit($id)
     {
-        $discapacidad = Discapacidad::find($id);
+        $discapacidad = DiscapacidadAm::with(['adultomayor'])->where('id', $id)->first();
         $btnText = __("Actualizar");
 
-        return view('admin.discapacidades.form', compact('discapacidad', 'btnText'));
+        $adultomayor = $discapacidad->adultomayor;
+
+        return view('admin.discapacidades.form', compact('discapacidad', 'adultomayor', 'btnText'));
     }
 
     /**
@@ -83,16 +92,9 @@ class DiscapacidadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(DiscapacidadRequest $discapacidad_request, $id)
+    public function update(Request $request, $id)
     {
-        $discapacidad = Discapacidad::find($id);
-
-        $discapacidad->fill( $discapacidad_request->input() )->save();
-
-        return redirect()->route('discapacidades.edit', ['id' => $discapacidad->id])->with('message', [
-            'class'     =>  'success',
-            'message'   =>  __("Discapacidad actualizada exitosamente")
-        ]);
+        //
     }
 
     /**
@@ -103,7 +105,7 @@ class DiscapacidadController extends Controller
      */
     public function destroy($id)
     {
-        $discapacidad = Discapacidad::find($id);
+        $discapacidad = DiscapacidadAm::find($id);
         
         try {
 
@@ -111,7 +113,7 @@ class DiscapacidadController extends Controller
 
             return back()->with('message', [
                 'class'     =>  'success',
-                'message'   =>  __("Discapacidad eliminada con éxito")
+                'message'   =>  __("discapacidad eliminada con éxito")
             ]);
             
 
@@ -123,4 +125,5 @@ class DiscapacidadController extends Controller
             ]);
         }
     }
+    
 }
