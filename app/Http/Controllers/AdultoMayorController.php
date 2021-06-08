@@ -25,7 +25,6 @@ class AdultoMayorController extends Controller
     public function index()
     {
         $adultosmayores = AdultoMayor::paginate(10);
-
         // $user = User::get()->first();
         // dd( $user );
 

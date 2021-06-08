@@ -23,14 +23,14 @@
     <div class="sidemenu-body">
         <ul class="sidemenu-nav metisMenu h-100" id="sidemenu-nav" data-simplebar>
             <li class="nav-item-title">
-                PRINCIPAL
+                REPORTES
             </li>
 
             {{-- <li class="nav-item mm-active"> --}}
             <li class="nav-item">
-                <a href="#" class="nav-link" aria-expanded="false">
-                    <span class="icon"><i class='bx bx-archive-in'></i></span>
-                    <span class="menu-title">Reportes</span>
+                <a href="{{ route('reportes.index') }}" class="nav-link" aria-expanded="false">
+                    <span class="icon"><i class='bx bx-box'></i></span>
+                    <span class="menu-title">Adulto Mayor</span>
                 </a>
             </li>
 

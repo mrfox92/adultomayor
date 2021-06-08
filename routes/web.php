@@ -50,6 +50,12 @@ Route::group(['prefix' => 'adultomayor'], function() {
 
 });
 
+Route::group(['prefix' => 'reportes'], function() {
+
+    // Route::get('/', 'PDFAdultoMayorController@PDF')->name('reportes.index');
+    Route::get('/', 'PDFAdultoMayorController@PDFAM')->name('reportes.index');
+});
+
 
 //  Autonomia Adulto Mayor
 Route::group(['prefix' => 'autonomia'], function() {
