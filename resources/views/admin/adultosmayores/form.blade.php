@@ -63,6 +63,31 @@
 
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label for="num_documento" class="col-md-4 col-form-label">
+                                    {{ __("N° Documento") }}
+                                </label>
+                                <div class="col-md-8">
+
+                                    <input type="text"
+                                        class="form-control{{ $errors->has('num_documento') ? ' is-invalid' : '' }}"
+                                        name="num_documento"
+                                        id="num_documento"
+                                        value="{{ old('num_documento') ?: $adultomayor->num_documento }}"
+                                        required
+                                        autofocus
+                                        placeholder="{{ __("Ingrese N° de documento") }}"
+                                    >
+
+                                    @if ( $errors->has('num_documento') )
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('num_documento') }}</strong>
+                                        </span>
+                                    @endif
+
+                                </div>
+                            </div>
                             
                             <div class="form-group row">
                                 <label for="nombres" class="col-md-4 col-form-label">
@@ -135,28 +160,6 @@
                                         </span>
                                     @endif
                                 </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="edad" class="col-md-4 col-form-label">
-                                    {{ __("Edad") }}
-                                </label>
-
-                                <div class="col-md-8">
-                                    <input type="number"
-                                        class="form-control{{ $errors->has('edad') ? ' is-invalid' : '' }}"
-                                        name="edad"
-                                        id="edad"
-                                        value="{{ old('edad') ?: $adultomayor->edad }}"
-                                        placeholder="{{ __("Ingrese edad") }}"
-                                    >
-                                    @if ( $errors->has('edad') )
-                                        <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('edad') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-
                             </div>
 
                             <div class="form-group row">
@@ -641,6 +644,56 @@
 
                                 </div>
                             </div>
+
+                            <hr>
+                            {{--  --}}
+
+                            <div class="form-group row">
+                                <label for="vacunado" class="col-md-4 col-form-label">
+                                    {{ __("¿Está vacunado contra el COVID-19?") }}
+                                </label>
+
+                                <div class="col-md-8{{ $errors->has('vacunado') ? ' is-invalid' : '' }}">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="vacunado" id="vacunado" value="NO" {{ (old('vacunado') == 'NO' | $adultomayor->vacunado == 'NO') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="vacunado">NO</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="vacunado" id="vacunado" value="SI" {{ (old('vacunado') == 'SI' | $adultomayor->vacunado == 'SI') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="vacunado">SI</label>
+                                    </div>
+                                </div>
+
+                                @if ( $errors->has('vacunado') )
+                                    <span class="invalid-feedback text-center">
+                                        <strong>{{ $errors->first('vacunado') }}</strong>
+                                    </span>
+                                @endif
+
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="obs_vacunado" class="col-md-4 col-form-label">
+                                    {{ __("Observación sobre vacuna (opcional)") }}
+                                </label>
+                                <div class="col-md-8">
+
+                                    <textarea 
+                                        class="form-control{{ $errors->has('obs_vacunado') ? ' is-invalid' : '' }}"
+                                        name="obs_vacunado" id="obs_vacunado" cols="2" rows="3"
+                                        placeholder="{{ __("Ingrese observación sobre vacuna...") }}"
+                                    > {{ old('obs_vacunado') ?: $adultomayor->obs_vacunado }} </textarea>
+
+                                    @if ( $errors->has('obs_vacunado') )
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('obs_vacunado') }}</strong>
+                                        </span>
+                                    @endif
+
+                                </div>
+                            </div>
+
+                            {{--  --}}
 
                             <hr>
 

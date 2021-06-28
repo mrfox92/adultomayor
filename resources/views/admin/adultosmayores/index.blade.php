@@ -12,55 +12,57 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <table class="table table-hover table-stripped">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Rut</th>
-                        <th>Nombre</th>
-                        <th>
-                            Acciones
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($adultosmayores as $adultomayor)
+            {{-- <div class="table-responsive">
+                <table class="table table-hover table-stripped">
+                    <thead>
                         <tr>
-                            <td>{{ $adultomayor->id }}</td>
-                            <td>{{ $adultomayor->rut }}</td>
-                            <td>{{ $adultomayor->nombres }} {{ $adultomayor->apellidos }}</td>
-                            <td colspan="3">
-
-                                <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Seleccione acción
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{ route('adultosmayores.show', $adultomayor->id) }}">Ver <i class="bx bx-show-alt"></i></a>
-                                        <a class="dropdown-item" href="{{ route('adultosmayores.edit', $adultomayor->id) }}">Editar <i class="bx bx-edit"></i></a>
-                                        <form class="my-2" method="POST" action="{{ route('adultosmayores.destroy', $adultomayor->id) }}">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="dropdown-item">
-                                                Eliminar <i class="bx bxs-trash"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </td>
+                            <th>ID</th>
+                            <th>Rut</th>
+                            <th>Nombre</th>
+                            <th>
+                                Acciones
+                            </th>
                         </tr>
-                    @empty
-                        
-                    @endforelse
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @forelse ($adultosmayores as $adultomayor)
+                            <tr>
+                                <td>{{ $adultomayor->id }}</td>
+                                <td>{{ $adultomayor->rut }}</td>
+                                <td>{{ $adultomayor->nombres }} {{ $adultomayor->apellidos }}</td>
+                                <td colspan="3">
+    
+                                    <div class="btn-group" role="group">
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Seleccione acción
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="{{ route('adultosmayores.show', $adultomayor->id) }}">Ver <i class="bx bx-show-alt"></i></a>
+                                            <a class="dropdown-item" href="{{ route('adultosmayores.edit', $adultomayor->id) }}">Editar <i class="bx bx-edit"></i></a>
+                                            <form class="my-2" method="POST" action="{{ route('adultosmayores.destroy', $adultomayor->id) }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item">
+                                                    Eliminar <i class="bx bxs-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            
+                        @endforelse
+                    </tbody>
+                </table>
+            </div> --}}
 
-            <div class="row">
+            {{-- <div class="row">
                 <div class="col-md-12">
                     {{ $adultosmayores->links() }}
                 </div>
-            </div>
-
+            </div> --}}
+            <example-component></example-component>
         </div>
     </div>
 </div>

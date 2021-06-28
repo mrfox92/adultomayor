@@ -9,7 +9,21 @@
         </div>
 
         <div class="row my-5">
-            <div class="col-md-4">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center text-uppercase">Reporte Información Adulto Mayor</h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-justify">Este informe genera un reporte en PDF de la información de registro del adulto mayor</p>
+
+                        <a class="btn btn-danger btn-block text-uppercase" href="{{ route('reportes.show', ['id' => $adultomayor->id]) }}" target="_blank">Descargar PDF</a>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="text-center text-uppercase">Ficha Autonomia Adulto Mayor</h3>
@@ -27,7 +41,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="text-center text-uppercase">Ficha Identificación de la persona mayor</h3>
@@ -44,7 +58,7 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="text-center text-uppercase">Ficha con quien vive el adulto mayor</h3>

@@ -39,6 +39,22 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function login(Request $request) {
+
+        // dd($request);
+        $credencials = request()->only('email', 'password');
+
+        if( auth()->attempt( $credencials ) ){
+
+            //  regeneramos la sesion para evitar ataque de tipo Session Fixation
+            request()->session()->regenerate(); //  se encarga de regenerar el token csrf
+
+            return redirect( route('home') );
+        }
+
+        return redirect('login');
+    }
+
     public function logout ( Request $request ) {
         auth()->logout();
         session()->flush();

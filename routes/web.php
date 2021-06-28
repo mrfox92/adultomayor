@@ -41,6 +41,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'adultomayor'], function() {
 
     Route::get('/', 'AdultoMayorController@index')->name('adultosmayores.index');
+    Route::get('/listar', 'AdultoMayorController@listar')->name('adultosmayores.listar');
     Route::get('/show/{id}', 'AdultoMayorController@show')->name('adultosmayores.show');
     Route::get('/create', 'AdultoMayorController@create')->name('adultosmayores.create');
     Route::post('/store', 'AdultoMayorController@store')->name('adultosmayores.store');
@@ -53,7 +54,7 @@ Route::group(['prefix' => 'adultomayor'], function() {
 Route::group(['prefix' => 'reportes'], function() {
 
     // Route::get('/', 'PDFAdultoMayorController@PDF')->name('reportes.index');
-    Route::get('/', 'PDFAdultoMayorController@PDFAM')->name('reportes.index');
+    Route::get('/show/{id}', 'PDFAdultoMayorController@PDFAM')->name('reportes.show');
 });
 
 

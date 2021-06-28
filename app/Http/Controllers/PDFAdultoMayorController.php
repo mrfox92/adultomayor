@@ -19,12 +19,14 @@ class PDFAdultoMayorController extends Controller
         return $pdf->stream('prueba.pdf');
     }
 
-    public function PDFAM() {
+    public function PDFAM($id) {
 
-        $adultosmayores = AdultoMayor::all();
+        $adultomayor = AdultoMayor::with(['nacionalidad', 'alfabetizacion', 'tipoVivienda', 'nucleoFamiliar'])
+            ->where('id', $id)->first();
+        // dd( $adultomayor );
 
-        $pdf = \PDF::loadView('admin.adultosmayores.adultosmayores', compact('adultosmayores'));
-        return $pdf->download('adultosmayores.pdf');
+        $pdf = \PDF::loadView('admin.adultosmayores.adultosmayores', compact('adultomayor'));
+        return $pdf->stream('adultomayor.pdf');
         // return $pdf->stream('adultosmayores.pdf');
     }
 }

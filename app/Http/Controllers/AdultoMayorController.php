@@ -24,11 +24,16 @@ class AdultoMayorController extends Controller
      */
     public function index()
     {
-        $adultosmayores = AdultoMayor::paginate(10);
+        // $adultosmayores = AdultoMayor::paginate(10);
         // $user = User::get()->first();
         // dd( $user );
 
-        return view('admin.adultosmayores.index', compact('adultosmayores'));
+        return view('admin.adultosmayores.index');
+    }
+
+    public function listar()
+    {
+        return AdultoMayor::all();
     }
 
     /**
@@ -126,9 +131,16 @@ class AdultoMayorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AdultoMayorRequest $adultomayor_request, $id)
     {
-        //
+        $adultomayor = AdultoMayor::find($id);
+
+        $adultomayor->fill( $adultomayor_request->input() )->save();
+
+        return redirect()->route('adultosmayores.edit', ['id' => $adultomayor->id])->with('message', [
+            'class'     =>  'success',
+            'message'   =>  __("Información Adulto Mayor actualizada exitosamente")
+        ]);
     }
 
     /**
@@ -139,6 +151,7 @@ class AdultoMayorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $adultomayor = AdultoMayor::find($id);
+        $adultomayor->delete();
     }
 }

@@ -16,13 +16,34 @@ class DatabaseSeeder extends Seeder
         factory(App\Role::class, 1)->create(['nombre' => 'admin']);
         //  usuario test admin
         factory(App\User::class, 1)->create([
-            'name'  =>  'test',
-            'email' =>  'test123@gmail.com',
-            'password'  =>  bcrypt('test1234'),
+            'name'  =>  'Angela',
+            'email' =>  'angelahernandez@gmail.com',
+            'password'  =>  bcrypt('Angela1234'),
             'role_id'   =>  \App\Role::ADMIN
         ]);
         //  nivel alfabetizacion
-        factory(App\Alfabetizacion::class, 6)->create();
+        factory(App\Alfabetizacion::class, 1)->create([
+            'nombre'    =>  'Enseñanza básica incompleta'
+        ]);
+        factory(App\Alfabetizacion::class, 1)->create([
+            'nombre'    =>  'Enseñanza básica completa'
+        ]);
+        factory(App\Alfabetizacion::class, 1)->create([
+            'nombre'    =>  'Enseñanza media incompleta'
+        ]);
+
+        factory(App\Alfabetizacion::class, 1)->create([
+            'nombre'    =>  'Enseñanza media completa'
+        ]);
+        
+        factory(App\Alfabetizacion::class, 1)->create([
+            'nombre'    =>  'Educación superior incompleta'
+        ]);
+
+        factory(App\Alfabetizacion::class, 1)->create([
+            'nombre'    =>  'Educación superior completa'
+        ]);
+
         //  actividades
         factory(App\Actividad::class, 20)->create();
         //  atenciones
@@ -78,7 +99,42 @@ class DatabaseSeeder extends Seeder
         //  instituto salud
         factory(App\InstitucionSalud::class, 6)->create();
         //  Nacionalidad
-        factory(App\Nacionalidad::class, 10)->create();
+        factory(App\Nacionalidad::class, 1)->create([
+            'nombre'    =>  'Chile'
+        ]);
+        factory(App\Nacionalidad::class, 1)->create([
+            'nombre'    =>  'Argentina'
+        ]);
+        factory(App\Nacionalidad::class, 1)->create([
+            'nombre'    =>  'Perú'
+        ]);
+        factory(App\Nacionalidad::class, 1)->create([
+            'nombre'    =>  'Colombia'
+        ]);
+        factory(App\Nacionalidad::class, 1)->create([
+            'nombre'    =>  'Uruguay'
+        ]);
+        factory(App\Nacionalidad::class, 1)->create([
+            'nombre'    =>  'Bolivia'
+        ]);
+        factory(App\Nacionalidad::class, 1)->create([
+            'nombre'    =>  'Paraguay'
+        ]);
+        factory(App\Nacionalidad::class, 1)->create([
+            'nombre'    =>  'Estados Unidos'
+        ]);
+        factory(App\Nacionalidad::class, 1)->create([
+            'nombre'    =>  'Mexico'
+        ]);
+        factory(App\Nacionalidad::class, 1)->create([
+            'nombre'    =>  'Costa Rica'
+        ]);
+        factory(App\Nacionalidad::class, 1)->create([
+            'nombre'    =>  'Guatemala'
+        ]);
+        factory(App\Nacionalidad::class, 1)->create([
+            'nombre'    =>  'Venezuela'
+        ]);
         //  Nucleo Familiar
         factory(App\NucleoFamiliar::class, 3)->create();
         //  Patologias

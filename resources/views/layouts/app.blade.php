@@ -10,13 +10,14 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     {{-- icon --}}
     <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
+    {{-- Fontawesome --}}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <!-- Vendors Min CSS -->
     <link rel="stylesheet" href="{{ asset('css/vendors.min.css') }}">
     <!-- Style CSS -->
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <!-- Responsive CSS -->
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -33,17 +34,18 @@
             {{-- @include('partials.'.\App\User::navigation().'.sidebar'); --}}
             @include('partials.admin.sidebar')
         @else
-            @include('partials.admin.sidebar')
+            {{-- @include('partials.admin.sidebar') --}}
         @endauth
 
         {{-- Main content --}}
-
-        <div class="main-content d-flex flex-column">
-            {{-- top-navbar --}}
+        {{-- <div class="main-content d-flex flex-column"> --}}
+        {{-- top-navbar --}}
             @auth
+                <div class="main-content d-flex flex-column">
                 @include('partials.admin.navigation')
             @else
-                @include('partials.admin.navigation')
+                <div class="">
+                {{-- @include('partials.admin.navigation') --}}
             @endauth
 
             @if ( session('message') )
@@ -61,7 +63,12 @@
             @yield('content')
 
             {{-- footer --}}
-            @include('partials.footer')
+
+            @auth
+                @include('partials.footer')
+            @else
+                {{-- @include('partials.footer') --}}
+            @endauth
         </div>
         
     </div>

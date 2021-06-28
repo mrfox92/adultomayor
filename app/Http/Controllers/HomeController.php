@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function __construct()
     {
 
-        // $this->middleware('auth');
+        $this->middleware('auth');
 
         // habilitar filtro autenticacion
     }
@@ -27,7 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         //  si el usuario está autenticado redirigir a panel administracion
-        // return view('home');
-        return view('welcome');
+        return view('home');
+        // return view('auth.login');
     }
 }

@@ -1,6 +1,6 @@
-@extends('layouts.app');
+{{-- @extends('layouts.app'); --}}
 
-@section('content')
+{{-- @section('content')
 
 <!-- Breadcrumb Area -->
 <div class="breadcrumb-area">
@@ -18,4 +18,4 @@
 
 <div class="flex-grow-1"></div>
 
-@endsection
+@endsection --}}

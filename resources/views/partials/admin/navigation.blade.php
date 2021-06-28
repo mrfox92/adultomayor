@@ -231,9 +231,18 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                {{-- <a href="#" class="nav-link">
                                     <i class='bx bx-exit'></i> <span>Cerrar Sesión</span>
+                                </a> --}}
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    <i class='bx bx-exit'></i> {{ __("Cerrar sesión") }}
                                 </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </li>
                         </ul>
                     </div>

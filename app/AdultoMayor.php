@@ -9,11 +9,12 @@ class AdultoMayor extends Model
 {
     use SoftDeletes;
     protected $table = 'adultos_mayores';
-    protected $fillable = ['rut', 'nombres', 'apellidos', 'fecha_nacimiento', 'edad', 'direccion',
+    protected $fillable = ['rut', 'num_documento', 'nombres', 'apellidos', 'fecha_nacimiento', 'edad', 'direccion',
     'telefono','nacionalidad_id','alfabetizacion_id','porcentaje_rsh','estado_club_am','tipo_vivienda_id',
     'nucleo_familiar_id','recibe_medicamentos','obs_medicamentos','emprendimiento','obs_emprendimiento',
     'atencion_panales','obs_atencion_panales','postrado','obs_postrado','habitabilidad_casa','obs_hab_casa',
-    'postulacion_fosis','obs_fosis','fecha_postulacion_fosis', 'cuidado_ninos', 'cuidado_psd', 'inscripcion_conadi', 'user_id'];
+    'postulacion_fosis','obs_fosis','fecha_postulacion_fosis', 'cuidado_ninos', 'cuidado_psd', 'inscripcion_conadi',
+    'vacunado', 'obs_vacunado', 'user_id'];
     
     // un am tiene una nacionalidad
     public function nacionalidad () {

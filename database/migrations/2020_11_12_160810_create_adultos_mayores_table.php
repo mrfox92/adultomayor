@@ -16,10 +16,10 @@ class CreateAdultosMayoresTable extends Migration
         Schema::create('adultos_mayores', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('rut');
+            $table->string('num_documento');
             $table->string('nombres');
             $table->string('apellidos');
             $table->dateTime('fecha_nacimiento')->nullable();
-            $table->integer('edad');
             $table->string('direccion')->nullable();
             $table->string('telefono')->nullable();
             $table->unsignedInteger('nacionalidad_id');
@@ -50,6 +50,9 @@ class CreateAdultosMayoresTable extends Migration
             $table->enum('cuidado_psd', ['SI', 'NO']);
             $table->enum('inscripcion_conadi', ['SI', 'NO', 'NO SABE', 'NO APLICA']);
             $table->timestamp('fecha_postulacion_fosis')->nullable();// agregar mas adelante estado postulacion fosis
+            //  vacunacion
+            $table->enum('vacunado', ['SI', 'NO']);
+            $table->text('obs_vacunado')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
