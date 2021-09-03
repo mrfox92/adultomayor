@@ -15,4 +15,9 @@ class Nacionalidad extends Model
     public function adultoMayor () {
         return $this->hasMany(AdultoMayor::class);
     }
+
+    public function nacionalidad () {
+        return $this->hasMany(PersonaDiscapacitada::class);
+
+    }
 }

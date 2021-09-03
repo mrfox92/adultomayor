@@ -9,8 +9,9 @@
     
         <ol class="breadcrumb">
             <li class="item"><a href="{{ route('home') }}"><i class='bx bx-home-alt'></i></a></li>
-    
-            <li class="item"><a href="{{ route('habitabilidad.index') }}">Fichas Habitabilidad Viviendas A.M</a></li>
+
+            <li class="item"><a href="{{ $habitabilidad->id ? route('adultosmayores.show', ['id' => $habitabilidad->adultomayor->id] ) : route('adultosmayores.show', ['id' => $adultomayor->id] ) }}">Fichas A.M</a></li>
+            {{-- <li class="item"><a href="{{ route('habitabilidad.index') }}">Fichas Habitabilidad Viviendas A.M</a></li> --}}
     
             <li class="item">{{ $habitabilidad->id ? __("Editar Ficha Habitabilidad Vivienda") : __("Agregar Ficha Habitabilidad Vivienda") }}</li>
         </ol>

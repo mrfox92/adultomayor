@@ -47,6 +47,7 @@ class SaludController extends Controller
     {
         $user = User::get()->first();
         $salud_request->merge(['user_id' => $user->id]);
+
         $salud = Salud::create( $salud_request->input() );
 
         return redirect()->route('salud.edit', ['id' => $salud->am_id])->with('message', [
@@ -63,7 +64,9 @@ class SaludController extends Controller
      */
     public function show($id)
     {
-        //
+        $salud = Salud::with(['adultomayor'])->where('am_id', $id)->first();
+        $pdf = \PDF::loadView('admin.salud_am.salud', compact('salud'));
+        return $pdf->stream('salud.pdf');
     }
 
     /**

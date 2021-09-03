@@ -29,7 +29,6 @@ class AcompananteRequest extends FormRequest
                 return [];
             case 'POST':
                 return [
-                    'acompanante_am'    =>  'required',
                     'sexo_acompanante'  =>  'required',
                     'edad'              =>  'required|numeric|min:1',
                     'parentesco_am'     =>  'required',
@@ -37,7 +36,6 @@ class AcompananteRequest extends FormRequest
                 ];
             case 'PUT':
                 return [
-                    'acompanante_am'    =>  'required',
                     'sexo_acompanante'  =>  'required',
                     'edad'              =>  'required|numeric|min:1',
                     'parentesco_am'     =>  'required',
@@ -54,7 +52,6 @@ class AcompananteRequest extends FormRequest
                 return [];
             case 'POST':
                 return [
-                    'acompanante_am.required'   =>  'El campo acompañante adulto mayor es obligatorio, por favor seleccione una opción',
                     'sexo_acompanante.required' =>  'El campo sexo acompañante adulto mayor es obligatorio, por favor seleccione una opción',
                     'edad.required'             =>  'El campo edad es obligatorio, por favor ingrese edad acompañante adulto mayor',
                     'edad.min'                  =>  'Debe ingresar una edad válida, por favor ingrese edad acompañante adulto mayor',
@@ -63,12 +60,11 @@ class AcompananteRequest extends FormRequest
                 ];
             case 'PUT':
                 return [
-                    'acompanante_am.required'   =>  'El campo acompañante adulto mayor es obligatorio, por favor seleccione una opción',
                     'sexo_acompanante.required' =>  'El campo sexo acompañante adulto mayor es obligatorio, por favor seleccione una opción',
                     'edad.required'             =>  'El campo edad es obligatorio, por favor ingrese edad acompañante adulto mayor',
                     'edad.min'                  =>  'Debe ingresar una edad válida, por favor ingrese edad acompañante adulto mayor',
                     'parentesco_am.required'    =>  'El campo parentesco de acompañante del adulto mayor es obligatorio, por favor seleccione una opción',
-                    'estado_trabajo.required'   =>  'Este campo es olbigatorio, por favor seleccione una opción',
+                    'estado_trabajo.required'   =>  'Este campo es obligatorio, por favor seleccione una opción',
                 ];
         }
     }

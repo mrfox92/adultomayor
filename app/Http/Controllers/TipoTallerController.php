@@ -15,7 +15,7 @@ class TipoTallerController extends Controller
      */
     public function index()
     {
-        $tipo_talleres = TipoTaller::paginate(1);
+        $tipo_talleres = TipoTaller::paginate(10);
         
         return view('admin.tipo_talleres.index', compact('tipo_talleres'));
     }

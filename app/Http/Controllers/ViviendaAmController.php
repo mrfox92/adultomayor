@@ -47,7 +47,7 @@ class ViviendaAmController extends Controller
 
         $vivienda = ViviendaAm::create( $vivienda_am_request->input() );
 
-        return redirect()->route('vivienda.edit', $vivienda->id )->with('message', [
+        return redirect()->route('vivienda.edit', $vivienda->am_id )->with('message', [
             'class'     =>  'success',
             'message'   =>  __("La ficha de Vivienda Adulto mayor ha sido registrada exitosamente en el sistema")
         ]);
@@ -62,7 +62,9 @@ class ViviendaAmController extends Controller
      */
     public function show($id)
     {
-        //
+        $vivienda = ViviendaAm::with(['adultomayor', 'tipoVivienda'])->where('am_id', $id)->first();
+        $pdf = \PDF::loadView('admin.viviendas.vivienda', compact('vivienda'));
+        return $pdf->stream('vivienda.pdf');
     }
 
     /**
@@ -76,8 +78,6 @@ class ViviendaAmController extends Controller
         $vivienda = ViviendaAm::with(['adultomayor'])->where('am_id', $id)->first();
         $btnText = __("Actualizar");
 
-        // dd( $vivienda->id_tipo_vivienda );
-
         return view('admin.viviendas.form', compact('vivienda', 'btnText'));
     }
 
@@ -90,7 +90,6 @@ class ViviendaAmController extends Controller
      */
     public function update(ViviendaAmRequest $vivienda_am_request, $id)
     {
-        // dd( $vivienda_am_request->input() );
 
         $vivienda = ViviendaAm::find($id);
 

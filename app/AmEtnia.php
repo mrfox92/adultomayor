@@ -14,6 +14,6 @@ class AmEtnia extends Model
     }
 
     public function adultoMayor () {
-        return $this->belongsTo(AdultoMayor::class, 'adulto_mayor_id')->select('id', 'rut', 'nombres', 'apellidos');
+        return $this->belongsTo(AdultoMayor::class, 'adulto_mayor_id');
     }
 }

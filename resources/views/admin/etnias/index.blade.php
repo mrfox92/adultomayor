@@ -51,7 +51,7 @@
                             </td>
                         </tr>
                     @empty
-                        
+                        <h6 class="text center alert alert-info">No se ha agregado ninguna etnia</h6>
                     @endforelse
                 </tbody>
             </table>

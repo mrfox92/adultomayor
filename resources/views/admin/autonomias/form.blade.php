@@ -10,7 +10,7 @@
         <ol class="breadcrumb">
             <li class="item"><a href="{{ route('home') }}"><i class='bx bx-home-alt'></i></a></li>
     
-            <li class="item"><a href="{{ route('autonomia.index') }}">Fichas Vida Diaria A.M</a></li>
+            <li class="item"><a href="{{ $autonomia->id ? route('adultosmayores.show', ['id' => $autonomia->adultomayor->id] ) : route('adultosmayores.show', ['id' => $adultomayor->id] ) }}">Fichas A.M</a></li>
     
             <li class="item">{{ $autonomia->id ? __("Editar Ficha Actividades de la vida diaria") : __("Agregar Ficha Actividades de la vida diaria") }}</li>
         </ol>

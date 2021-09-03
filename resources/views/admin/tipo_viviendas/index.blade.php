@@ -12,7 +12,7 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <table class="table table-hover table-stripped">
+            {{-- <table class="table table-hover table-stripped">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -59,7 +59,9 @@
                 <div class="col-md-12">
                     {{ $tipo_viviendas->links() }}
                 </div>
-            </div>
+            </div> --}}
+
+            <vivienda-component></vivienda-component>
 
         </div>
     </div>

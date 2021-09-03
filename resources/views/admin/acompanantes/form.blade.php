@@ -9,8 +9,9 @@
     
         <ol class="breadcrumb">
             <li class="item"><a href="{{ route('home') }}"><i class='bx bx-home-alt'></i></a></li>
+
+            <li class="item"><a href="{{ $acompanante->id ? route('adultosmayores.show', ['id' => $acompanante->adultomayor->id] ) : route('adultosmayores.show', ['id' => $adultomayor->id] ) }}">Fichas A.M</a></li>
     
-            <li class="item"><a href="{{ route('acompanante.index') }}">Fichas Vida Diaria A.M</a></li>
     
             <li class="item">{{ $acompanante->id ? __("Editar Ficha Acompañante AM") : __("Agregar Ficha Acompañante AM") }}</li>
         </ol>
@@ -68,30 +69,6 @@
                             </div>
                             
                         @endif
-
-                        <div class="form-group row">
-                            <label for="acompanante_am" class="col-md-4 col-form-label">
-                                {{ __("¿Con quién vive la persona mayor?") }}
-                            </label>
-
-                            <div class="col-md-8{{ $errors->has('acompanante_am') ? ' is-invalid' : '' }}">
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="acompanante_am" id="sola" value="SOLA" {{ (old('acompanante_am') == 'SOLA' | $acompanante->acompanante_am == 'SOLA') ? 'checked' : ''}}>
-                                    <label class="form-check-label col-form-label" for="sola">Vive sola</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="acompanante_am" id="acompanada" value="ACOMPANADA" {{ (old('acompanante_am') == 'ACOMPANADA' | $acompanante->acompanante_am == 'ACOMPANADA') ? 'checked' : ''}}>
-                                    <label class="form-check-label col-form-label" for="acompanada">Vive acompañada</label>
-                                </div>
-                            </div>
-
-                            @if ( $errors->has('acompanante_am') )
-                                <span class="invalid-feedback text-center">
-                                    <strong>{{ $errors->first('acompanante_am') }}</strong>
-                                </span>
-                            @endif
-
-                        </div>
 
                         <hr>
 
@@ -226,15 +203,15 @@
 
                             <div class="col-md-8{{ $errors->has('estado_trabajo') ? ' is-invalid' : '' }}">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="estado_trabajo" id="si_fuera" value="SOLA" {{ (old('estado_trabajo') == 'SOLA' | $acompanante->estado_trabajo == 'FUERA') ? 'checked' : ''}}>
+                                    <input class="form-check-input" type="radio" name="estado_trabajo" id="si_fuera" value="FUERA" {{ (old('estado_trabajo') == 'FUERA' | strcmp($acompanante->estado_trabajo, 'FUERA') === 0 ) ? 'checked' : ''}}>
                                     <label class="form-check-label col-form-label" for="si_fuera">Si, fuera del hogar</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="estado_trabajo" id="si_dentro" value="DENTRO" {{ (old('estado_trabajo') == 'DENTRO' | $acompanante->estado_trabajo == 'DENTRO') ? 'checked' : ''}}>
+                                    <input class="form-check-input" type="radio" name="estado_trabajo" id="si_dentro" value="DENTRO" {{ (old('estado_trabajo') == 'DENTRO' | strcmp($acompanante->estado_trabajo, 'DENTRO') === 0 ) ? 'checked' : ''}}>
                                     <label class="form-check-label col-form-label" for="si_dentro">Si, dentro del hogar</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="estado_trabajo" id="no_trabaja" value="NO" {{ (old('estado_trabajo') == 'NO' | $acompanante->estado_trabajo == 'NO') ? 'checked' : ''}}>
+                                    <input class="form-check-input" type="radio" name="estado_trabajo" id="no_trabaja" value="NO" {{ (old('estado_trabajo') == 'NO' | strcmp($acompanante->estado_trabajo, 'NO') === 0 ) ? 'checked' : ''}}>
                                     <label class="form-check-label col-form-label" for="no_trabaja">No</label>
                                 </div>
                             </div>

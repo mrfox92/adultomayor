@@ -13,10 +13,25 @@ use App\Salud;
 use App\User;
 use App\AmEtnia;
 use App\ViviendaAm;
+use App\AmTaller;
+use App\AmActividad;
+use App\AmAyudaTecnica;
+use App\AmAtencion;
+use App\AmTrabajoBano;
+use App\AmPrograma;
+use App\AmRed;
+use App\AmIngreso;
+use App\DiscapacidadAm;
 use Carbon\Carbon;
+
+use App\Helpers\Helper; //  hacemos uso de nuestro Helper creado para manipulacion de guardado de imagenes
 
 class AdultoMayorController extends Controller
 {
+
+    public function __construct() {
+        // $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,16 +39,25 @@ class AdultoMayorController extends Controller
      */
     public function index()
     {
-        // $adultosmayores = AdultoMayor::paginate(10);
-        // $user = User::get()->first();
-        // dd( $user );
-
         return view('admin.adultosmayores.index');
     }
 
-    public function listar()
+    public function listar(Request $request)
     {
-        return AdultoMayor::all();
+        if ( ! $request->ajax() ) {
+
+            return abort(401, 'acción no autorizada');
+        }
+
+        // return AdultoMayor::all();
+
+        $usuarios = AdultoMayor::with(['nacionalidad', 'alfabetizacion', 'tipoVivienda', 'nucleoFamiliar', 'institucionSalud', 'amEtnias'])->get();
+
+        return response()->json([
+            'usuarios' => $usuarios,
+            'message' => 'Success'
+            ], 200);
+
     }
 
     /**
@@ -58,18 +82,20 @@ class AdultoMayorController extends Controller
     public function store(AdultoMayorRequest $adultomayor_request)
     {
 
-        // dd( $adultomayor_request );
+        //  validamos que si viene una imagen
+        if ( $adultomayor_request->hasFile('picture') ) {
 
-        $user = User::get()->first();
-        $adultomayor_request->merge(['user_id' => $user->id]);
+            $picture = Helper::uploadFile('picture', 'am');
+            $adultomayor_request->merge(['picture' => $picture]);
+        }
 
-        // dd( $adultomayor_request );
+        $adultomayor_request->merge(['user_id' => auth()->user()->id]);
 
-        AdultoMayor::create( $adultomayor_request->input() );
+        $adultomayor = AdultoMayor::create( $adultomayor_request->input() );
 
-        return back()->with('message', [
+        return redirect()->route('adultosmayores.edit', $adultomayor->id )->with('message', [
             'class'     =>  'success',
-            'message'   =>  __("El Adulto Mayor ha sido registrado exitosamente en el sistema")
+            'message'   =>  __("Adulto mayor ha sido registrado exitosamente en el sistema")
         ]);
     }
 
@@ -88,15 +114,32 @@ class AdultoMayorController extends Controller
         $acompanante = Acompanante::where('am_id', $id)->first();
         //  comprobar ficha habitabilidad adulto mayor
         $habitabilidad = HabitabilidadVivienda::where('am_id', $id)->first();
+        $discapacidades = DiscapacidadAm::where('am_id', $id)->first();
         //  vivienda adulto mayor
         $vivienda = ViviendaAm::where('am_id', $id)->first();
         //  comprobar ficha identificacion adulto mayor
         $am_etnia = AmEtnia::where('adulto_mayor_id', $id)->first();
+        //  talleres adulto mayor
+        $talleram = AmTaller::where('am_id', $id)->first();
+        //  actividades adulto mayor
+        $actividadam = AmActividad::where('am_id', $id)->first();
+        //  ayudas tecnicas adulto mayor
+        $amAyudaTecnica = AmAyudaTecnica::where('am_id', $id)->first();
+        //  atenciones adulto mayor
+        $amAtencion = AmAtencion::where('am_id', $id)->first();
+        //  atenciones trabajo baño adulto mayor
+        $amTrabajoBano = AmTrabajoBano::where('am_id', $id)->first();
+        //  programas adulto mayor
+        $amPrograma = AmPrograma::where('am_id', $id)->first();
+        //  redes adulto mayor
+        $amRed = AmRed::where('am_id', $id)->first();
+        //  tipos ingresos adulto mayor
+        $amIngreso = AmIngreso::where('am_id', $id)->first();
         //  comprobar ficha salud adulto mayor
         $salud = Salud::where('am_id', $id)->first();
         //  si autonomia es null entonces no tiene su ficha creada
         //  en caso de tener la ficha creada permitir editarla
-        return view('admin.adultosmayores.show', compact('adultomayor', 'autonomia', 'acompanante', 'am_etnia', 'habitabilidad', 'vivienda', 'salud'));
+        return view('admin.adultosmayores.show', compact('adultomayor', 'amPrograma', 'amTrabajoBano', 'amAyudaTecnica', 'amAtencion', 'talleram', 'actividadam', 'discapacidades', 'autonomia', 'acompanante', 'am_etnia', 'habitabilidad', 'vivienda', 'salud', 'amRed', 'amIngreso'));
     }
 
     /**
@@ -134,6 +177,15 @@ class AdultoMayorController extends Controller
     public function update(AdultoMayorRequest $adultomayor_request, $id)
     {
         $adultomayor = AdultoMayor::find($id);
+
+        //  validamos que si viene una imagen
+        if ( $adultomayor_request->hasFile('picture') ) {
+
+            \Storage::delete('am/'. $adultomayor->picture);   //  eliminamos la imagen desde el storage
+            //  subimos la imagen actualizada
+            $picture = Helper::uploadFile('picture', 'am');
+            $adultomayor_request->merge(['picture' => $picture]);
+        }
 
         $adultomayor->fill( $adultomayor_request->input() )->save();
 

@@ -15,7 +15,7 @@ class TipoIngresoController extends Controller
      */
     public function index()
     {
-        $ingresos = Ingreso::paginate(3);
+        $ingresos = Ingreso::paginate(10);
         return view('admin.ingresos.index', compact('ingresos'));
     }
 

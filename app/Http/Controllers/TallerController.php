@@ -17,7 +17,6 @@ class TallerController extends Controller
     public function index()
     {
         $talleres = Taller::with('tipotaller')->paginate(5);
-        // dd( $talleres );
         return view('admin.talleres.index', compact('talleres'));
     }
 
@@ -48,6 +47,19 @@ class TallerController extends Controller
             'class'     =>  'success',
             'message'   =>  __("El taller ha sido creado exitosamente")
         ]);
+    }
+
+    public function listar(Request $request)
+    {
+        if ( $request->ajax() ) 
+        {
+            $talleres = Taller::where('tipo_taller_id', $request->tipo_taller_id)->get();
+            foreach ($talleres as $taller) {
+                $talleresArray[$taller->id] = $taller->nombre; 
+            }
+
+            return response()->json($talleresArray);
+        }
     }
 
     /**

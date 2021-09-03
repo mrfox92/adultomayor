@@ -14,11 +14,16 @@ class TipoViviendaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $tipo_viviendas = TipoVivienda::paginate(4);
-        
-        return view('admin.tipo_viviendas.index', compact('tipo_viviendas'));
+    {   
+        return view('admin.tipo_viviendas.index');
     }
+
+    public function listar()
+    {
+        return TipoVivienda::all();
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -101,23 +106,6 @@ class TipoViviendaController extends Controller
     public function destroy($id)
     {
         $tipovivienda = TipoVivienda::find($id);
-        
-        try {
-
-            $tipovivienda->delete();
-
-            return back()->with('message', [
-                'class'     =>  'success',
-                'message'   =>  __("Tipo vivienda eliminada con éxito")
-            ]);
-            
-
-        } catch (\Exception $exception) {
-            
-            return back()->with('message', [
-                'class'     =>  'danger',
-                'message'   =>  __("Error al eliminar Tipo vivienda")
-            ]);
-        }
+        $tipovivienda->delete();
     }
 }

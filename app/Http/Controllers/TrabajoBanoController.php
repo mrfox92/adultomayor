@@ -17,7 +17,7 @@ class TrabajoBanoController extends Controller
      */
     public function index()
     {
-        $trabajos_bano = TrabajoBano::paginate(1);
+        $trabajos_bano = TrabajoBano::paginate(10);
         return view('admin.trabajos_bano.index', compact('trabajos_bano'));
     }
 

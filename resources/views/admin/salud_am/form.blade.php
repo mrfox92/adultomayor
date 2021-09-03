@@ -9,10 +9,10 @@
     
         <ol class="breadcrumb">
             <li class="item"><a href="{{ route('home') }}"><i class='bx bx-home-alt'></i></a></li>
+
+            <li class="item"><a href="{{ $salud->id ? route('adultosmayores.show', ['id' => $salud->adultomayor->id] ) : route('adultosmayores.show', ['id' => $adultomayor->id] ) }}">Fichas A.M</a></li>
     
-            <li class="item"><a href="{{ route('vivienda.index') }}">Fichas VIviendas A.M</a></li>
-    
-            <li class="item">{{ $vivienda->id ? __("Editar Ficha Vivienda AM") : __("Agregar Ficha Vivienda AM") }}</li>
+            <li class="item">{{ $salud->id ? __("Editar Ficha Salud AM") : __("Agregar Ficha Salud AM") }}</li>
         </ol>
     </div>
 
@@ -21,11 +21,11 @@
 
     <form
     method="POST"
-    action="{{ ! $vivienda->id ? route('vivienda.store') : route('vivienda.update', ['id' => $vivienda->id]) }}"
+    action="{{ ! $salud->id ? route('salud.store') : route('salud.update', ['id' => $salud->id]) }}"
     novalidate
     >
     
-    @if ( $vivienda->id )
+    @if ( $salud->id )
         @method('PUT')
     @endif
     {{-- proteccion csrf --}}
@@ -36,10 +36,10 @@
                 <div class="card">
                     <div class="card-header text-center text-uppercase">
 
-                        @if ( $vivienda->id )
-                            {{ $vivienda->adultomayor->nombres }} {{ $vivienda->adultomayor->apellidos }}
+                        @if ( $salud->id )
+                            {{ $salud->adultomayor->nombres }} {{ $salud->adultomayor->apellidos }}
                         @else
-                            {{ $vivienda->nombres }} {{ $vivienda->apellidos }}
+                            {{ $salud->nombres }} {{ $salud->apellidos }}
                         @endif
 
                     </div>
@@ -49,10 +49,10 @@
                     <div class="card-body">
 
                         <h5 class="card-title text-center text-uppercase mt-3 mb-5">
-                            {{ $vivienda->id ? __("Editar Ficha Vivienda AM") : __("Agregar Ficha Vivienda AM") }}
+                            {{ $salud->id ? __("Editar Ficha Salud AM") : __("Agregar Ficha Salud AM") }}
                         </h5>
 
-                        @if ( !$vivienda->id )
+                        @if ( !$salud->id )
 
                             <div class="form-group row">
                                 <div class="col-md-8">
@@ -69,71 +69,125 @@
                             
                         @endif
 
+                        <hr>
 
-                        <div class="form-group row my-5">
-                            <label for="id_tipo_vivienda" class="col-md-4 col-form-label">
-                                {{ __("Tipo Vivienda") }}
+                        <div class="form-group row">
+                            <label for="estado_salud" class="col-md-4 col-form-label">
+                                {{ __("¿Cómo describiría su estado de salud en general?") }}
                             </label>
-                            <div class="col-md-8">
-                                <select
-                                    class="form-control{{ $errors->has('id_tipo_vivienda') ? ' is-invalid' : '' }}"
-                                    name="id_tipo_vivienda" id="id_tipo_vivienda"
-                                >
-                                    <option value="">Seleccione tipo vivienda</option>
-                                    @foreach (\App\TipoVivienda::pluck('nombre', 'id') as $id => $tipo_vivienda)
-                                        <option {{ (int) old('id_tipo_vivienda') === $id || $vivienda->id_tipo_vivienda === $id ? 'selected' : '' }} value="{{ $id }}">
-                                            {{ $tipo_vivienda }}
-                                        </option>
-                                        
-                                    @endforeach
 
-                                    
-                                </select>
-                                @if ( $errors->has('id_tipo_vivienda') )
-                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('id_tipo_vivienda') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="col-md-8{{ $errors->has('estado_salud') ? ' is-invalid' : '' }}">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="estado_salud" id="estado_salud_excelente" value="EXCELENTE" {{ (old('estado_salud') == 'EXCELENTE' | $salud->estado_salud == 'EXCELENTE') ? 'checked' : ''}}>
+                                    <label class="form-check-label col-form-label" for="estado_salud_excelente">Muy bueno</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="estado_salud" id="estado_salud_bueno" value="BUENO" {{ (old('estado_salud') == 'BUENO' | $salud->estado_salud == 'BUENO') ? 'checked' : ''}}>
+                                    <label class="form-check-label col-form-label" for="estado_salud_bueno">Bueno</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="estado_salud" id="estado_salud_regular" value="REGULAR" {{ (old('estado_salud') == 'REGULAR' | $salud->estado_salud == 'REGULAR') ? 'checked' : ''}}>
+                                    <label class="form-check-label col-form-label" for="estado_salud_regular">Regular (más o menos)</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="estado_salud" id="estado_salud_malo" value="MALO" {{ (old('estado_salud') == 'MALO' | $salud->estado_salud == 'MALO') ? 'checked' : ''}}>
+                                    <label class="form-check-label col-form-label" for="estado_salud_malo">Malo</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="estado_salud" id="estado_salud_muy_malo" value="PESIMO" {{ (old('estado_salud') == 'PESIMO' | $salud->estado_salud == 'PESIMO') ? 'checked' : ''}}>
+                                    <label class="form-check-label col-form-label" for="estado_salud_muy_malo">Muy malo</label>
+                                </div>
                             </div>
+
+                            @if ( $errors->has('estado_salud') )
+                                <span class="invalid-feedback text-center">
+                                    <strong>{{ $errors->first('estado_salud') }}</strong>
+                                </span>
+                            @endif
+
                         </div>
 
                         <hr>
 
                         <div class="form-group row">
-                            <label for="ocupacion_vivienda" class="col-md-4 col-form-label">
-                                {{ __("¿Bajo qué situación ocupa su vivienda?") }}
+                            <label for="inscrito_centro_salud" class="col-md-4 col-form-label">
+                                {{ __("¿Se encuentra inscrito en un Centro de Salud Primario? (Posta, CESFAM, CECOSF, SAPU o CES)") }}
                             </label>
 
-                            <div class="col-md-8{{ $errors->has('ocupacion_vivienda') ? ' is-invalid' : '' }}">
+                            <div class="col-md-8{{ $errors->has('inscrito_centro_salud') ? ' is-invalid' : '' }}">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="ocupacion_vivienda" id="ocupacion_vivienda_pagada" value="PAGADA" {{ (old('ocupacion_vivienda') == 'PAGADA' | $vivienda->ocupacion_vivienda == 'PAGADA') ? 'checked' : ''}}>
-                                    <label class="form-check-label col-form-label" for="ocupacion_vivienda_pagada">Propia Pagada</label>
+                                    <input class="form-check-input" type="radio" name="inscrito_centro_salud" id="inscrito_centro_salud_si" value="SI" {{ (old('inscrito_centro_salud') == 'SI' | $salud->inscrito_centro_salud == 'SI') ? 'checked' : ''}}>
+                                    <label class="form-check-label col-form-label" for="inscrito_centro_salud_si">Si</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="ocupacion_vivienda" id="ocupacion_vivienda_pagandose" value="PAGANDOSE" {{ (old('ocupacion_vivienda') == 'PAGANDOSE' | $vivienda->ocupacion_vivienda == 'PAGANDOSE') ? 'checked' : ''}}>
-                                    <label class="form-check-label col-form-label" for="ocupacion_vivienda_pagandose">Propia Pagandose</label>
+                                    <input class="form-check-input" type="radio" name="inscrito_centro_salud" id="inscrito_centro_salud_otro" value="OTRO" {{ (old('inscrito_centro_salud') == 'OTRO' | $salud->inscrito_centro_salud == 'OTRO') ? 'checked' : ''}}>
+                                    <label class="form-check-label col-form-label" for="inscrito_centro_salud_otro">No, porque utiliza otro sistema de salud</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="ocupacion_vivienda" id="ocupacion_vivienda_arrendada" value="ARRENDADA" {{ (old('ocupacion_vivienda') == 'ARRENDADA' | $vivienda->ocupacion_vivienda == 'ARRENDADA') ? 'checked' : ''}}>
-                                    <label class="form-check-label col-form-label" for="ocupacion_vivienda_arrendada">Arrendada</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="ocupacion_vivienda" id="ocupacion_vivienda_cedida" value="CEDIDA" {{ (old('ocupacion_vivienda') == 'CEDIDA' | $vivienda->ocupacion_vivienda == 'CEDIDA') ? 'checked' : ''}}>
-                                    <label class="form-check-label col-form-label" for="ocupacion_vivienda_cedida">Cedida / Uso gratuito</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="ocupacion_vivienda" id="ocupacion_vivienda_usufructo" value="USUFRUCTO" {{ (old('ocupacion_vivienda') == 'USUFRUCTO' | $vivienda->ocupacion_vivienda == 'USUFRUCTO') ? 'checked' : ''}}>
-                                    <label class="form-check-label col-form-label" for="ocupacion_vivienda_usufructo">Usufructo (sólo uso y goce)</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="ocupacion_vivienda" id="ocupacion_vivienda_irregular" value="IRREGULAR" {{ (old('ocupacion_vivienda') == 'IRREGULAR' | $vivienda->ocupacion_vivienda == 'IRREGULAR') ? 'checked' : ''}}>
-                                    <label class="form-check-label col-form-label" for="ocupacion_vivienda_irregular">Ocupación irregular</label>
+                                    <input class="form-check-input" type="radio" name="inscrito_centro_salud" id="inscrito_centro_salud_no" value="NO" {{ (old('inscrito_centro_salud') == 'NO' | $salud->inscrito_centro_salud == 'NO') ? 'checked' : ''}}>
+                                    <label class="form-check-label col-form-label" for="inscrito_centro_salud_no">No</label>
                                 </div>
                             </div>
 
-                            @if ( $errors->has('ocupacion_vivienda') )
+                            @if ( $errors->has('inscrito_centro_salud') )
                                 <span class="invalid-feedback text-center">
-                                    <strong>{{ $errors->first('ocupacion_vivienda') }}</strong>
+                                    <strong>{{ $errors->first('inscrito_centro_salud') }}</strong>
+                                </span>
+                            @endif
+
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group row">
+                            <label for="controles_salud" class="col-md-4 col-form-label">
+                                {{ __("¿Tiene sus controles de salud al día?") }}
+                            </label>
+                            
+                            <div class="col-md-8{{ $errors->has('controles_salud') ? ' is-invalid' : '' }}">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="controles_salud" id="controles_salud_si" value="SI" {{ (old('controles_salud') == 'SI' | $salud->controles_salud == 'SI') ? 'checked' : ''}}>
+                                    <label class="form-check-label col-form-label" for="controles_salud_si">Si</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="controles_salud" id="controles_salud_no" value="NO" {{ (old('controles_salud') == 'NO' | $salud->controles_salud == 'NO') ? 'checked' : ''}}>
+                                    <label class="form-check-label col-form-label" for="controles_salud_no">No</label>
+                                </div>
+                            </div>
+
+                            @if ( $errors->has('controles_salud') )
+                                <span class="invalid-feedback text-center">
+                                    <strong>{{ $errors->first('controles_salud') }}</strong>
+                                </span>
+                            @endif
+
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group row">
+                            <label for="dependencia_severa" class="col-md-4 col-form-label">
+                                {{ __("¿Se encuentra participando del Programa de Atención Domiciliaria para Personas con Dependencia Severa?") }}
+                            </label>
+
+                            <div class="col-md-8{{ $errors->has('dependencia_severa') ? ' is-invalid' : '' }}">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="dependencia_severa" id="dependencia_severa_si" value="SI" {{ (old('dependencia_severa') == 'SI' | $salud->dependencia_severa == 'SI') ? 'checked' : ''}}>
+                                    <label class="form-check-label col-form-label" for="dependencia_severa_si">Si</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="dependencia_severa" id="dependencia_severa_no" value="NO" {{ (old('dependencia_severa') == 'NO' | $salud->dependencia_severa == 'NO') ? 'checked' : ''}}>
+                                    <label class="form-check-label col-form-label" for="dependencia_severa_no">No</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="dependencia_severa" id="dependencia_severa_no_sabe" value="NOSABE" {{ (old('dependencia_severa') == 'NOSABE' | $salud->dependencia_severa == 'NOSABE') ? 'checked' : ''}}>
+                                    <label class="form-check-label col-form-label" for="dependencia_severa_no_sabe">No sabe</label>
+                                </div>
+                            </div>
+
+                            @if ( $errors->has('dependencia_severa') )
+                                <span class="invalid-feedback text-center">
+                                    <strong>{{ $errors->first('dependencia_severa') }}</strong>
                                 </span>
                             @endif
 

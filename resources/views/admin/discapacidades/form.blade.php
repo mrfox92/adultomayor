@@ -9,7 +9,7 @@
     
         <ol class="breadcrumb">
             <li class="item"><a href="{{ route('home') }}"><i class='bx bx-home-alt'></i></a></li>
-    
+
             <li class="item"><a href="{{ route('discapacidades.show', ['id' => $adultomayor->id]) }}">Ficha Discapacidad(es) A.M</a></li>
     
             <li class="item">{{ $discapacidad->id ? __("Editar Ficha Discapacidad AM") : __("Agregar Ficha Discapacidad AM") }}</li>

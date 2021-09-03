@@ -17,7 +17,7 @@ class AtencionController extends Controller
      */
     public function index()
     {
-        $atenciones = Atencion::paginate(5);
+        $atenciones = Atencion::paginate(10);
         return view('admin.atenciones.index', compact('atenciones'));
     }
 

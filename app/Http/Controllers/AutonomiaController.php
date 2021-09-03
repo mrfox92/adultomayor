@@ -55,7 +55,7 @@ class AutonomiaController extends Controller
 
         $autonomia = Autonomia::create( $autonomia_request->input() );
 
-        return redirect()->route('autonomia.edit', $autonomia->id )->with('message', [
+        return redirect()->route('autonomia.edit', $autonomia->am_id )->with('message', [
             'class'     =>  'success',
             'message'   =>  __("La ficha de Autonomia Adulto mayor ha sido registrada exitosamente en el sistema")
         ]);
@@ -69,7 +69,9 @@ class AutonomiaController extends Controller
      */
     public function show($id)
     {
-        //
+        $autonomia = Autonomia::with(['adultomayor'])->where('am_id', $id)->first();
+        $pdf = \PDF::loadView('admin.autonomias.autonomia', compact('autonomia'));
+        return $pdf->stream('autonomia.pdf');
     }
 
     /**

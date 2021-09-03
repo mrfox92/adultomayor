@@ -30,11 +30,12 @@ class AdultoMayorRequest extends FormRequest
                 return [];
             case 'POST':
                 return [
-                    'rut'                           =>  'required',
-                    'num_documento'                 =>  'required',
+                    'rut'                           =>  'required|unique:adultos_mayores,rut',
+                    'num_documento'                 =>  'required|unique:adultos_mayores,num_documento',
                     'nombres'                       =>  'required',
                     'apellidos'                     =>  'required',
                     'fecha_nacimiento'              =>  'nullable|date',
+                    'sexo'                          =>  'required',
                     'direccion'                     =>  'required',
                     'telefono'                      =>  'nullable',
                     'nacionalidad_id'               =>  ['required', Rule::exists('nacionalidad', 'id')],
@@ -43,6 +44,7 @@ class AdultoMayorRequest extends FormRequest
                     'estado_club_am'                =>  'required',
                     'tipo_vivienda_id'              =>  ['required', Rule::exists('tipo_vivienda', 'id')],
                     'nucleo_familiar_id'            =>  ['required', Rule::exists('nucleo_familiar', 'id')],
+                    'institucion_salud_id'          =>  ['required', Rule::exists('institucion_salud', 'id')],
                     'recibe_medicamentos'           =>  'required',
                     'obs_medicamentos'              =>  'nullable|max:500',
                     'emprendimiento'                =>  'required',
@@ -61,17 +63,24 @@ class AdultoMayorRequest extends FormRequest
                     'inscripcion_conadi'            =>  'required',
                     'vacunado'                      =>  'required',
                     'obs_vacunado'                  =>  'nullable|max:500',
-                    // 'tipo_taller_id'    =>  ['required', Rule::exists('tipo_taller', 'id')],
-                    // 'fecha_inicio'      =>  'date|nullable',
-                    // 'fecha_fin'         =>  'date|nullable|after_or_equal:fecha_inicio'
+                    'controles_dia'                 =>  'required',
+                    'obs_controles'                 =>  'nullable|max:500',
+                    'picture'                       =>  'sometimes|image|mimes:jpg,jpeg,png',
                 ];
             case 'PUT':
                 return [
-                    'rut'                           =>  'required',
-                    'num_documento'                 =>  'required',
+                    'rut'                           =>  [
+                        'required',
+                        Rule::unique('adultos_mayores', 'rut')->ignore($this->id, 'id')
+                    ],
+                    'num_documento'                 =>  [
+                        'required',
+                        Rule::unique('adultos_mayores', 'num_documento')->ignore($this->id, 'id')
+                    ],
                     'nombres'                       =>  'required',
                     'apellidos'                     =>  'required',
                     'fecha_nacimiento'              =>  'nullable|date',
+                    'sexo'                          =>  'required',
                     'direccion'                     =>  'required',
                     'telefono'                      =>  'nullable',
                     'nacionalidad_id'               =>  ['required', Rule::exists('nacionalidad', 'id')],
@@ -80,6 +89,7 @@ class AdultoMayorRequest extends FormRequest
                     'estado_club_am'                =>  'required',
                     'tipo_vivienda_id'              =>  ['required', Rule::exists('tipo_vivienda', 'id')],
                     'nucleo_familiar_id'            =>  ['required', Rule::exists('nucleo_familiar', 'id')],
+                    'institucion_salud_id'          =>  ['required', Rule::exists('institucion_salud', 'id')],
                     'recibe_medicamentos'           =>  'required',
                     'obs_medicamentos'              =>  'nullable|max:500',
                     'emprendimiento'                =>  'required',
@@ -98,10 +108,9 @@ class AdultoMayorRequest extends FormRequest
                     'inscripcion_conadi'            =>  'required',
                     'vacunado'                      =>  'required',
                     'obs_vacunado'                  =>  'nullable|max:500',
-                    // 'apellidos'   =>  'nullable|max:500',
-                    // 'tipo_taller_id'    =>  ['required', Rule::exists('tipo_taller', 'id')],
-                    // 'fecha_inicio'      =>  'date|nullable',
-                    // 'fecha_fin'         =>  'date|nullable|after_or_equal:fecha_inicio'
+                    'controles_dia'                 =>  'required',
+                    'obs_controles'                 =>  'nullable|max:500',
+                    'picture'                       =>  'sometimes|image|mimes:jpg,jpeg,png',
                 ];
         }
     }
@@ -115,16 +124,20 @@ class AdultoMayorRequest extends FormRequest
             case 'POST':
                 return [
                     'rut.required'                          =>  'El RUT de adulto mayor es un campo obligatorio. Por favor ingrese RUT adulto mayor',
+                    'rut.unique'                            =>  'El RUT ingresado pertenece a un adulto mayor registrado, por favor reintente',
                     'num_documento.required'                =>  'El N° documento es un campo obligatorio. Por favor ingrese °N documento adulto mayor',
+                    'num_documento.unique'                  =>  'El N° documento ingresado pertenece a un adulto mayor registrado, por favor reintente',
                     'nombres.required'                      =>  'Nombres de adulto mayor es un campo obligatorio. Por favor ingrese nombres adulto mayor',
                     'apellidos.required'                    =>  'Apellidos de adulto mayor es un campo obligatorio. Por favor ingrese apellidos adulto mayor',
                     'fecha_nacimiento.date'                 =>  'Fecha nacimiento es un campo obligatorio, por favor ingrese una fecha de nacimiento',
+                    'sexo.required'                         =>  'Campo obligatorio, por favor seleccione una opción sexo Adulto mayor',
                     'direccion.required'                    =>  'La dirección es un campo obligatorio, por favor ingrese dirección domicilio adulto mayor',
                     'nacionalidad_id.required'              =>  'Este campo es obligatorio, por favor seleccione una nacionalidad para el adulto mayor',
                     'alfabetizacion_id.required'            =>  'Este campo es obligatorio, por favor seleccione un nivel de alfabetización adulto mayor',
                     'estado_club_am.required'               =>  'El clud de adulto mayor es un campo obligatorio. Por favor seleccione una opción',
                     'tipo_vivienda_id.required'             =>  'El tipo vivienda es un campo obligatorio. Por favor seleccione un tipo de vivienda',
                     'nucleo_familiar_id.required'           =>  'El nucleo familiar es un campo obligatorio. Por favor seleccione una opción de nucleo familiar',
+                    'institucion_salud_id.required'         =>  'La institución Salud es un campo obligatorio. Por favor seleccione una opción de institución salud',
                     'recibe_medicamentos.required'          =>  'Campo obligatorio, por favor seleccione una opción recibir medicamentos',
                     'obs_medicamentos.max'                  =>  'El texto es demasiado largo, debe tener un máximo de 500 caracteres',
                     'emprendimiento.required'               =>  'Campo obligatorio, por favor seleccione una opción tiene emprendimiento',
@@ -142,23 +155,27 @@ class AdultoMayorRequest extends FormRequest
                     'inscripcion_conadi.required'           =>  'Campo obligatorio, por favor seleccione una opción',
                     'vacunado.required'                     =>  'Campo obligatorio, por favor seleccione una opción vacunado covid-19',
                     'obs_vacunado.max'                      =>  'El texto es demasiado largo, debe tener un máximo de 500 caracteres',
-                    // 'descripcion.max'           =>  'El texto es demasiado largo, debe tener un máximo de 500 caracteres',
-                    // 'fecha_inicio.date'         =>  'Debe ingresar una fecha válida, por favor reintente',
-                    // 'fecha_fin.after_or_equal'  =>  'La fecha fin debe ser una fecha después de o igual a fecha de inicio, por favor reintente.'
+                    'controles_dia.required'                =>  'Campo obligatorio, por favor seleccione una opción controles al día',
+                    'obs_controles.max'                     =>  'El texto es demasiado largo, debe tener un máximo de 500 caracteres',
+                    'picture.image'                         =>  'El archivo a subir debe tener un formato de imagen válido, pruebe subir una imagen con extension jpg, jpeg o png'
                 ];
             case 'PUT':
                 return [
                     'rut.required'                          =>  'El RUT de adulto mayor es un campo obligatorio. Por favor ingrese RUT adulto mayor',
+                    'rut.unique'                            =>  'El RUT ingresado pertenece a un adulto mayor registrado, por favor reintente',
                     'num_documento.required'                =>  'El N° documento es un campo obligatorio. Por favor ingrese °N documento adulto mayor',
+                    'num_documento.unique'                  =>  'El N° documento ingresado pertenece a un adulto mayor registrado, por favor reintente',
                     'nombres.required'                      =>  'Nombres de adulto mayor es un campo obligatorio. Por favor ingrese nombres adulto mayor',
                     'apellidos.required'                    =>  'Apellidos de adulto mayor es un campo obligatorio. Por favor ingrese apellidos adulto mayor',
                     'fecha_nacimiento.date'                 =>  'Fecha nacimiento es un campo obligatorio, por favor ingrese una fecha de nacimiento',
+                    'sexo.required'                         =>  'Campo obligatorio, por favor seleccione una opción sexo Adulto mayor',
                     'direccion.required'                    =>  'La dirección es un campo obligatorio, por favor ingrese dirección domicilio adulto mayor',
                     'nacionalidad_id.required'              =>  'Este campo es obligatorio, por favor seleccione una nacionalidad para el adulto mayor',
                     'alfabetizacion_id.required'            =>  'Este campo es obligatorio, por favor seleccione un nivel de alfabetización adulto mayor',
                     'estado_club_am.required'               =>  'El clud de adulto mayor es un campo obligatorio. Por favor seleccione una opción',
                     'tipo_vivienda_id.required'             =>  'El tipo vivienda es un campo obligatorio. Por favor seleccione un tipo de vivienda',
                     'nucleo_familiar_id.required'           =>  'El nucleo familiar es un campo obligatorio. Por favor seleccione una opción de nucleo familiar',
+                    'institucion_salud_id.required'         =>  'La institución Salud es un campo obligatorio. Por favor seleccione una opción de institución salud',
                     'recibe_medicamentos.required'          =>  'Campo obligatorio, por favor seleccione una opción recibir medicamentos',
                     'obs_medicamentos.max'                  =>  'El texto es demasiado largo, debe tener un máximo de 500 caracteres',
                     'emprendimiento.required'               =>  'Campo obligatorio, por favor seleccione una opción tiene emprendimiento',
@@ -176,10 +193,9 @@ class AdultoMayorRequest extends FormRequest
                     'inscripcion_conadi.required'           =>  'Campo obligatorio, por favor seleccione una opción',
                     'vacunado.required'                     =>  'Campo obligatorio, por favor seleccione una opción vacunado covid-19',
                     'obs_vacunado.max'                      =>  'El texto es demasiado largo, debe tener un máximo de 500 caracteres',
-                    // 'descripcion.max'           =>  'El texto es demasiado largo, debe tener un máximo de 500 caracteres',
-                    // 'tipo_taller_id.required'   =>  'Este campo es obligatorio, por favor seleccione una categoria para el taller',
-                    // 'fecha_inicio.date'         =>  'Debe ingresar una fecha válida, por favor reintente',
-                    // 'fecha_fin.after_or_equal'  =>  'La fecha fin debe ser una fecha después de o igual a fecha de inicio, por favor reintente.'
+                    'controles_dia.required'                =>  'Campo obligatorio, por favor seleccione una opción controles al día',
+                    'obs_controles.max'                     =>  'El texto es demasiado largo, debe tener un máximo de 500 caracteres',
+                    'picture.image'                         =>  'El archivo a subir debe tener un formato de imagen válido, pruebe subir una imagen con extension jpg, jpeg o png'
                 ];
         }
     }

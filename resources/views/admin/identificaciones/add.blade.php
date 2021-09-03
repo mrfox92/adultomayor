@@ -10,9 +10,9 @@
         <ol class="breadcrumb">
             <li class="item"><a href="{{ route('home') }}"><i class='bx bx-home-alt'></i></a></li>
     
-            <li class="item"><a href="{{ route('autonomia.index') }}">Fichas Identificación étnica</a></li>
+            <li class="item"><a href="{{ route('adultosmayores.show', ['id' => $adultomayor->id] ) }}">Fichas A.M</a></li>
     
-            <li class="item">{{ __("Editar Ficha Identificación étnica") }}</li>
+            <li class="item">{{ __("Ficha Identificación étnica") }}</li>
         </ol>
     </div>
 

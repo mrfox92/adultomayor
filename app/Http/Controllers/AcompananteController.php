@@ -43,14 +43,12 @@ class AcompananteController extends Controller
     public function store(AcompananteRequest $acompanante_request)
     {
 
-        // dd($acompanante_request->input());
-
         $user = User::get()->first();
         $acompanante_request->merge(['user_id' => $user->id]);
 
         $acompanante = Acompanante::create( $acompanante_request->input() );
 
-        return redirect()->route('acompanante.edit', $acompanante->id )->with('message', [
+        return redirect()->route('acompanante.edit', $acompanante->am_id )->with('message', [
             'class'     =>  'success',
             'message'   =>  __("La ficha de Acompañante Adulto mayor ha sido registrada exitosamente en el sistema")
         ]);
@@ -89,9 +87,16 @@ class AcompananteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AcompananteRequest $request_acompanante, $id)
     {
-        //
+        $acompanante = Acompanante::find($id);
+        
+        $acompanante->fill( $request_acompanante->input() )->save();
+
+        return redirect()->route('acompanante.edit', ['id' => $acompanante->am_id])->with('message', [
+            'class'     =>  'success',
+            'message'   =>  __("Información acompanante actualizado exitosamente")  
+        ]);
     }
 
     /**
@@ -102,6 +107,24 @@ class AcompananteController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $acompanante = Acompanante::where('am_id', $id)->first();
+        
+        try {
+
+            $acompanante->delete();
+
+            return back()->with('message', [
+                'class'     =>  'success',
+                'message'   =>  __("Acompañante eliminada con éxito")
+            ]);
+            
+
+        } catch (\Exception $exception) {
+            
+            return back()->with('message', [
+                'class'     =>  'danger',
+                'message'   =>  __("Error al eliminar Acompañante")
+            ]);
+        }
     }
 }

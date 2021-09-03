@@ -15,8 +15,8 @@ class CreateAmAyudaTecnicaTable extends Migration
     {
         Schema::create('am_ayuda_tecnica', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('adulto_mayor_id');
-            $table->foreign('adulto_mayor_id')->references('id')->on('adultos_mayores');
+            $table->unsignedBigInteger('am_id');
+            $table->foreign('am_id')->references('id')->on('adultos_mayores');
             $table->unsignedInteger('ayuda_tecnica_id');
             $table->foreign('ayuda_tecnica_id')->references('id')->on('ayudas_tecnicas');
             $table->text('observacion')->nullable();

@@ -20,6 +20,7 @@
             method="POST"
             action="{{ ! $adultomayor->id ? route('adultosmayores.store') : route('adultosmayores.update', ['id' => $adultomayor->id]) }}"
             novalidate
+            enctype="multipart/form-data"
         >
 
             @if ( $adultomayor->id )
@@ -38,6 +39,33 @@
                         <hr> 
 
                         <div class="card-body">
+
+                            <div class="form-group row">
+
+                                <label for="picture" class="col-md-4 col-form-label">
+                                    {{ __("Subir foto (opcional)") }}
+                                </label>
+    
+                                <div class="col-md-8">
+    
+                                    <div class="custom-file">
+                                        <input
+                                            type="file" name="picture" id="picture" lang="es"
+                                            class="custom-file-input{{ $errors->has('picture') ? ' is-invalid' : '' }}"
+                                        >
+                                        <label class="custom-file-label" for="customFileLang">Seleccionar Archivo</label>
+                                        
+                                        @if ( $errors->has('picture') )
+                                            <span class="invalid-feedback">
+                                                <strong>{{ $errors->first('picture') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+        
+                                </div>
+    
+                            </div>
+                            <br>
 
                             <div class="form-group row">
                                 <label for="rut" class="col-md-4 col-form-label">
@@ -150,16 +178,36 @@
                                         value="{{ old('fecha_nacimiento') ?: $adultomayor->fecha_nacimiento }}"
                                     >
 
-                                    {{--  --}}
-
-                                    {{--  --}}
-
                                     @if ( $errors->has('fecha_nacimiento') )
                                         <span class="invalid-feedback">
                                             <strong>{{ $errors->first('fecha_nacimiento') }}</strong>
                                         </span>
                                     @endif
                                 </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="sexo" class="col-md-4 col-form-label">
+                                    {{ __("Sexo") }}
+                                </label>
+
+                                <div class="col-md-8{{ $errors->has('sexo') ? ' is-invalid' : '' }}">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="sexo" id="sexo_femenino" value="F" {{ (old('sexo') == 'F' | $adultomayor->sexo == 'F') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="sexo_femenino">Femenino</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="sexo" id="sexo_masculino" value="M" {{ (old('sexo') == 'M' | $adultomayor->sexo == 'M') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="sexo_masculino">Masculino</label>
+                                    </div>
+                                </div>
+
+                                @if ( $errors->has('sexo') )
+                                    <span class="invalid-feedback text-center">
+                                        <strong>{{ $errors->first('sexo') }}</strong>
+                                    </span>
+                                @endif
+
                             </div>
 
                             <div class="form-group row">
@@ -357,6 +405,34 @@
                                     @if ( $errors->has('nucleo_familiar_id') )
                                         <span class="invalid-feedback">
                                             <strong>{{ $errors->first('nucleo_familiar_id') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="form-group row">
+                                <label for="institucion_salud_id" class="col-md-4 col-form-label">
+                                    {{ __("Institución Salud") }}
+                                </label>
+                                <div class="col-md-8">
+                                    <select
+                                        class="form-control{{ $errors->has('institucion_salud_id') ? ' is-invalid' : '' }}"
+                                        name="institucion_salud_id" id="institucion_salud_id"
+                                    >
+                                        <option value="">Seleccione institución salud</option>
+                                        @foreach (\App\institucionSalud::pluck('nombre', 'id') as $id => $institucionSalud)
+                                            <option {{ (int) old('institucion_salud_id') === $id || $adultomayor->institucion_salud_id === $id ? 'selected' : '' }} value="{{ $id }}">
+                                                {{ $institucionSalud }}
+                                            </option>
+                                            
+                                        @endforeach
+                                        
+                                    </select>
+                                    @if ( $errors->has('institucion_salud_id') )
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('institucion_salud_id') }}</strong>
                                         </span>
                                     @endif
                                 </div>
@@ -698,6 +774,55 @@
                             <hr>
 
                             <div class="form-group row">
+                                <label for="controles_dia" class="col-md-4 col-form-label">
+                                    {{ __("¿Tiene sus controles al día en sistema salud primaria?") }}
+                                </label>
+
+                                <div class="col-md-8{{ $errors->has('controles_dia') ? ' is-invalid' : '' }}">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="controles_dia" id="controles_dia" value="NO" {{ (old('controles_dia') == 'NO' | $adultomayor->controles_dia == 'NO') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="controles_dia">NO</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="controles_dia" id="controles_dia" value="SI" {{ (old('controles_dia') == 'SI' | $adultomayor->controles_dia == 'SI') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="controles_dia">SI</label>
+                                    </div>
+                                </div>
+
+                                @if ( $errors->has('controles_dia') )
+                                    <span class="invalid-feedback text-center">
+                                        <strong>{{ $errors->first('controles_dia') }}</strong>
+                                    </span>
+                                @endif
+
+                            </div>
+
+                            <hr>
+
+                            <div class="form-group row">
+                                <label for="obs_controles" class="col-md-4 col-form-label">
+                                    {{ __("Observación sobre controles salud (opcional)") }}
+                                </label>
+                                <div class="col-md-8">
+
+                                    <textarea 
+                                        class="form-control{{ $errors->has('obs_controles') ? ' is-invalid' : '' }}"
+                                        name="obs_controles" id="obs_controles" cols="2" rows="3"
+                                        placeholder="{{ __("Ingrese observación sobre vacuna...") }}"
+                                    > {{ old('obs_controles') ?: $adultomayor->obs_controles }} </textarea>
+
+                                    @if ( $errors->has('obs_controles') )
+                                        <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('obs_controles') }}</strong>
+                                        </span>
+                                    @endif
+
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="form-group row">
                                 <label for="fecha_postulacion_fosis" class="col-md-4 col-form-label">
                                     {{ __("Fecha postulación FOSIS (opcional)") }}
                                 </label>
@@ -728,23 +853,23 @@
 
                                 <div class="col-md-8{{ $errors->has('cuidado_ninos') ? ' is-invalid' : '' }}">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="cuidado_ninos" id="cuidado_ninos" value="SI" {{ (old('cuidado_ninos') == 'SI' | $adultomayor->cuidado_ninos == 'SI') ? 'checked' : ''}}>
-                                        <label class="form-check-label col-form-label" for="cuidado_ninos">Si, tiempo completo</label>
+                                        <input class="form-check-input" type="radio" name="cuidado_ninos" id="cuidado_ninos_si" value="SI" {{ (old('cuidado_ninos') == 'SI' | $adultomayor->cuidado_ninos == 'SI') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="cuidado_ninos_si">Si, tiempo completo</label>
                                     </div>
                                     <br>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="cuidado_ninos" id="cuidado_ninos" value="A VECES" {{ (old('cuidado_ninos') == 'A VECES' | $adultomayor->cuidado_ninos == 'A VECES') ? 'checked' : ''}}>
-                                        <label class="form-check-label col-form-label" for="cuidado_ninos">SI, algunas veces a la semana</label>
+                                        <input class="form-check-input" type="radio" name="cuidado_ninos" id="cuidado_ninos_a_veces" value="A VECES" {{ (old('cuidado_ninos') == 'A VECES' | $adultomayor->cuidado_ninos == 'A VECES') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="cuidado_ninos_a_veces">SI, algunas veces a la semana</label>
                                     </div>
                                     <br>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="cuidado_ninos" id="cuidado_ninos" value="RARA VEZ" {{ (old('cuidado_ninos') == 'RARA VEZ' | $adultomayor->cuidado_ninos == 'RARA VEZ') ? 'checked' : ''}}>
-                                        <label class="form-check-label col-form-label" for="cuidado_ninos">Rara vez</label>
+                                        <input class="form-check-input" type="radio" name="cuidado_ninos" id="cuidado_ninos_rara_vez" value="RARA VEZ" {{ (old('cuidado_ninos') == 'RARA VEZ' | $adultomayor->cuidado_ninos == 'RARA VEZ') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="cuidado_ninos_rara_vez">Rara vez</label>
                                     </div>
                                     <br>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="cuidado_ninos" id="cuidado_ninos" value="NO" {{ (old('cuidado_ninos') == 'NO' | $adultomayor->cuidado_ninos == 'NO') ? 'checked' : ''}}>
-                                        <label class="form-check-label col-form-label" for="cuidado_ninos">Nunca</label>
+                                        <input class="form-check-input" type="radio" name="cuidado_ninos" id="cuidado_ninos_no" value="NO" {{ (old('cuidado_ninos') == 'NO' | $adultomayor->cuidado_ninos == 'NO') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="cuidado_ninos_no">Nunca</label>
                                     </div>
                                 </div>
 
@@ -790,23 +915,23 @@
 
                                 <div class="col-md-8{{ $errors->has('inscripcion_conadi') ? ' is-invalid' : '' }}">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inscripcion_conadi" id="inscripcion_conadi" value="SI" {{ (old('inscripcion_conadi') == 'SI' | $adultomayor->inscripcion_conadi == 'SI') ? 'checked' : ''}}>
-                                        <label class="form-check-label col-form-label" for="inscripcion_conadi">Si</label>
+                                        <input class="form-check-input" type="radio" name="inscripcion_conadi" id="inscripcion_conadi_si" value="SI" {{ (old('inscripcion_conadi') == 'SI' | $adultomayor->inscripcion_conadi == 'SI') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="inscripcion_conadi_si">Si</label>
                                     </div>
                                     <br>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inscripcion_conadi" id="inscripcion_conadi" value="NO" {{ (old('inscripcion_conadi') == 'NO' | $adultomayor->inscripcion_conadi == 'NO') ? 'checked' : ''}}>
-                                        <label class="form-check-label col-form-label" for="inscripcion_conadi">No</label>
+                                        <input class="form-check-input" type="radio" name="inscripcion_conadi" id="inscripcion_conadi_no" value="NO" {{ (old('inscripcion_conadi') == 'NO' | $adultomayor->inscripcion_conadi == 'NO') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="inscripcion_conadi_no">No</label>
                                     </div>
                                     <br>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inscripcion_conadi" id="inscripcion_conadi" value="NO SABE" {{ (old('inscripcion_conadi') == 'NO SABE' | $adultomayor->inscripcion_conadi == 'NO SABE') ? 'checked' : ''}}>
-                                        <label class="form-check-label col-form-label" for="inscripcion_conadi">No sabe</label>
+                                        <input class="form-check-input" type="radio" name="inscripcion_conadi" id="inscripcion_conadi_no_sabe" value="NO SABE" {{ (old('inscripcion_conadi') == 'NO SABE' | $adultomayor->inscripcion_conadi == 'NO SABE') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="inscripcion_conadi_no_sabe">No sabe</label>
                                     </div>
                                     <br>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inscripcion_conadi" id="inscripcion_conadi" value="NO APLICA" {{ (old('inscripcion_conadi') == 'NO APLICA' | $adultomayor->inscripcion_conadi == 'NO APLICA') ? 'checked' : ''}}>
-                                        <label class="form-check-label col-form-label" for="inscripcion_conadi">No aplica</label>
+                                        <input class="form-check-input" type="radio" name="inscripcion_conadi" id="inscripcion_conadi_no_aplica" value="NO APLICA" {{ (old('inscripcion_conadi') == 'NO APLICA' | $adultomayor->inscripcion_conadi == 'NO APLICA') ? 'checked' : ''}}>
+                                        <label class="form-check-label col-form-label" for="inscripcion_conadi_no_aplica">No aplica</label>
                                     </div>
                                 </div>
 

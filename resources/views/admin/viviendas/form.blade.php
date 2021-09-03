@@ -9,13 +9,12 @@
     
         <ol class="breadcrumb">
             <li class="item"><a href="{{ route('home') }}"><i class='bx bx-home-alt'></i></a></li>
-    
-            <li class="item"><a href="{{ route('vivienda.index') }}">Fichas VIviendas A.M</a></li>
-    
+
+            <li class="item"><a href="{{ $vivienda->id ? route('adultosmayores.show', ['id' => $vivienda->adultomayor->id] ) : route('adultosmayores.show', ['id' => $adultomayor->id] ) }}">Fichas A.M</a></li>
+
             <li class="item">{{ $vivienda->id ? __("Editar Ficha Vivienda AM") : __("Agregar Ficha Vivienda AM") }}</li>
         </ol>
     </div>
-
 
 
 
@@ -148,7 +147,7 @@
 
                             <div class="col-md-8{{ $errors->has('ocupacion_sitio') ? ' is-invalid' : '' }}">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="ocupacion_sitio" id="ocupacion_sitio_pagado" value="PAGADA" {{ (old('ocupacion_sitio') == 'PAGADA' | $vivienda->ocupacion_sitio == 'PAGADO') ? 'checked' : ''}}>
+                                    <input class="form-check-input" type="radio" name="ocupacion_sitio" id="ocupacion_sitio_pagado" value="PAGADO" {{ (old('ocupacion_sitio') == 'PAGADO' | $vivienda->ocupacion_sitio == 'PAGADO') ? 'checked' : ''}}>
                                     <label class="form-check-label col-form-label" for="ocupacion_sitio_pagado">Propio Pagado</label>
                                 </div>
                                 <div class="form-check form-check-inline">
@@ -168,7 +167,7 @@
                                     <label class="form-check-label col-form-label" for="ocupacion_sitio_usufructo">Usufructo (sólo uso y goce)</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="ocupacion_sitio" id="ocupacion_sitio_ocupacion" value="OCUPACIOn" {{ (old('ocupacion_sitio') == 'OCUPACIOn' | $vivienda->ocupacion_sitio == 'OCUPACIOn') ? 'checked' : ''}}>
+                                    <input class="form-check-input" type="radio" name="ocupacion_sitio" id="ocupacion_sitio_ocupacion" value="OCUPACIOn" {{ (old('ocupacion_sitio') == 'OCUPACION' | $vivienda->ocupacion_sitio == 'OCUPACION') ? 'checked' : ''}}>
                                     <label class="form-check-label col-form-label" for="ocupacion_sitio_ocupacion">Ocupación irregular</label>
                                 </div>
                                 <div class="form-check form-check-inline">
@@ -194,7 +193,7 @@
 
                             <div class="col-md-8{{ $errors->has('comparte_terreno') ? ' is-invalid' : '' }}">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="comparte_terreno" id="comparte_terreno_vivienda" value="PAGADA" {{ (old('comparte_terreno') == 'PAGADA' | $vivienda->comparte_terreno == 'VIVIENDA') ? 'checked' : ''}}>
+                                    <input class="form-check-input" type="radio" name="comparte_terreno" id="comparte_terreno_vivienda" value="VIVIENDA" {{ (old('comparte_terreno') == 'VIVIENDA' | $vivienda->comparte_terreno == 'VIVIENDA') ? 'checked' : ''}}>
                                     <label class="form-check-label col-form-label" for="comparte_terreno_vivienda">Con otra familia en la misma vivienda</label>
                                 </div>
                                 <div class="form-check form-check-inline">
@@ -206,7 +205,7 @@
                                     <label class="form-check-label col-form-label" for="comparte_terreno_ambas">Con otra familia en la misma vivienda y con otra familia en el mismo terreno (3 o más familias)</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="comparte_terreno" id="comparte_terreno_no" value="CEDIDO" {{ (old('comparte_terreno') == 'CEDIDO' | $vivienda->comparte_terreno == 'NO') ? 'checked' : ''}}>
+                                    <input class="form-check-input" type="radio" name="comparte_terreno" id="comparte_terreno_no" value="NO" {{ (old('comparte_terreno') == 'NO' | $vivienda->comparte_terreno == 'NO') ? 'checked' : ''}}>
                                     <label class="form-check-label col-form-label" for="comparte_terreno_no">No comparte ni vivienda ni terreno</label>
                                 </div>
                             </div>

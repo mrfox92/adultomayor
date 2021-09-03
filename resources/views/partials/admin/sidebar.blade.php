@@ -1,10 +1,11 @@
 <!-- Start Sidemenu Area -->
 <div class="sidemenu-area">
     <div class="sidemenu-header">
-        <a href="dashboard-analytics.html" class="navbar-brand d-flex align-items-center">
-            <img src="{{ asset('img/small-logo.png') }}" alt="image">
+        <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center">
+            {{-- <img src="{{ asset('img/small-logo.png') }}" alt="image"> --}}
+            <img class="rounded-circle" width="70" height="70" src="{{ asset('img/municipalidad.jpg') }}" alt="image">
             {{-- <span>Fiva</span> --}}
-            <span>AM</span>
+            <span>AM-PSD</span>
         </a>
 
         <div class="burger-menu d-none d-lg-block">
@@ -22,22 +23,35 @@
 
     <div class="sidemenu-body">
         <ul class="sidemenu-nav metisMenu h-100" id="sidemenu-nav" data-simplebar>
+
+
             <li class="nav-item-title">
-                REPORTES
+                Gestión usuarios
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="collapsed-nav-link nav-link" aria-expanded="false">
+                    <span class="icon"><i class='bx bxs-user'></i></span>
+                    <span class="menu-title">Usuarios</span>
+                    <span class="badge">1</span>
+                </a>
+
+                <ul class="sidemenu-nav-second-level">
+
+                    <li class="nav-item">
+                        <a href="{{ route('usuarios.index') }}" class="nav-link" aria-expanded="false">
+                            <span class="icon"><i class='bx bx-data'></i></span>
+                            <span class="menu-title">Registro usuarios</span>
+                        </a>
+                    </li>
+
+                </ul>
             </li>
 
             {{-- <li class="nav-item mm-active"> --}}
-            {{-- <li class="nav-item">
-                <a href="{{ route('reportes.index') }}" class="nav-link" aria-expanded="false">
-                    <span class="icon"><i class='bx bx-box'></i></span>
-                    <span class="menu-title">Adulto Mayor</span>
-                </a>
-            </li> --}}
-
-            {{-- <li class="nav-item mm-active"> --}}
 
             <li class="nav-item-title">
-                INTERNO
+                OFICINA ADULTO MAYOR
             </li>
 
             {{-- Adulto mayor --}}
@@ -147,16 +161,10 @@
                 <a href="#" class="collapsed-nav-link nav-link" aria-expanded="false">
                     <span class="icon"><i class='bx bx-clinic'></i></span>
                     <span class="menu-title">Salud</span>
-                    <span class="badge">2</span>
+                    <span class="badge">1</span>
                 </a>
 
                 <ul class="sidemenu-nav-second-level">
-                    <li class="nav-item{{ ( request()->is('patologias') ) ? ' mm-active' : '' }}">
-                        <a href="{{ route('patologias.index') }}" class="nav-link">
-                            <span class="icon"><i class='bx bxs-thermometer'></i></span>
-                            <span class="menu-title">Patologías</span>
-                        </a>
-                    </li>
 
                     <li class="nav-item{{ ( request()->is('institucionsalud') ) ? ' mm-active' : '' }}">
                         <a href="{{ route('institucionsalud.index') }}" class="nav-link">
@@ -192,7 +200,7 @@
                 <a href="#" class="collapsed-nav-link nav-link" aria-expanded="false">
                     <span class="icon"><i class='bx bx-accessibility'></i></span>
                     <span class="menu-title">Discapacidades</span>
-                    <span class="badge">2</span>
+                    <span class="badge">1</span>
                 </a>
 
                 <ul class="sidemenu-nav-second-level">
@@ -200,14 +208,6 @@
                         <a href="{{ route('tipodiscapacidades.index') }}" class="nav-link">
                             <span class="icon"><i class='bx bx-tag'></i></span>
                             <span class="menu-title">Tipo Discapacidad</span>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="sidemenu-nav-second-level">
-                    <li class="nav-item{{ ( request()->is('discapacidades') ) ? ' mm-active' : '' }}">
-                        <a href="{{ route('discapacidades.index') }}" class="nav-link">
-                            <span class="icon"><i class='bx bx-list-check'></i></span>
-                            <span class="menu-title">Discapacidad</span>
                         </a>
                     </li>
                 </ul>
@@ -227,6 +227,25 @@
                         <a href="{{ route('actividades.index') }}" class="nav-link">
                             <span class="icon"><i class='bx bx-collection'></i></span>
                             <span class="menu-title">Actividades</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            {{-- programas --}}
+
+            <li class="nav-item">
+                <a href="#" class="collapsed-nav-link nav-link" aria-expanded="false">
+                    <span class="icon"><i class='bx bxs-calendar'></i></span>
+                    <span class="menu-title">Programas</span>
+                    <span class="badge">1</span>
+                </a>
+
+                <ul class="sidemenu-nav-second-level">
+                    <li class="nav-item{{ ( request()->is('progrmas') ) ? ' mm-active' : '' }}">
+                        <a href="{{ route('programas.index') }}" class="nav-link">
+                            <span class="icon"><i class='bx bx-collection'></i></span>
+                            <span class="menu-title">Programas</span>
                         </a>
                     </li>
                 </ul>
@@ -274,6 +293,36 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="nav-item-title">
+                OFICINA DISCAPACIDAD
+            </li>
+
+            <li class="nav-item">
+                <a href="#" class="collapsed-nav-link nav-link" aria-expanded="false">
+                    <span class="icon"><i class='bx bxs-data'></i></span>
+                    <span class="menu-title">PSD</span>
+                    <span class="badge">2</span>
+                </a>
+
+                <ul class="sidemenu-nav-second-level">
+
+                    <li class="nav-item">
+                        <a href="{{ route('psd.index') }}" class="nav-link" aria-expanded="false">
+                            <span class="icon"><i class='bx bx-box'></i></span>
+                            <span class="menu-title">Registro PSD</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('beneficios.index') }}" class="nav-link" aria-expanded="false">
+                            <span class="icon"><i class='bx bx-box'></i></span>
+                            <span class="menu-title">Beneficios Estatales</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
         </ul>
     </div>
 </div>

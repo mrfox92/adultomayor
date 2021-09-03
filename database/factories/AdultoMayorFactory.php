@@ -20,6 +20,7 @@ $factory->define(AdultoMayor::class, function (Faker $faker) {
     $inscripcion_conadi = $faker->randomElement(['SI', 'NO', 'NO SABE', 'NO APLICA']);
     $fecha_postulacion_fosis = $faker->dateTimeBetween($startDate = '-2 years', $endDate = '-1 years', $timezone = 'America/New_York');
     $vacunado = $faker->randomElement(['SI', 'NO']);
+    $controles_dia = $faker->randomElement(['SI', 'NO']);
 
 
     return [
@@ -28,6 +29,7 @@ $factory->define(AdultoMayor::class, function (Faker $faker) {
         'nombres'                       =>  $faker->name,
         'apellidos'                     =>  $faker->lastName,
         'fecha_nacimiento'              =>  $fecha_nacimiento,
+        'sexo'                          =>  $faker->randomElement(['F', 'M']),
         'direccion'                     =>  $faker->streetAddress,
         'telefono'                      =>  $faker->tollFreePhoneNumber,
         'nacionalidad_id'               =>  \App\Nacionalidad::all()->random()->id,
@@ -36,6 +38,7 @@ $factory->define(AdultoMayor::class, function (Faker $faker) {
         'estado_club_am'                =>  $estado_club_am,
         'tipo_vivienda_id'              =>  \App\TipoVivienda::all()->random()->id,
         'nucleo_familiar_id'            =>  \App\NucleoFamiliar::all()->random()->id,
+        'institucion_salud_id'          =>  \App\InstitucionSalud::all()->random()->id,
         'recibe_medicamentos'           =>  $recibe_medicamento,
         'obs_medicamentos'              =>  $faker->paragraph,
         'emprendimiento'                =>  $emprendimiento,
@@ -54,6 +57,8 @@ $factory->define(AdultoMayor::class, function (Faker $faker) {
         'fecha_postulacion_fosis'       =>  $fecha_postulacion_fosis,
         'vacunado'                      =>  $vacunado,
         'obs_vacunado'                  =>  $faker->paragraph,
+        'controles_dia'                 =>  $controles_dia,
+        'obs_controles'                 =>  $faker->paragraph,
         'user_id'                       =>  \App\User::all()->random()->id,
     ];
 });

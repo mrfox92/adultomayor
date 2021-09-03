@@ -15,7 +15,7 @@ class NucleoFamiliarController extends Controller
      */
     public function index()
     {
-        $nucleosfamiliares = NucleoFamiliar::paginate(3);
+        $nucleosfamiliares = NucleoFamiliar::paginate(10);
         return view('admin.nucleosfamiliares.index', compact('nucleosfamiliares'));
     }
 

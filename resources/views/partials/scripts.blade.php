@@ -8,10 +8,11 @@
 <script src="{{ asset('js/vendors.min.js') }}"></script>
 {{-- App js --}}
 {{-- <script src="{{ asset('js/app.js') }}?v2"></script> --}}
-<script src="{{ asset('js/app.js') }}?v4" defer></script>
+<script src="{{ asset('js/app.js') }}?v1" defer></script>
+
 
 <!-- ApexCharts JS -->
-<script src="{{ asset('js/apexcharts/apexcharts.min.js') }}"></script>
+{{-- <script src="{{ asset('js/apexcharts/apexcharts.min.js') }}"></script>
 <script src="{{ asset('js/apexcharts/apexcharts-stock-prices.js') }}"></script>
 <script src="{{ asset('js/apexcharts/apexcharts-irregular-data-series.js') }}"></script>
 <script src="{{ asset('js/apexcharts/apex-custom-line-chart.js') }}"></script>
@@ -21,7 +22,7 @@
 <script src="{{ asset('js/apexcharts/apex-custom-bar-charts.js') }}"></script>
 <script src="{{ asset('js/apexcharts/apex-custom-mixed-charts.js') }}"></script>
 <script src="{{ asset('js/apexcharts/apex-custom-radialbar-charts.js') }}"></script>
-<script src="{{ asset('js/apexcharts/apex-custom-radar-chart.js') }}"></script>
+<script src="{{ asset('js/apexcharts/apex-custom-radar-chart.js') }}"></script> --}}
 
 <!-- ChartJS -->
 <script src="{{ asset('js/chartjs/chartjs.min.js') }}"></script>

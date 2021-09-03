@@ -15,7 +15,7 @@ class RedController extends Controller
      */
     public function index()
     {
-        $redes = Red::paginate(2);
+        $redes = Red::paginate(10);
 
         return view('admin.redes.index', compact('redes'));
     }

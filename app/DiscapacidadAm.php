@@ -10,7 +10,7 @@ class DiscapacidadAm extends Model
     protected $fillable = ['am_id', 'id_tipo_discapacidad', 'nombre', 'observacion', 'user_id'];
     
     public function adultomayor () {
-        return $this->belongsTo(AdultoMayor::class, 'am_id')->select('id', 'rut', 'nombres', 'apellidos');
+        return $this->belongsTo(AdultoMayor::class, 'am_id');
     }
 
     public function tipoDiscapacidad () {

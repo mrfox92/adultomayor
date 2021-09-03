@@ -6,11 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class AmAyudaTecnica extends Model
 {
+    protected $table = 'am_ayuda_tecnica';
+    protected $fillable = ['am_id', 'ayuda_tecnica_id'];
+
     public function ayudaTecnica () {
-        return $this->belongsTo(AyudaTecnica::class);
+        return $this->belongsTo(AyudaTecnica::class, 'ayuda_tecnica_id');
     }
 
     public  function adultoMayor () {
-        return $this->belongsTo(AdultoMayor::class);
+        return $this->belongsTo(AdultoMayor::class, 'am_id');
     }
 }

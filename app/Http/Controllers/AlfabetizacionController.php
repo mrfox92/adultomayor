@@ -16,10 +16,12 @@ class AlfabetizacionController extends Controller
      */
     public function index()
     {
-        $niveles_alfabetizacion = Alfabetizacion::all();
+        return view('admin.alfabetizacion.index');
+    }
 
-        // dd( $niveles_alfabetizacion );
-        return view('admin.alfabetizacion.index', compact('niveles_alfabetizacion'));
+    public function listar()
+    {
+        return Alfabetizacion::all();
     }
 
     /**
@@ -42,11 +44,11 @@ class AlfabetizacionController extends Controller
      */
     public function store(AlfabetizacionRequest $alfabetizacion_request)
     {
-        Alfabetizacion::create($alfabetizacion_request->input());
+        $alfabetizacion = Alfabetizacion::create($alfabetizacion_request->input());
 
-        return back()->with('message', [
+        return redirect()->route('alfabetizacion.edit', ['id' => $alfabetizacion->id])->with('message', [
             'class'     =>  'success',
-            'message'   =>  __("Nivel alfabetización creado con éxito")
+            'message'   =>  __("Nivel alfabetización agregado exitosamente")  
         ]);
 
     }
@@ -103,23 +105,6 @@ class AlfabetizacionController extends Controller
     public function destroy($id)
     {
         $alfabetizacion = Alfabetizacion::find($id);
-        
-        try {
-
-            $alfabetizacion->delete();
-
-            return back()->with('message', [
-                'class'     =>  'success',
-                'message'   =>  __("Nivel alfabetizacion eliminado con éxito")
-            ]);
-            
-
-        } catch (\Exception $exception) {
-            
-            return back()->with('message', [
-                'class'     =>  'danger',
-                'message'   =>  __("Error al eliminar el nivel alfabetizacion")
-            ]);
-        }
+        $alfabetizacion->delete();
     }
 }

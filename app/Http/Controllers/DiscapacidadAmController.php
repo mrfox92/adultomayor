@@ -27,7 +27,7 @@ class DiscapacidadAmController extends Controller
      */
     public function create($id)
     {
-        $adultomayor = AdultoMayor::find($id)->first();
+        $adultomayor = AdultoMayor::find($id);
         $discapacidad = new DiscapacidadAm();
         $btnText = __("Guardar");
 
@@ -63,7 +63,7 @@ class DiscapacidadAmController extends Controller
     public function show($id)
     {
         //  buscar a partir de id adulto mayor
-        $discapacidades = DiscapacidadAm::with(['tipoDiscapacidad'])->where('am_id', $id)->paginate(10);
+        $discapacidades = DiscapacidadAm::with(['tipoDiscapacidad'])->where('am_id', $id)->get();
         $adultomayor = AdultoMayor::find($id);
 
         return view('admin.discapacidades.show', compact('discapacidades', 'adultomayor'));
@@ -92,9 +92,15 @@ class DiscapacidadAmController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(DiscapacidadAmRequest $discapacidad_request, $id)
     {
-        //
+        $discapacidad = DiscapacidadAm::find($id);
+        $discapacidad->fill( $discapacidad_request->input() )->save();
+
+        return redirect()->route('discapacidades.show', ['id' => $discapacidad->am_id] )->with('message', [
+            'class'     =>  'success',
+            'message'   =>  __("La discapacidad Adulto mayor ha sido actualizada exitosamente en el sistema")
+        ]);
     }
 
     /**

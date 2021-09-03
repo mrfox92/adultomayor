@@ -15,8 +15,8 @@ class CreateAmRedTable extends Migration
     {
         Schema::create('am_red', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('adulto_mayor_id');
-            $table->foreign('adulto_mayor_id')->references('id')->on('adultos_mayores');
+            $table->unsignedBigInteger('am_id');
+            $table->foreign('am_id')->references('id')->on('adultos_mayores');
             $table->unsignedInteger('red_id');
             $table->foreign('red_id')->references('id')->on('redes');
             $table->timestamps();

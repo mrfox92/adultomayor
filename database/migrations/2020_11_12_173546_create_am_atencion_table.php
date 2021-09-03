@@ -15,8 +15,8 @@ class CreateAmAtencionTable extends Migration
     {
         Schema::create('am_atencion', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('adulto_mayor_id');
-            $table->foreign('adulto_mayor_id')->references('id')->on('adultos_mayores');
+            $table->unsignedBigInteger('am_id');
+            $table->foreign('am_id')->references('id')->on('adultos_mayores');
             $table->unsignedInteger('atencion_id');
             $table->foreign('atencion_id')->references('id')->on('atenciones');
             $table->text('obs_atencion')->nullable();

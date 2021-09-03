@@ -50,29 +50,6 @@ class IdentificacionController extends Controller
 
         $etnias = $identificacion_request->etnias;
 
-        try {
-
-            \DB::beginTransaction();
-            
-            $detalle_etnias = [];
-            foreach ($etnias as $etnia) {
-
-                $detalle_etnias [] = [
-                    "adulto_mayor_id"   =>  $identificacion_request->adulto_mayor_id,
-                    "etnia_id"          =>  $etnia,
-                    "created_at"        =>  Carbon::now(),
-                    "updated_at"        =>  Carbon::now()
-                ];
-            }
-
-            AmEtnia::insert($detalle_etnias);
-
-            \DB::commit();
-
-        } catch (\ModelNotFoundException $e) {
-            \DB::rollback();
-        }
-
         return redirect()->route('identificacion.create', $identificacion_request->adulto_mayor_id )->with('message', [
             'class'     =>  'success',
             'message'   =>  __("La ficha identificación Adulto mayor ha sido registrada exitosamente en el sistema")
@@ -83,21 +60,17 @@ class IdentificacionController extends Controller
 
     public function agregarEtnia( AgregarIdentificacionRequest $request_agregar_etnia ) {
 
-        dd( $request_agregar_etnia->input() );
-
-        // $etnia = $request->input();
-
-        // AmEtnia::create([
-        //     "adulto_mayor_id"   =>  $etnia->adulto_mayor_id,
-        //     "etnia_id"          =>  $etnia->etnia_id
-        // ]);
+        $amEtnia = AmEtnia::create([
+            "adulto_mayor_id"   =>  $request_agregar_etnia->adulto_mayor_id,
+            "etnia_id"          =>  $request_agregar_etnia->etnia_id
+        ]);
 
         //  validar que el item agregado no exista en BD para el usuario seleccionado
 
-        // return redirect()->route('identificacion.add', $request->adulto_mayor_id )->with('message', [
-        //     'class'     =>  'success',
-        //     'message'   =>  __("Identificación étnica agregada exitosamente en el sistema")
-        // ]);
+        return redirect()->route('identificacion.show', $amEtnia->adulto_mayor_id )->with('message', [
+            'class'     =>  'success',
+            'message'   =>  __("Identificación étnica agregada exitosamente en el sistema")
+        ]);
     }
 
     /**
@@ -110,11 +83,14 @@ class IdentificacionController extends Controller
     {
         $detalle_etnias = AmEtnia::with(['etnia', 'adultoMayor'])->where('adulto_mayor_id', $id)->get();
 
-        $adultomayor = $detalle_etnias[0]->adultoMayor;
+        if ( isset($detalle_etnias) && !empty($detalle_etnias) ) {
 
-        // dd( $adultomayor );
+            $adultomayor = AdultoMayor::find($id);
 
-        // dd( $detalle_etnias );
+        } else {
+
+            $adultomayor = $detalle_etnias[0]->adultoMayor;
+        }
 
         return view('admin.identificaciones.show', compact('detalle_etnias', 'adultomayor'));
     }
@@ -170,6 +146,24 @@ class IdentificacionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $amEtnia = AmEtnia::find($id);
+        
+        try {
+
+            $amEtnia->delete();
+
+            return back()->with('message', [
+                'class'     =>  'success',
+                'message'   =>  __("Etnia eliminada con éxito")
+            ]);
+            
+
+        } catch (\Exception $exception) {
+            
+            return back()->with('message', [
+                'class'     =>  'danger',
+                'message'   =>  __("Error al eliminar Ayuda Tecnica")
+            ]);
+        }
     }
 }

@@ -17,7 +17,6 @@ class CreateAcompananteTable extends Migration
             $table->id();
             $table->unsignedBigInteger('am_id');
             $table->foreign('am_id')->references('id')->on('adultos_mayores');
-            $table->enum('acompanante_am', ['SOLA', 'ACOMPANADA']);
             $table->enum('sexo_acompanante', ['F', 'M']);
             $table->integer('edad');
             $table->enum('parentesco_am', ['JEFE','CONYUGE', 'HIJOAMBOS', 'HIJOJEFE', 'HIJOCONYUGE',
@@ -27,7 +26,6 @@ class CreateAcompananteTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

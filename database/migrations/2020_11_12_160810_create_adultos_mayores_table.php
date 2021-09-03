@@ -20,6 +20,7 @@ class CreateAdultosMayoresTable extends Migration
             $table->string('nombres');
             $table->string('apellidos');
             $table->dateTime('fecha_nacimiento')->nullable();
+            $table->enum('sexo', ['F', 'M']);
             $table->string('direccion')->nullable();
             $table->string('telefono')->nullable();
             $table->unsignedInteger('nacionalidad_id');
@@ -33,6 +34,8 @@ class CreateAdultosMayoresTable extends Migration
             $table->foreign('tipo_vivienda_id')->references('id')->on('tipo_vivienda');
             $table->unsignedInteger('nucleo_familiar_id');
             $table->foreign('nucleo_familiar_id')->references('id')->on('nucleo_familiar');
+            $table->unsignedInteger('institucion_salud_id');
+            $table->foreign('institucion_salud_id')->references('id')->on('institucion_salud');
             $table->enum('recibe_medicamentos', ['SI', 'NO']);
             $table->text('obs_medicamentos')->nullable();
             $table->enum('emprendimiento', ['SI', 'NO']);
@@ -53,6 +56,9 @@ class CreateAdultosMayoresTable extends Migration
             //  vacunacion
             $table->enum('vacunado', ['SI', 'NO']);
             $table->text('obs_vacunado')->nullable();
+            $table->enum('controles_dia', ['SI', 'NO']);
+            $table->text('obs_controles')->nullable();
+            $table->string('picture')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

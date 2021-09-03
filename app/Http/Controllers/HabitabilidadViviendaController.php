@@ -42,8 +42,9 @@ class HabitabilidadViviendaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SaludRequest $habitabilidad_request)
+    public function store(HabitabilidadViviendaRequest $habitabilidad_request)
     {
+
         $user = User::get()->first();
         $habitabilidad_request->merge(['user_id' => $user->id]);
         $habitabilidad = HabitabilidadVivienda::create( $habitabilidad_request->input() );
@@ -62,7 +63,9 @@ class HabitabilidadViviendaController extends Controller
      */
     public function show($id)
     {
-        //
+        $habitabilidad = HabitabilidadVivienda::with(['adultomayor'])->where('am_id', $id)->first();
+        $pdf = \PDF::loadView('admin.habitabilidades_viviendas.habitabilidad', compact('habitabilidad'));
+        return $pdf->stream('habitabilidad.pdf');
     }
 
     /**

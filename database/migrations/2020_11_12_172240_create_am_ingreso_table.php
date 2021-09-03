@@ -15,11 +15,10 @@ class CreateAmIngresoTable extends Migration
     {
         Schema::create('am_ingreso', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('adulto_mayor_id');
-            $table->foreign('adulto_mayor_id')->references('id')->on('adultos_mayores');
+            $table->unsignedBigInteger('am_id');
+            $table->foreign('am_id')->references('id')->on('adultos_mayores');
             $table->unsignedInteger('ingreso_id');
             $table->foreign('ingreso_id')->references('id')->on('ingresos');
-            $table->integer('monto')->nullable();
             $table->timestamps();
         });
     }
