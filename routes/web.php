@@ -171,7 +171,7 @@ Route::group(['prefix' => 'reportes', 'middleware' => ['auth', sprintf('role:%s,
     Route::get('/show/{id}', 'PDFAdultoMayorController@PDFAM')->name('reportes.show');
 });
 
-Route::group(['prefix' => 'pdfpds'], function() {
+Route::group(['prefix' => 'pdfpds', 'middleware' => ['auth', sprintf('role:%s, ', \App\Role::ADMIN.'|'.\App\Role::GESTOR)] ], function() {
 
     Route::get('/show/{id}', 'PDFPSDController@reporte')->name('psdreporte.show');
 });

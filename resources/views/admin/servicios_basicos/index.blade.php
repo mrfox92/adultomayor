@@ -36,7 +36,6 @@
                                         Seleccione acción
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Ver <i class="bx bx-show-alt"></i></a>
                                         <a class="dropdown-item" href="{{ route('serviciosbasicos.edit', $servicio_basico->id) }}">Editar <i class="bx bx-edit"></i></a>
                                         <form class="my-2" method="POST" action="{{ route('serviciosbasicos.destroy', $servicio_basico->id) }}">
                                             @csrf

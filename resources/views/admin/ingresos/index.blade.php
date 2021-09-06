@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid my-5">
 
-    <div class="row">
+    <div class="row my-5">
         <div class="col-md-12">
             <div class="jumbotron">
                 <a href="{{ route('ingresos.create') }}" class="btn btn-primary"><i class="bx bx-save"></i> Agregar Tipo Ingreso</a>
@@ -36,7 +36,6 @@
                                         Seleccione acción
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Ver <i class="bx bx-show-alt"></i></a>
                                         <a class="dropdown-item" href="{{ route('ingresos.edit', $ingreso->id) }}">Editar <i class="bx bx-edit"></i></a>
                                         <form class="my-2" method="POST" action="{{ route('ingresos.destroy', $ingreso->id) }}">
                                             @csrf

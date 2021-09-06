@@ -15,7 +15,7 @@ class InstitucionSaludController extends Controller
      */
     public function index()
     {
-        $instituciones_salud = InstitucionSalud::paginate(4);
+        $instituciones_salud = InstitucionSalud::paginate(10);
 
         return view('admin.institucion_salud.index', compact('instituciones_salud'));
     }

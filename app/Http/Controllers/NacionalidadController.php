@@ -15,7 +15,7 @@ class NacionalidadController extends Controller
      */
     public function index()
     {
-        $nacionalidades = Nacionalidad::paginate(5);
+        $nacionalidades = Nacionalidad::paginate(25);
 
         return view('admin.nacionalidad.index', compact('nacionalidades'));
     }

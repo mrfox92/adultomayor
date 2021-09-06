@@ -16,7 +16,7 @@ class TallerController extends Controller
      */
     public function index()
     {
-        $talleres = Taller::with('tipotaller')->paginate(5);
+        $talleres = Taller::with('tipotaller')->paginate(25);
         return view('admin.talleres.index', compact('talleres'));
     }
 

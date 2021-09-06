@@ -17,7 +17,6 @@
                                 Seleccione acción
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" v-bind:href="`tipoviviendas/show/${ vivienda.id }`">Ver <i class="bx bx-show-alt"></i></a>
                                 <a class="dropdown-item" v-bind:href="`tipoviviendas/${vivienda.id}/edit`">Editar <i class="bx bx-edit"></i></a>
                                 <a class="dropdown-item" type="button" @click="eliminar(vivienda)">Eliminar <i class="bx bx-trash"></i></a>
                             </div>

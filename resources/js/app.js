@@ -81,7 +81,7 @@ Vue.prototype.$tablaGlobal = function( nombreTabla ) {
                 // },
                 {
                     "extend": "excelHtml5",
-                    "title": "Datos PSD",
+                    "title": nombreTabla +'-'+ moment().format('DD-MM-YYYY'),
                     "text": "<i class='fas fa-file-excel'></i> Excel",
                     "titleAttr": "Exportar a Excel",
                     "className": "btn btn-success",

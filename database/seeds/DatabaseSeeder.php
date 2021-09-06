@@ -672,7 +672,26 @@ class DatabaseSeeder extends Seeder
         //  fin nacionalidad
 
         //  actividades
-        factory(App\Actividad::class, 20)->create();
+        factory(App\Actividad::class, 1)->create([
+            'nombre'        =>  'CORONACIÓN DE LA REINA',
+            'descripcion'   =>  'actividad coronación de la reina'
+        ]);
+
+        factory(App\Actividad::class, 1)->create([
+            'nombre'        =>  'OLIMPIADAS ADULTO MAYOR',
+            'descripcion'   =>  'actividad olimpiadas adulto mayor'
+        ]);
+
+        factory(App\Actividad::class, 1)->create([
+            'nombre'        =>  'PASAMOS AGOSTO',
+            'descripcion'   =>  'actividad pasamos Agosto'
+        ]);
+
+        factory(App\Actividad::class, 1)->create([
+            'nombre'        =>  'ENCUENTRO COROS',
+            'descripcion'   =>  'actividad encuentro coros'
+        ]);
+
         //  atenciones
         factory(App\Atencion::class, 1)->create([
             'nombre'        =>  'ATENCIÓN AUDITIVA',
@@ -687,6 +706,11 @@ class DatabaseSeeder extends Seeder
         factory(App\Atencion::class, 1)->create([
             'nombre'        =>  'ATENCIÓN OFTAMOLOGÍA',
             'descripcion'   =>  'ATENCIÓN OFTAMOLOGÍA'
+        ]);
+
+        factory(App\Atencion::class, 1)->create([
+            'nombre'        =>  'ATENCIÓN LIMPIEZA DE CAÑON',
+            'descripcion'   =>  'ATENCIÓN LIMPIEZA DE CAÑON'
         ]);
         //  ayudas tecnicas
         factory(App\AyudaTecnica::class, 1)->create([
@@ -742,34 +766,43 @@ class DatabaseSeeder extends Seeder
         //  etnias
         // factory(App\Etnia::class, 5)->create();
         factory(App\Etnia::class, 1)->create([
-            'nombre'  =>  'Aymara',
+            'nombre'        =>  'Aymara',
+            'descripcion'   =>  'Aymara',
         ]);
         factory(App\Etnia::class, 1)->create([
-            'nombre'  =>  'Rapa Nui',
+            'nombre'        =>  'Rapa Nui',
+            'descripcion'   =>  'Rapa Nui',
         ]);
         factory(App\Etnia::class, 1)->create([
-            'nombre'  =>  'Quechua',
+            'nombre'        =>  'Quechua',
+            'descripcion'   =>  'Quechua',
         ]);
         factory(App\Etnia::class, 1)->create([
-            'nombre'  =>  'Mapuche',
+            'nombre'        =>  'Mapuche',
+            'descripcion'   =>  'Mapuche',
         ]);
         factory(App\Etnia::class, 1)->create([
-            'nombre'  =>  'Atacameño',
+            'nombre'        =>  'Atacameño',
+            'descripcion'   =>  'Atacameño',
         ]);
         factory(App\Etnia::class, 1)->create([
-            'nombre'  =>  'Colla',
+            'nombre'        =>  'Colla',
+            'descripcion'   =>  'Colla',
         ]);
         factory(App\Etnia::class, 1)->create([
-            'nombre'  =>  'Alacalufe o Kawashkar',
+            'nombre'        =>  'Alacalufe o Kawashkar',
+            'descripcion'   =>  'Alacalufe o Kawashkar',
         ]);
         factory(App\Etnia::class, 1)->create([
-            'nombre'  =>  'Yagán',
+            'nombre'        =>  'Yagán',
+            'descripcion'   =>  'Yagán',
         ]);
         factory(App\Etnia::class, 1)->create([
-            'nombre'  =>  'Diaguita',
+            'nombre'        =>  'Diaguita',
+            'descripcion'   =>  'Diaguita',
         ]);
 
-        //  ingresos
+        //  previsiones
         factory(App\Ingreso::class, 1)->create([
             'nombre'        =>  'Jubilación AFP',
             'descripcion'   =>  'Jubilación AFP'
@@ -835,7 +868,8 @@ class DatabaseSeeder extends Seeder
 
         //  Patologias
         factory(App\Patologia::class, 10)->create();
-        //  Redes
+
+        //  Redes adulto mayor
         factory(App\Red::class, 1)->create([
             'nombre'        =>  'Municipalidad',
             'num_contacto'  =>  ''
@@ -861,72 +895,185 @@ class DatabaseSeeder extends Seeder
             'num_contacto'  =>  ''
         ]);
         //  servicios basicos
-        factory(App\ServicioBasico::class, 5)->create();
+        factory(App\ServicioBasico::class, 1)->create([
+            'nombre'        =>  'Agua potable',
+            'descripcion'   =>  'acceso a agua potable'
+        ]);
+
+        factory(App\ServicioBasico::class, 1)->create([
+            'nombre'        =>  'Luz en su domicilio',
+            'descripcion'   =>  'acceso a luz en su domicilio'
+        ]);
+
+        factory(App\ServicioBasico::class, 1)->create([
+            'nombre'        =>  'Baño en su vivienda',
+            'descripcion'   =>  'acceso a baño en el interior de la vivienda'
+        ]);
+        
         //  tipo talleres
         factory(App\TipoTaller::class, 1)->create([
             'nombre'        =>  'Talleres Oficina Adulto Mayor',
             'descripcion'   =>  'Talleres realizados por la oficina del adulto mayor'    
         ])->each( function ($tipoTaller) {
             //  5 talleres por tipo taller
-            $tipoTaller->talleres()->saveMany( factory(App\Taller::class, 5)->create() );
+            $tipoTaller->talleres()->saveMany(
+                factory(App\Taller::class, 1)->create([
+                    'nombre'            =>  'COSTURA',
+                    'descripcion'       =>  'Taller de costura',
+                    'tipo_taller_id'    =>  $tipoTaller->id
+                ]),
+
+                factory(App\Taller::class, 1)->create([
+                    'nombre'        =>  'COCINA',
+                    'descripcion'   =>  'Taller de cocina',
+                    'tipo_taller_id'    =>  $tipoTaller->id
+                ]),
+
+                factory(App\Taller::class, 1)->create([
+                    'nombre'        =>  'USO CELULARES',
+                    'descripcion'   =>  'Taller uso de celulares',
+                    'tipo_taller_id'    =>  $tipoTaller->id
+                ]),
+
+                factory(App\Taller::class, 1)->create([
+                    'nombre'        =>  'BAILE',
+                    'descripcion'   =>  'Taller de Baile',
+                    'tipo_taller_id'    =>  $tipoTaller->id
+                ]),
+
+                factory(App\Taller::class, 1)->create([
+                    'nombre'        =>  'JUEGOS DE SALÓN',
+                    'descripcion'   =>  'Taller juegos de salón',
+                    'tipo_taller_id'    =>  $tipoTaller->id
+                ]),
+
+                factory(App\Taller::class, 1)->create([
+                    'nombre'        =>  'FOLKLOR',
+                    'descripcion'   =>  'Taller de Folklor',
+                    'tipo_taller_id'    =>  $tipoTaller->id
+                ]),
+
+                factory(App\Taller::class, 1)->create([
+                    'nombre'        =>  'MANUALIDADES',
+                    'descripcion'   =>  'Taller de manualidades',
+                    'tipo_taller_id'    =>  $tipoTaller->id
+                ]),
+
+                factory(App\Taller::class, 1)->create([
+                    'nombre'        =>  'ASISTENCIA JURÍDICA',
+                    'descripcion'   =>  'Taller de asistencia jurídica',
+                    'tipo_taller_id'    =>  $tipoTaller->id
+                ]),
+
+                factory(App\Taller::class, 1)->create([
+                    'nombre'        =>  'ACTIVIDAD FÍSICA',
+                    'descripcion'   =>  'Taller de actividad física',
+                    'tipo_taller_id'    =>  $tipoTaller->id
+                ])
+            );
         });
 
         factory(App\TipoTaller::class, 1)->create([
             'nombre'        =>  'Talleres de Salud',
             'descripcion'   =>  'Talleres de salud para el adulto mayor'
         ])->each( function ($tipoTaller) {
-            //  5 talleres por tipo taller
-            $tipoTaller->talleres()->saveMany( factory(App\Taller::class, 5)->create() );
+
+            $tipoTaller->talleres()->saveMany(
+
+                factory(App\Taller::class, 1)->create([
+                    'nombre'        =>  'PREVENCIÓN DE CAÍDAS',
+                    'descripcion'   =>  'Taller para prevención de caídas',
+                    'tipo_taller_id'    =>  $tipoTaller->id
+                ]),
+
+                factory(App\Taller::class, 1)->create([
+                    'nombre'        =>  'ARTROSIS Y ARTRITIS',
+                    'descripcion'   =>  'Taller Artrosis y artritis',
+                    'tipo_taller_id'    =>  $tipoTaller->id
+                ]),
+
+                factory(App\Taller::class, 1)->create([
+                    'nombre'        =>  'SALUD MENTAL',
+                    'descripcion'   =>  'Taller salud mental',
+                    'tipo_taller_id'    =>  $tipoTaller->id
+                ]),
+
+                factory(App\Taller::class, 1)->create([
+                    'nombre'        =>  'ATENCIÓN Y MEMORIA',
+                    'descripcion'   =>  'Taller atención y memoria',
+                    'tipo_taller_id'    =>  $tipoTaller->id
+                ]),
+
+                factory(App\Taller::class, 1)->create([
+                    'nombre'        =>  'EXPRESIÓN DE EMOCIONES',
+                    'descripcion'   =>  'Taller de expresión de emociones',
+                    'tipo_taller_id'    =>  $tipoTaller->id
+                ]),
+
+                factory(App\Taller::class, 1)->create([
+                    'nombre'        =>  'HIERBAS MEDICINALES',
+                    'descripcion'   =>  'Taller de hierbas medicinales',
+                    'tipo_taller_id'    =>  $tipoTaller->id
+                ]),
+
+            );
         });
 
         //  tipos viviendas
         factory(App\TipoVivienda::class, 1)->create([
-            'nombre'  =>  'Casa',
+            'nombre'        =>  'Casa',
+            'descripcion'   =>  'Casa',
         ]);
         factory(App\TipoVivienda::class, 1)->create([
-            'nombre'  =>  'Departamento',
+            'nombre'        =>  'Departamento',
+            'descripcion'   =>  'Departamento',
         ]);
         factory(App\TipoVivienda::class, 1)->create([
-            'nombre'  =>  'Pieza dentro de la vivienda',
+            'nombre'        =>  'Pieza dentro de la vivienda',
+            'descripcion'   =>  'Pieza dentro de la vivienda',
         ]);
         factory(App\TipoVivienda::class, 1)->create([
-            'nombre'  =>  'Mejora, mediagua',
+            'nombre'        =>  'Mejora, mediagua',
+            'descripcion'   =>  'Mejora, mediagua',
         ]);
         factory(App\TipoVivienda::class, 1)->create([
-            'nombre'  =>  'Rancho, ruca o choza',
+            'nombre'        =>  'Rancho, ruca o choza',
+            'descripcion'   =>  'Rancho, ruca o choza',
         ]);
         factory(App\TipoVivienda::class, 1)->create([
-            'nombre'  =>  'Vivienda de desechos',
+            'nombre'        =>  'Vivienda de desechos',
+            'descripcion'   =>  'Vivienda de desechos',
         ]);
         factory(App\TipoVivienda::class, 1)->create([
-            'nombre'  =>  'Otro tipo de vivienda',
+            'nombre'        =>  'Otro tipo de vivienda',
+            'descripcion'   =>  'Otro tipo de vivienda',
         ]);
         //  trabajo baño
-        factory(App\TrabajoBano::class, 2)->create();
+        // factory(App\TrabajoBano::class, 2)->create();
 
         //  adultos mayores
-        factory(App\AdultoMayor::class, 30)->create();
+        // factory(App\AdultoMayor::class, 30)->create();
 
         //  Autonomia adulto mayor
 
-        factory(App\Autonomia::class, 10)->create();
+        // factory(App\Autonomia::class, 10)->create();
 
-        factory(App\Acompanante::class, 10)->create();
+        // factory(App\Acompanante::class, 10)->create();
 
         //  Habitabilidad adulto mayor
-        factory(App\HabitabilidadVivienda::class, 10)->create();
+        // factory(App\HabitabilidadVivienda::class, 10)->create();
 
         // vivienda adulto mayor
-        factory(App\ViviendaAm::class, 10)->create();
+        // factory(App\ViviendaAm::class, 10)->create();
         //  salud adulto mayor
-        factory(App\Salud::class, 10)->create();
+        // factory(App\Salud::class, 10)->create();
 
         // discapacidad am
-        factory(App\DiscapacidadAm::class, 10)->create();
+        // factory(App\DiscapacidadAm::class, 10)->create();
 
 
         //  PSD
-        factory(App\PersonaDiscapacitada::class, 30)->create();
+        // factory(App\PersonaDiscapacitada::class, 30)->create();
         //  beneficios estatales
         factory(App\BeneficioEstatal::class, 1)->create([
             'nombre'        =>  'Aporte Previsional Solidario de Invalidez (APSI)',

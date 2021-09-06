@@ -82,7 +82,7 @@
                     <li class="nav-item{{ ( request()->is('ingresos') ) ? ' mm-active' : '' }}">
                         <a href="{{ route('ingresos.index') }}" class="nav-link">
                             <span class="icon"><i class='bx bx-dollar-circle'></i></span>
-                            <span class="menu-title">Ingresos</span>
+                            <span class="menu-title">Previsión</span>
                         </a>
                     </li>
 

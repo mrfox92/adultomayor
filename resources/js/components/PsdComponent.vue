@@ -27,7 +27,7 @@
                                 Seleccione acción
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" v-bind:href="`psd/show/${ element.id }`">Ver <i class="bx bx-show-alt"></i></a>
+                                <a class="dropdown-item" v-bind:href="`psd/show/${ element.id }`">Ver Fichas <i class="bx bx-show-alt"></i></a>
                                 <a class="dropdown-item" v-bind:href="`psd/${ element.id }/edit`">Editar <i class="bx bx-edit"></i></a>
                                 <a class="dropdown-item" type="button" @click="eliminar(element)">Eliminar <i class="bx bx-trash"></i></a>
                             </div>

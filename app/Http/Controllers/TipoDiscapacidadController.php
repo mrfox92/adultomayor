@@ -15,7 +15,7 @@ class TipoDiscapacidadController extends Controller
      */
     public function index()
     {
-        $tipo_discapacidades = TipoDiscapacidad::paginate(5);
+        $tipo_discapacidades = TipoDiscapacidad::paginate(10);
 
         return view('admin.tipo_discapacidades.index', compact('tipo_discapacidades'));
     }

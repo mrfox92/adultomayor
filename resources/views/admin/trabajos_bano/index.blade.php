@@ -36,7 +36,6 @@
                                         Seleccione acción
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Ver <i class="bx bx-show-alt"></i></a>
                                         <a class="dropdown-item" href="{{ route('trabajosbano.edit', $trabajo->id) }}">Editar <i class="bx bx-edit"></i></a>
                                         <form class="my-2" method="POST" action="{{ route('trabajosbano.destroy', $trabajo->id) }}">
                                             @csrf
@@ -50,7 +49,7 @@
                             </td>
                         </tr>
                     @empty
-                        
+                        <p class="alert alert-info">No hay trabajos baño ingresados</p>
                     @endforelse
                 </tbody>
             </table>

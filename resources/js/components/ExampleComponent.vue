@@ -1,6 +1,6 @@
 <template>
     <div class="table-responsive">
-        <table class="table table-hover table-striped table-bordered" id="sampleTable">
+        <table class="table table-hover table-striped table-bordered" id="adulto-mayor">
             <thead>
                 <tr>
                     <th>Acciones</th>
@@ -127,7 +127,7 @@
                 axios.get('adultomayor/listar').then( res => {
 
                     this.adultosmayores = res.data.usuarios;
-                    this.$tablaGlobal('#sampleTable');   //  funcion para mostrar datatables
+                    this.$tablaGlobal('#adulto-mayor');   //  funcion para mostrar datatables
                 })
                 .catch( error => console.log(error) );
             },

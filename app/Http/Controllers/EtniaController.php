@@ -15,7 +15,7 @@ class EtniaController extends Controller
      */
     public function index()
     {
-        $etnias = Etnia::paginate(4);
+        $etnias = Etnia::paginate(25);
 
         return view('admin.etnias.index', compact('etnias'));
     }

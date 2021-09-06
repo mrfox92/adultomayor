@@ -28,7 +28,7 @@
                         <tr>
                             <td>{{ $red->id }}</td>
                             <td>{{ $red->nombre }}</td>
-                            <td>{{ $red->num_contacto }}</td>
+                            <td>{{ ( $red->num_contacto ) ? $red->num_contacto : 'no especificado' }}</td>
                             <td colspan="3">
 
                                 <div class="btn-group" role="group">
@@ -36,7 +36,6 @@
                                         Seleccione acción
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">Ver <i class="bx bx-show-alt"></i></a>
                                         <a class="dropdown-item" href="{{ route('redes.edit', $red->id) }}">Editar <i class="bx bx-edit"></i></a>
                                         <form class="my-2" method="POST" action="{{ route('redes.destroy', $red->id) }}">
                                             @csrf

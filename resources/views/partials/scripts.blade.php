@@ -8,7 +8,7 @@
 <script src="{{ asset('js/vendors.min.js') }}"></script>
 {{-- App js --}}
 {{-- <script src="{{ asset('js/app.js') }}?v2"></script> --}}
-<script src="{{ asset('js/app.js') }}?v1" defer></script>
+<script src="{{ asset('js/app.js') }}?v2" defer></script>
 
 
 <!-- ApexCharts JS -->
