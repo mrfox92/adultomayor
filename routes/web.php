@@ -82,16 +82,24 @@ Route::group(['prefix' => 'perfil', 'middleware' => ['auth']], function() {
 });
 
 //  Adulto Mayor
-Route::group(['prefix' => 'adultomayor', 'middleware' => ['auth', sprintf('role:%s, ', \App\Role::ADMIN.'|'.\App\Role::GESTOR)]], function() {
+Route::group(['prefix' => 'adultomayor'], function() {
 
-    Route::get('/', 'AdultoMayorController@index')->name('adultosmayores.index');
+
+    Route::group(['middleware' => [ 'auth', sprintf('role:%s, ', \App\Role::ADMIN.'|'.\App\Role::GESTOR) ]], function() {
+        
+        
+        Route::get('/', 'AdultoMayorController@index')->name('adultosmayores.index');
+        Route::get('/show/{id}', 'AdultoMayorController@show')->name('adultosmayores.show');
+        Route::get('/create', 'AdultoMayorController@create')->name('adultosmayores.create');
+        Route::post('/store', 'AdultoMayorController@store')->name('adultosmayores.store');
+        Route::put('/{id}/update', 'AdultoMayorController@update')->name('adultosmayores.update');
+        Route::get('/{id}/edit', 'AdultoMayorController@edit')->name('adultosmayores.edit');
+        Route::delete('/{id}/destroy', 'AdultoMayorController@destroy')->name('adultosmayores.destroy');
+        
+    });
+    
     Route::get('/listar', 'AdultoMayorController@listar')->name('adultosmayores.listar');
-    Route::get('/show/{id}', 'AdultoMayorController@show')->name('adultosmayores.show');
-    Route::get('/create', 'AdultoMayorController@create')->name('adultosmayores.create');
-    Route::post('/store', 'AdultoMayorController@store')->name('adultosmayores.store');
-    Route::put('/{id}/update', 'AdultoMayorController@update')->name('adultosmayores.update');
-    Route::get('/{id}/edit', 'AdultoMayorController@edit')->name('adultosmayores.edit');
-    Route::delete('/{id}/destroy', 'AdultoMayorController@destroy')->name('adultosmayores.destroy');
+
 
 });
 
