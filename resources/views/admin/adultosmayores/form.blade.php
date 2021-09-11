@@ -422,7 +422,7 @@
                                         name="institucion_salud_id" id="institucion_salud_id"
                                     >
                                         <option value="">Seleccione institución salud</option>
-                                        @foreach (\App\institucionSalud::pluck('nombre', 'id') as $id => $institucionSalud)
+                                        @foreach (\App\InstitucionSalud::pluck('nombre', 'id') as $id => $institucionSalud)
                                             <option {{ (int) old('institucion_salud_id') === $id || $adultomayor->institucion_salud_id === $id ? 'selected' : '' }} value="{{ $id }}">
                                                 {{ $institucionSalud }}
                                             </option>
