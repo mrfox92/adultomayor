@@ -39,7 +39,7 @@ class AdultoMayor extends Model
     }
 
     public function institucionSalud () {
-        return $this->belongsTo(institucionSalud::class, 'institucion_salud_id');
+        return $this->belongsTo(InstitucionSalud::class, 'institucion_salud_id');
     }
 
     public function alfabetizacion () {

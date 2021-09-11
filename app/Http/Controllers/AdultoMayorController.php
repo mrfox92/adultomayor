@@ -51,6 +51,7 @@ class AdultoMayorController extends Controller
 
         $adultosmayores = AdultoMayor::with(['nacionalidad', 'alfabetizacion', 'tipoVivienda', 'nucleoFamiliar', 'institucionSalud', 'amEtnias'])->get();
 
+
         return response()->json([
             'adultosmayores' => $adultosmayores,
             'message' => 'success'
