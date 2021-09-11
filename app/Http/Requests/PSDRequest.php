@@ -42,7 +42,7 @@ class PSDRequest extends FormRequest
                     'sociedad_civil'                =>  'required',
                     'obs_sociedad_civil'            =>  'nullable|max:500',
                     'recibe_pension'                =>  'required',
-                    'picture'                       =>  'sometimes|image|mimes:jpg,jpeg,png',
+                    'picture'                       =>  'sometimes|image|mimes:jpg,jpeg,png|max:2048',
                 ];
             case 'PUT':
                 return [
@@ -64,7 +64,7 @@ class PSDRequest extends FormRequest
                     'sociedad_civil'                =>  'required',
                     'obs_sociedad_civil'            =>  'nullable|max:500',
                     'recibe_pension'                =>  'required',
-                    'picture'                       =>  'sometimes|image|mimes:jpg,jpeg,png',
+                    'picture'                       =>  'sometimes|image|mimes:jpg,jpeg,png|max:2048',
                 ];
         }
     }
@@ -90,7 +90,8 @@ class PSDRequest extends FormRequest
                     'sociedad_civil.required'               =>  'Campo obligatorio, por favor seleccione una opción organizacion(es) civil(es)',
                     'obs_sociedad_civil.max'                =>  'El texto es demasiado largo, debe tener un máximo de 500 caracteres',
                     'recibe_pension.required'               =>  'Campo obligatorio, por favor seleccione una opción recibe pension',
-                    'picture.image'                         =>  'El archivo a subir debe tener un formato de imagen válido, pruebe subir una imagen con extension jpg, jpeg o png'
+                    'picture.image'                         =>  'El archivo a subir debe tener un formato de imagen válido, pruebe subir una imagen con extension jpg, jpeg o png',
+                    'picture.max'                           =>  'Debe subir una imagen con un peso no superior a los 2 MB, por favor reintente con una imagen más liviana',
                 ];
             case 'PUT':
                 return [
@@ -107,7 +108,8 @@ class PSDRequest extends FormRequest
                     'sociedad_civil.required'               =>  'Campo obligatorio, por favor seleccione una opción organizacion(es) civil(es)',
                     'obs_sociedad_civil.max'                =>  'El texto es demasiado largo, debe tener un máximo de 500 caracteres',
                     'recibe_pension.required'               =>  'Campo obligatorio, por favor seleccione una opción recibe pension',
-                    'picture.image'                         =>  'El archivo a subir debe tener un formato de imagen válido, pruebe subir una imagen con extension jpg, jpeg o png'
+                    'picture.image'                         =>  'El archivo a subir debe tener un formato de imagen válido, pruebe subir una imagen con extension jpg, jpeg o png',
+                    'picture.max'                           =>  'Debe subir una imagen con un peso no superior a los 2 MB, por favor reintente con una imagen más liviana',
                 ];
         }
     }

@@ -65,7 +65,7 @@ class AdultoMayorRequest extends FormRequest
                     'obs_vacunado'                  =>  'nullable|max:500',
                     'controles_dia'                 =>  'required',
                     'obs_controles'                 =>  'nullable|max:500',
-                    'picture'                       =>  'sometimes|image|mimes:jpg,jpeg,png',
+                    'picture'                       =>  'sometimes|image|mimes:jpg,jpeg,png|max:2048',
                 ];
             case 'PUT':
                 return [
@@ -110,7 +110,8 @@ class AdultoMayorRequest extends FormRequest
                     'obs_vacunado'                  =>  'nullable|max:500',
                     'controles_dia'                 =>  'required',
                     'obs_controles'                 =>  'nullable|max:500',
-                    'picture'                       =>  'sometimes|image|mimes:jpg,jpeg,png',
+                    'picture'                       =>  'sometimes|image|mimes:jpg,jpeg,png|max:2048',
+                    
                 ];
         }
     }
@@ -157,7 +158,8 @@ class AdultoMayorRequest extends FormRequest
                     'obs_vacunado.max'                      =>  'El texto es demasiado largo, debe tener un máximo de 500 caracteres',
                     'controles_dia.required'                =>  'Campo obligatorio, por favor seleccione una opción controles al día',
                     'obs_controles.max'                     =>  'El texto es demasiado largo, debe tener un máximo de 500 caracteres',
-                    'picture.image'                         =>  'El archivo a subir debe tener un formato de imagen válido, pruebe subir una imagen con extension jpg, jpeg o png'
+                    'picture.image'                         =>  'El archivo a subir debe tener un formato de imagen válido, pruebe subir una imagen con extension jpg, jpeg o png',
+                    'picture.max'                           =>  'Debe subir una imagen con un peso no superior a los 2 MB, por favor reintente con una imagen más liviana',
                 ];
             case 'PUT':
                 return [
@@ -195,7 +197,8 @@ class AdultoMayorRequest extends FormRequest
                     'obs_vacunado.max'                      =>  'El texto es demasiado largo, debe tener un máximo de 500 caracteres',
                     'controles_dia.required'                =>  'Campo obligatorio, por favor seleccione una opción controles al día',
                     'obs_controles.max'                     =>  'El texto es demasiado largo, debe tener un máximo de 500 caracteres',
-                    'picture.image'                         =>  'El archivo a subir debe tener un formato de imagen válido, pruebe subir una imagen con extension jpg, jpeg o png'
+                    'picture.image'                         =>  'El archivo a subir debe tener un formato de imagen válido, pruebe subir una imagen con extension jpg, jpeg o png',
+                    'picture.max'                           =>  'Debe subir una imagen con un peso no superior a los 2 MB, por favor reintente con una imagen más liviana',
                 ];
         }
     }
