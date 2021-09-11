@@ -59,7 +59,7 @@
 
             @if ( session('message') )
                 <div class="row justify-content-center">
-                    <div class="col-md-12 my-2">
+                    <div class="col-md-10 my-2">
                         <div class="alert-{{ session('message')['class'] }}" role="alert">
                             <h4 class="alert-heading">
                                 {{ __("Mensaje informativo") }}

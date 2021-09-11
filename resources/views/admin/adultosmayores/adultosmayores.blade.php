@@ -10,7 +10,7 @@
 <body>
     <div class="container-fluid mb-2">
         <div class="text-center">
-            <img class="img-fluid" width="60" height="60" src="{{ public_path('img\municipalidad.jpg') }}" alt="">
+            <img class="img-fluid" width="60" height="60" src="{{ public_path('img/municipalidad.jpg') }}" alt="">
         </div>
         <p class="float-right text-muted">{{ date('d/m/Y H:i:s') }}</p><br>
         <div class="row">

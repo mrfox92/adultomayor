@@ -53,7 +53,11 @@ class LoginController extends Controller
             return redirect( route('home') );
         }
 
-        return redirect('login');
+        // return redirect('login');
+        return back()->with('message', [
+            'class'     =>  'danger',
+            'message'   =>  __("El correo o la contraseña ingresada no son correctas, por favor reintente.")
+        ]);
     }
 
     public function logout ( Request $request ) {
