@@ -1052,7 +1052,7 @@ class DatabaseSeeder extends Seeder
         // factory(App\TrabajoBano::class, 2)->create();
 
         //  adultos mayores
-        // factory(App\AdultoMayor::class, 30)->create();
+        factory(App\AdultoMayor::class, 30)->create();
 
         //  Autonomia adulto mayor
 
@@ -1073,7 +1073,7 @@ class DatabaseSeeder extends Seeder
 
 
         //  PSD
-        // factory(App\PersonaDiscapacitada::class, 30)->create();
+        factory(App\PersonaDiscapacitada::class, 30)->create();
         //  beneficios estatales
         factory(App\BeneficioEstatal::class, 1)->create([
             'nombre'        =>  'Aporte Previsional Solidario de Invalidez (APSI)',

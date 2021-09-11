@@ -49,13 +49,11 @@ class AdultoMayorController extends Controller
             return abort(401, 'acción no autorizada');
         }
 
-        // return AdultoMayor::all();
-
-        $usuarios = AdultoMayor::with(['nacionalidad', 'alfabetizacion', 'tipoVivienda', 'nucleoFamiliar', 'institucionSalud', 'amEtnias'])->get();
+        $adultosmayores = AdultoMayor::with(['nacionalidad', 'alfabetizacion', 'tipoVivienda', 'nucleoFamiliar', 'institucionSalud', 'amEtnias'])->get();
 
         return response()->json([
-            'usuarios' => $usuarios,
-            'message' => 'Success'
+            'adultosmayores' => $adultosmayores,
+            'message' => 'success'
             ], 200);
 
     }
