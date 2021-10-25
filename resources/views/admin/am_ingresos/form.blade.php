@@ -12,7 +12,7 @@
     
             <li class="item"><a href="{{ route('amingresos.show', ['id' => $adultomayor->id]) }}">Tipo Ingresos A.M</a></li>
     
-            <li class="item">{{ __("Inscribir Atención A.M") }}</li>
+            <li class="item">{{ __("Inscribir Ingresos A.M") }}</li>
         </ol>
     </div>
 

@@ -134,22 +134,6 @@
                     
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="text-center text-uppercase"> Habitabilidad vivienda PSD</h3>
-                </div>
-                <div class="card-body">
-                    <p class="text-justify">Ficha para registrar la(s) ocupacion(es) de la PSD</p>
-
-                    @if ( $establecimiento )
-                        <a class="btn btn-primary btn-block text-uppercase" href="{{ route('establecimiento.edit', ['id' => $psd->id]) }}">Editar</a>
-                        <a class="btn btn-danger btn-block text-uppercase" href="{{ route('establecimiento.show', ['id' => $psd->id]) }}" target="_blank">Descargar PDF</a>
-                    @else
-                        <a class="btn btn-success btn-block text-uppercase" href="{{ route('establecimiento.create', ['id' => $psd->id]) }}">Registrar</a>
-                    @endif
-                    
-                </div>
-            </div>
             
         </div>
     <div>
