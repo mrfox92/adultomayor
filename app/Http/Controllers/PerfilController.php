@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\PerfilRequest;
+use Illuminate\Support\Facades\Hash;
 use App\Helpers\Helper;
 use App\User;
 
