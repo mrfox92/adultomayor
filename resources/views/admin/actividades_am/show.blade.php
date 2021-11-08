@@ -44,8 +44,22 @@
                                 <td>
                                     {{ $actividad->actividad()->first()->nombre }}
                                 </td>
-                                <td>{{ \Carbon\Carbon::parse( $actividad->actividad()->first()->fecha_inicio )->format('d/m/Y') }}</td>
-                                <td>{{ \Carbon\Carbon::parse( $actividad->actividad()->first()->fecha_fin )->format('d/m/Y') }}</td>
+                                <td>
+                                    @if ( isset($actividad->actividad()->first()->fecha_inicio) && !empty(isset($actividad->actividad()->first()->fecha_inicio)) )
+                                        {{ \Carbon\Carbon::parse( $actividad->actividad()->first()->fecha_inicio )->format('d/m/Y') }}
+                                    @else
+                                        <span class="badge badge-secondary">No especificada </span>
+                                    @endif
+                                    
+                                </td>
+                                <td>
+                                    @if ( isset($actividad->actividad()->first()->fecha_fin) && !empty(isset($actividad->actividad()->first()->fecha_fin)) )
+                                        {{ \Carbon\Carbon::parse( $actividad->actividad()->first()->fecha_fin )->format('d/m/Y') }}
+                                    @else
+                                        <span class="badge badge-secondary">No especificada </span>
+                                    @endif
+                                    
+                                </td>
     
                                 <td colspan="3">
     

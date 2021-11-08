@@ -8,6 +8,7 @@ use App\Http\Requests\SaludRequest;
 use App\AdultoMayor;
 use App\Salud;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class SaludController extends Controller
 {
@@ -45,7 +46,7 @@ class SaludController extends Controller
      */
     public function store(SaludRequest $salud_request)
     {
-        $user = User::get()->first();
+        $user = Auth::user();
         $salud_request->merge(['user_id' => $user->id]);
 
         $salud = Salud::create( $salud_request->input() );

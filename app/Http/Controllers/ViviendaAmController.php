@@ -7,6 +7,7 @@ use App\Http\Requests\ViviendaAmRequest;
 use App\ViviendaAm;
 use App\AdultoMayor;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class ViviendaAmController extends Controller
 {
@@ -27,9 +28,11 @@ class ViviendaAmController extends Controller
      */
     public function create($id)
     {
-        $adultomayor = AdultoMayor::find($id)->first();
+        $adultomayor = AdultoMayor::find($id);
         $vivienda = new ViviendaAm();
         $btnText = __("Guardar");
+
+        // dd($adultomayor->id);
 
         return view('admin.viviendas.form', compact('adultomayor', 'vivienda', 'btnText'));
     }
@@ -42,12 +45,13 @@ class ViviendaAmController extends Controller
      */
     public function store(ViviendaAmRequest $vivienda_am_request)
     {
-        $user = User::get()->first();
+        $user = Auth::user();
+        $adultomayor = AdultoMayor::find($vivienda_am_request->input('am_id'));
         $vivienda_am_request->merge(['user_id' => $user->id]);
 
         $vivienda = ViviendaAm::create( $vivienda_am_request->input() );
 
-        return redirect()->route('vivienda.edit', $vivienda->am_id )->with('message', [
+        return redirect()->route('vivienda.edit', $adultomayor->id )->with('message', [
             'class'     =>  'success',
             'message'   =>  __("La ficha de Vivienda Adulto mayor ha sido registrada exitosamente en el sistema")
         ]);

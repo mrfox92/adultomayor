@@ -7,6 +7,7 @@ use App\Http\Requests\AcompananteRequest;
 use App\AdultoMayor;
 use App\Acompanante;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class AcompananteController extends Controller
 {
@@ -43,7 +44,7 @@ class AcompananteController extends Controller
     public function store(AcompananteRequest $acompanante_request)
     {
 
-        $user = User::get()->first();
+        $user = Auth::user();
         $acompanante_request->merge(['user_id' => $user->id]);
 
         $acompanante = Acompanante::create( $acompanante_request->input() );

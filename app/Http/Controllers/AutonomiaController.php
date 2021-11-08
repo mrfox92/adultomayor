@@ -7,6 +7,7 @@ use App\Http\Requests\AutonomiaRequest;
 use App\Autonomia;
 use App\AdultoMayor;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class AutonomiaController extends Controller
 {
@@ -48,7 +49,7 @@ class AutonomiaController extends Controller
     public function store(AutonomiaRequest $autonomia_request)
     {
         // dd( $autonomia_request );
-        $user = User::get()->first();
+        $user = Auth::user();
         $autonomia_request->merge(['user_id' => $user->id]);
 
         // dd( $autonomia_request );

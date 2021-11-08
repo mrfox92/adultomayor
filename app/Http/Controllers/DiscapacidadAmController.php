@@ -7,6 +7,7 @@ use App\Http\Requests\DiscapacidadAmRequest;
 use App\DiscapacidadAm;
 use App\AdultoMayor;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class DiscapacidadAmController extends Controller
 {
@@ -42,7 +43,7 @@ class DiscapacidadAmController extends Controller
      */
     public function store(DiscapacidadAmRequest $discapacidad_am_request)
     {
-        $user = User::get()->first();
+        $user = Auth::user();
         $discapacidad_am_request->merge(['user_id' => $user->id]);
 
         $discapacidad = DiscapacidadAm::create( $discapacidad_am_request->input() );

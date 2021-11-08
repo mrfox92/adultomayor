@@ -46,8 +46,20 @@
                                     {{ $taller->taller()->first()->tipotaller()->first()->nombre }}
                                 </td>
                                 <td>{{ $taller->taller()->first()->nombre }}</td>
-                                <td>{{ \Carbon\Carbon::parse( $taller->taller()->first()->fecha_inicio )->format('d/m/Y') }}</td>
-                                <td>{{ \Carbon\Carbon::parse( $taller->taller()->first()->fecha_fin )->format('d/m/Y') }}</td>
+                                <td>
+                                    @if ( isset($taller->taller()->first()->fecha_inicio) && !empty(isset($taller->taller()->first()->fecha_inicio)) )
+                                        {{ \Carbon\Carbon::parse( $taller->taller()->first()->fecha_inicio )->format('d/m/Y') }}
+                                    @else
+                                        <span class="badge badge-secondary">No especificada </span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ( isset($taller->taller()->first()->fecha_fin) && !empty(isset($taller->taller()->first()->fecha_fin)) )
+                                        {{ \Carbon\Carbon::parse( $taller->taller()->first()->fecha_fin )->format('d/m/Y') }}
+                                    @else
+                                        <span class="badge badge-secondary">No especificada </span>
+                                    @endif
+                                </td>
     
                                 <td colspan="3">
     

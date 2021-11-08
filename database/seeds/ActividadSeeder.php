@@ -13,22 +13,30 @@ class ActividadSeeder extends Seeder
     {
         factory(App\Actividad::class, 1)->create([
             'nombre'        =>  'CORONACIÓN DE LA REINA',
-            'descripcion'   =>  'actividad coronación de la reina'
+            'descripcion'   =>  'actividad coronación de la reina',
+            'fecha_inicio'  =>  null,
+            'fecha_fin' =>  null,
         ]);
 
         factory(App\Actividad::class, 1)->create([
             'nombre'        =>  'OLIMPIADAS ADULTO MAYOR',
-            'descripcion'   =>  'actividad olimpiadas adulto mayor'
+            'descripcion'   =>  'actividad olimpiadas adulto mayor',
+            'fecha_inicio'  =>  null,
+            'fecha_fin' =>  null,
         ]);
 
         factory(App\Actividad::class, 1)->create([
             'nombre'        =>  'PASAMOS AGOSTO',
-            'descripcion'   =>  'actividad pasamos Agosto'
+            'descripcion'   =>  'actividad pasamos Agosto',
+            'fecha_inicio'  =>  null,
+            'fecha_fin' =>  null,
         ]);
 
         factory(App\Actividad::class, 1)->create([
             'nombre'        =>  'ENCUENTRO COROS',
-            'descripcion'   =>  'actividad encuentro coros'
+            'descripcion'   =>  'actividad encuentro coros',
+            'fecha_inicio'  =>  null,
+            'fecha_fin' =>  null,
         ]);
     }
 }

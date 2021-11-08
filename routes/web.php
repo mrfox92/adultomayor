@@ -189,7 +189,7 @@ Route::group(['prefix' => 'autonomia', 'middleware' => ['auth', sprintf('role:%s
     Route::delete('/{id}/destroy', 'AutonomiaController@destroy')->name('autonomia.destroy');
 });
 
-//  Autonomia Adulto Mayor
+//  Salud Adulto Mayor
 Route::group(['prefix' => 'salud', 'middleware' => ['auth', sprintf('role:%s, ', \App\Role::ADMIN.'|'.\App\Role::GESTOR)]], function() {
 
     Route::get('/', 'SaludController@index')->name('salud.index');

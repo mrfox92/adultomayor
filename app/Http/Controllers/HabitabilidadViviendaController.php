@@ -7,6 +7,7 @@ use App\Http\Requests\HabitabilidadViviendaRequest;
 use App\HabitabilidadVivienda;
 use App\AdultoMayor;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class HabitabilidadViviendaController extends Controller
 {
@@ -45,7 +46,7 @@ class HabitabilidadViviendaController extends Controller
     public function store(HabitabilidadViviendaRequest $habitabilidad_request)
     {
 
-        $user = User::get()->first();
+        $user = Auth::user();
         $habitabilidad_request->merge(['user_id' => $user->id]);
         $habitabilidad = HabitabilidadVivienda::create( $habitabilidad_request->input() );
 
