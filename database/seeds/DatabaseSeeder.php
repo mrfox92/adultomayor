@@ -31,35 +31,35 @@ class DatabaseSeeder extends Seeder
         //  usuario test admin
         factory(App\User::class, 1)->create([
             'name'  =>  'Angela Hernandez',
-            'email' =>  'angelahernandez@gmail.com',
+            'email' =>  'angelahernandezcardenas@gmail.com',
             'sexo'  =>  'F',
-            'password'  =>  bcrypt('Angela1234'),
+            'password'  =>  bcrypt('Ofam2021$'),
             'role_id'   =>  \App\Role::ADMIN
         ]);
         
-        factory(App\User::class, 1)->create([
-            'name'  =>  'Test User',
-            'email' =>  'test@test.com',
-            'sexo'  =>  'M',
-            'password'  =>  bcrypt('Test1234'),
-            'role_id'   =>  \App\Role::ADMIN
-        ]);
+        // factory(App\User::class, 1)->create([
+        //     'name'  =>  'Test User',
+        //     'email' =>  'test@test.com',
+        //     'sexo'  =>  'M',
+        //     'password'  =>  bcrypt('Test1234'),
+        //     'role_id'   =>  \App\Role::ADMIN
+        // ]);
         
-        factory(App\User::class, 1)->create([
-            'name'  =>  'Test User 1',
-            'email' =>  'test1@test.com',
-            'sexo'  =>  'M',
-            'password'  =>  bcrypt('Test1234'),
-            'role_id'   =>  \App\Role::GESTOR
-        ]);
+        // factory(App\User::class, 1)->create([
+        //     'name'  =>  'Test User 1',
+        //     'email' =>  'test1@test.com',
+        //     'sexo'  =>  'M',
+        //     'password'  =>  bcrypt('Test1234'),
+        //     'role_id'   =>  \App\Role::GESTOR
+        // ]);
         
-        factory(App\User::class, 1)->create([
-            'name'  =>  'Test User 2',
-            'email' =>  'test2@test.com',
-            'sexo'  =>  'M',
-            'password'  =>  bcrypt('Test1234'),
-            'role_id'   =>  \App\Role::INVITADO
-        ]);
+        // factory(App\User::class, 1)->create([
+        //     'name'  =>  'Test User 2',
+        //     'email' =>  'test2@test.com',
+        //     'sexo'  =>  'M',
+        //     'password'  =>  bcrypt('Test1234'),
+        //     'role_id'   =>  \App\Role::INVITADO
+        // ]);
         
 
         //  Nacionalidad
