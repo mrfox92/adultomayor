@@ -21,7 +21,6 @@
                                 Seleccione acción
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" v-bind:href="`usuarios/show/${ usuario.id }`">Ver <i class="bx bx-show-alt"></i></a>
                                 <a class="dropdown-item" v-bind:href="`usuarios/${usuario.id}/edit`">Editar <i class="bx bx-edit"></i></a>
                                 <a v-if="!usuario.deleted_at" class="dropdown-item" type="button" @click="eliminar(usuario)">Eliminar <i class="bx bx-trash"></i></a>
                                 <a v-if="usuario.deleted_at" class="dropdown-item" type="button" @click="restaurar(usuario)">Restaurar <i class="fas fa-sync-alt"></i></a>
