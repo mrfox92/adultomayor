@@ -45,7 +45,13 @@
                                     {{ $atencion->atencion()->first()->nombre }}
                                 </td>
                                 <td>{{ $atencion->obs_atencion }}</td>
-                                <td>{{ \Carbon\Carbon::parse( $atencion->fecha_atencion )->format('d/m/Y') }}</td>
+                                <td>
+                                    @if ( isset($atencion->fecha_atencion) && !empty($atencion->fecha_atencion) )
+                                        {{ \Carbon\Carbon::parse( $atencion->fecha_atencion )->format('d/m/Y') }}
+                                    @else
+                                        <span class="badge badge-secondary">No especificada </span>
+                                    @endif
+                                </td>
     
                                 <td colspan="3">
     

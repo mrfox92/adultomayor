@@ -14,6 +14,6 @@ class DiscapacidadAm extends Model
     }
 
     public function tipoDiscapacidad () {
-        return $this->belongsTo(tipoDiscapacidad::class, 'id_tipo_discapacidad')->select('id', 'nombre');
+        return $this->belongsTo(TipoDiscapacidad::class, 'id_tipo_discapacidad')->select('id', 'nombre');
     }
 }
