@@ -44,7 +44,7 @@ class PDFAdultoMayorController extends Controller
         
         $amAyudaTecnica = AmAyudaTecnica::with(['ayudaTecnica'])->where('am_id', $adultomayor->id)->get();
         $amAtencion = AmAtencion::with(['atencion'])->where('am_id', $adultomayor->id)->get();
-        $amTrabajoBano = AmTrabajoBano::with(['atencion'])->where('am_id', $adultomayor->id)->get();
+        $amTrabajoBano = AmTrabajoBano::with(['trabajoBano'])->where('am_id', $adultomayor->id)->get();
 
         //  programas am
 

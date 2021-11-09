@@ -411,6 +411,19 @@
                             </td>
                         </tr>
 
+                        <tr>
+                            <td>Trabajo(s) Baño</td>
+                            <td>
+                                @forelse ($amTrabajoBano as $trabajoBano)
+                                    <ul>
+                                        <li>{{ $trabajoBano->trabajoBano()->first()->nombre }}</li>
+                                    </ul>
+                                @empty
+                                    No registra ninguna atención A.M
+                                @endforelse
+                            </td>
+                        </tr>
+
                     </tbody>
                 
                 </table>
