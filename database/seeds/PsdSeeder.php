@@ -11,6 +11,6 @@ class PsdSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\PersonaDiscapacitada::class, 30)->create();
+        // factory(App\PersonaDiscapacitada::class, 30)->create();
     }
 }

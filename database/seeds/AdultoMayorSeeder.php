@@ -11,6 +11,6 @@ class AdultoMayorSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\AdultoMayor::class, 30)->create();
+        //factory(App\AdultoMayor::class, 30)->create();
     }
 }
