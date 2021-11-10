@@ -43,6 +43,7 @@
                             <th>ID</th>
                             <th>Tipo Discapacidad</th>
                             <th>Nombre</th>
+                            <th>Observación</th>
                             <th>% Discapacidad</th>
                             <th>
                                 Acciones
