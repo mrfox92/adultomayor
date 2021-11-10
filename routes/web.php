@@ -129,7 +129,7 @@ Route::group(['prefix' => 'establecimiento', 'middleware' => ['auth', sprintf('r
     Route::delete('/{id}/destroy', 'EstablecimientoController@destroy')->name('establecimiento.destroy');
 });
 
-//  establecimiento educacional PSD
+//  trabajador dependiente PSD
 Route::group(['prefix' => 'trabajador', 'middleware' => ['auth', sprintf('role:%s, ', \App\Role::ADMIN.'|'.\App\Role::GESTOR)]], function() {
 
     Route::get('/', 'TrabajadorPSDController@index')->name('trabajador.index');
