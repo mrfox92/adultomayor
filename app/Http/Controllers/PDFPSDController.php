@@ -9,6 +9,7 @@ use App\OrganizacionPsd;
 use App\OtraOcupacionPsd;
 use App\Independiente;
 use App\BeneficioEstatalPsd;
+use App\DiscapacidadPsd;
 
 class PDFPSDController extends Controller
 {
@@ -32,9 +33,12 @@ class PDFPSDController extends Controller
         $otras = OtraOcupacionPsd::where('psd_id', $psd->id)->first();
         $independiente = Independiente::where('psd_id', $psd->id)->first();
 
+        //  discapacidades PSD
+        $discapacidades = DiscapacidadPsd::with(['psd', 'tipoDiscapacidad'])->where('psd_id', $psd->id)->get();
+
         $beneficiospsd = BeneficioEstatalPsd::with(['psd', 'beneficioEstatal'])->where('psd_id', $psd->id)->get();
 
-        $pdf = \PDF::loadView('admin.psd.reporte', compact('psd', 'establecimiento', 'trabajador', 'otras', 'independiente', 'beneficiospsd'));
+        $pdf = \PDF::loadView('admin.psd.reporte', compact('psd', 'establecimiento', 'trabajador', 'otras', 'independiente', 'beneficiospsd', 'discapacidades'));
         return $pdf->stream('psd-reporte.pdf');
     }
 

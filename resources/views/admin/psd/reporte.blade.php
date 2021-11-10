@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Informe PSD</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
+
 <body>
     <div class="container-fluid mb-2">
         <div class="text-center">
@@ -63,7 +66,7 @@
                         </tr>
                         <tr>
                             <td>Telefono</td>
-                            <td><span>{{ ( $psd->telefono ) ? $psd->telefono : 'No especificado' }}</span></td>
+                            <td><span>{{ $psd->telefono ? $psd->telefono : 'No especificado' }}</span></td>
                         </tr>
                         <tr>
                             <td>Nacionalidad</td>
@@ -71,19 +74,20 @@
                         </tr>
                         <tr>
                             <td>Sexo</td>
-                            <td><span>{{ ($psd->sexo == 'F') ? 'Femenino' : 'Masculino' }}</span></td>
+                            <td><span>{{ $psd->sexo == 'F' ? 'Femenino' : 'Masculino' }}</span></td>
                         </tr>
                         <tr>
                             <td>¿Pertenece a alguna(s) organizacion(es) Social(es)?</td>
-                            <td><span>{{ ($psd->sociedad_civil == 'SI') ? 'SI' : 'NO' }}</span></td>
+                            <td><span>{{ $psd->sociedad_civil == 'SI' ? 'SI' : 'NO' }}</span></td>
                         </tr>
                         <tr>
                             <td>Observación organizacion(es) Social(es)</td>
-                            <td><span>{{ ($psd->obs_sociedad_civil) ? $psd->obs_sociedad_civil : 'No Especificada' }}</span></td>
+                            <td><span>{{ $psd->obs_sociedad_civil ? $psd->obs_sociedad_civil : 'No Especificada' }}</span>
+                            </td>
                         </tr>
                         <tr>
                             <td>¿Recibe Pensión?</td>
-                            <td><span>{{ ($psd->recibe_pension == 'SI') ? 'SI' : 'NO' }}</span></td>
+                            <td><span>{{ $psd->recibe_pension == 'SI' ? 'SI' : 'NO' }}</span></td>
                         </tr>
                         <tr>
                             <td>Estudiante</td>
@@ -98,10 +102,12 @@
                                         <li>Curso actual: {{ $establecimiento->curso_actual }}</li>
                                         <li>Profesor: {{ $establecimiento->profesor }}</li>
                                         <li>¿Inscrito en programa PIE?: {{ $establecimiento->programa_pie }}</li>
-                                        <li>Ultima actualizacion datos: {{ \Carbon\Carbon::parse( $establecimiento->updated_at )->format('d/m/Y') }}</li>
+                                        <li>Ultima actualizacion datos:
+                                            {{ \Carbon\Carbon::parse($establecimiento->updated_at)->format('d/m/Y') }}
+                                        </li>
                                     </ul>
                                 @else
-                                    {{ __("No informado") }}
+                                    {{ __('No informado') }}
                                 @endif
                             </td>
                         </tr>
@@ -116,10 +122,12 @@
                                         <li>Telefono: {{ $trabajador->telefono }}</li>
                                         <li>Cargo: {{ $trabajador->cargo }}</li>
                                         <li>Encargado: {{ $trabajador->encargado }}</li>
-                                        <li>Ultima actualizacion datos: {{ \Carbon\Carbon::parse( $trabajador->updated_at )->format('d/m/Y') }}</li>
+                                        <li>Ultima actualizacion datos:
+                                            {{ \Carbon\Carbon::parse($trabajador->updated_at)->format('d/m/Y') }}
+                                        </li>
                                     </ul>
                                 @else
-                                    {{ __("No informado") }}
+                                    {{ __('No informado') }}
                                 @endif
                             </td>
                         </tr>
@@ -134,10 +142,12 @@
                                         <li>Telefono: {{ $independiente->telefono }}</li>
                                         <li>Cargo: {{ $independiente->cargo }}</li>
                                         <li>Encargado: {{ $independiente->encargado }}</li>
-                                        <li>Ultima actualizacion datos: {{ \Carbon\Carbon::parse( $independiente->updated_at )->format('d/m/Y') }}</li>
+                                        <li>Ultima actualizacion datos:
+                                            {{ \Carbon\Carbon::parse($independiente->updated_at)->format('d/m/Y') }}
+                                        </li>
                                     </ul>
                                 @else
-                                    {{ __("No informado") }}
+                                    {{ __('No informado') }}
                                 @endif
                             </td>
                         </tr>
@@ -152,10 +162,11 @@
                                         <li>Telefono: {{ $otras->telefono }}</li>
                                         <li>Cargo: {{ $otras->cargo }}</li>
                                         <li>Encargado: {{ $otras->encargado }}</li>
-                                        <li>Ultima actualizacion datos: {{ \Carbon\Carbon::parse( $otras->updated_at )->format('d/m/Y') }}</li>
+                                        <li>Ultima actualizacion datos:
+                                            {{ \Carbon\Carbon::parse($otras->updated_at)->format('d/m/Y') }}</li>
                                     </ul>
                                 @else
-                                    {{ __("No informado") }}
+                                    {{ __('No informado') }}
                                 @endif
                             </td>
                         </tr>
@@ -172,12 +183,35 @@
                             </td>
                         </tr>
 
+                        <tr>
+                            <td>Discapacidad(es) PSD</td>
+                            <td>
+                                @forelse ($discapacidades as $discapacidad)
+                                    <ul>
+                                        <li><span>Discapacidad: </span>{{ $discapacidad->nombre }}</li>
+                                        <li><span>Tipo discapacidad:
+                                            </span>{{ $discapacidad->tipoDiscapacidad()->first()->nombre }}</li>
+                                        <li><span>% Discapacidad:</span>
+                                            @if (isset($discapacidad->porcentaje_discapacidad) && !empty($discapacidad->porcentaje_discapacidad))
+                                                {{ $discapacidad->porcentaje_discapacidad }}%
+                                            @else
+                                                <span>No especificado</span>
+                                            @endif
+                                        </li>
+                                    </ul>
+                                @empty
+                                    No tiene inscrita ningún discapacidad en el sistema
+                                @endforelse
+                            </td>
+                        </tr>
+
                     </tbody>
-                
+
                 </table>
 
             </div>
         </div>
     </div>
 </body>
+
 </html>
