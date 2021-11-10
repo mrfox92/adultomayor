@@ -43,6 +43,7 @@
                             <th>ID</th>
                             <th>Tipo Discapacidad</th>
                             <th>Nombre</th>
+                            <th>% Discapacidad</th>
                             <th>
                                 Acciones
                             </th>
@@ -89,7 +90,14 @@
                                 </td>
                                 <td>{{ $discapacidad->nombre }}</td>
                                 <td>{{ $discapacidad->observacion }}</td>
-                                <td>{{ $discapacidad->porcentaje_discapacidad }}</td>
+                                <td>
+                                    @if ( isset($discapacidad->porcentaje_discapacidad) && !empty($discapacidad->porcentaje_discapacidad) )
+                                        
+                                        {{ $discapacidad->porcentaje_discapacidad }}%
+                                    @else
+                                        <span class="badge badge-secondary">no especificada</span>
+                                    @endif
+                                </td>
                                 <td colspan="3">
     
                                     <div class="btn-group" role="group">
